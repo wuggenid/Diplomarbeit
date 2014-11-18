@@ -1,0 +1,101 @@
+html, body {
+    height: 100%;
+    font-family:"arial","Terminal","monospace";
+    background-color: white;
+    font-size: 15px;
+}
+
+
+
+/* HEADER */
+.head {
+    background-color: lightgrey;
+}
+
+/* TABELLEN */
+tr {
+    font: bold 16px Arial,Verdana,sans-serif;
+    padding: 3px;
+    background-color: grey;
+    border: 1px solid #FFFFFF;
+    text-align: center;
+    color: white;
+    font-weight: normal;
+    height: 35px;
+}
+td {
+    font: normal 14px Arial,Verdana,sans-serif;
+    color: black;
+    padding: 5px 5px;
+    background-color: lightgrey;
+    border: 1px solid #FFFFFF;
+    line-height: 130%;
+    text-align: center;
+}
+tb {
+    height: 50px;
+    width: 30px;
+    overflow:auto;
+}
+
+
+
+/* TEXTFELDER */
+
+#contactform {
+    width:100%;
+    overflow:hidden;
+}
+#contactform li {
+    list-style:none;
+    padding-bottom:40px;
+}
+#contactform li .fieldbox {
+    float:left;
+    height:20px;
+    width: 300px;
+}
+#contactform li .fieldbox input {
+    height:20px;
+    padding-top:5px;
+    width:100%;
+}
+#contactform li .msgbox {
+    float:left;
+    height:70px;
+    width: 300px;
+}
+#contactform li .msgbox textarea {
+    height:60px;
+    padding-top:5px;
+    width:100%;
+}
+
+
+
+/* BUTTON */
+.bbutton {
+    font-family: arial;
+    color: black;
+    font-size: 14px;
+    text-shadow: 1px 1px 0px lightgrey;
+    box-shadow: 1px 1px 1px #BEE2F9;
+    padding: 10px 25px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    border: 2px solid darkgray;
+    background: grey;
+    background: linear-gradient(top,  lightgrey,  grey);
+    background: -ms-linear-gradient(top,  lightgrey,  grey);
+    background: -webkit-gradient(linear, left top, left bottom, from(lightgrey), to(grey));
+    background: -moz-linear-gradient(top,  lightgrey,  grey);
+}
+.bbutton:hover {
+    color: black;
+    background: lightgrey;
+    background: linear-gradient(top,  grey,  lightgrey);
+    background: -ms-linear-gradient(top,  grey,  lightgrey);
+    background: -webkit-gradient(linear, left top, left bottom, from(grey), to(lightgrey));
+    background: -moz-linear-gradient(top,  grey,  lightgrey);
+}

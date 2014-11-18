@@ -44,7 +44,8 @@ class BestellungenController extends \BaseController {
 	public function show($id)
 	{
         $data['id'] = $id;
-		return View::make('bestellungen',$data);
+        $data['title'] = "Bestellung";
+		return View::make('bestellung',$data);
 	}
 
 
