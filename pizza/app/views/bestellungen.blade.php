@@ -1,4 +1,4 @@
 <html>
     <title>Bestellungen</title>
-    <body>Bestellungen</body>
+    <body>Bestellung: {{$id}}</body>
 </html>
