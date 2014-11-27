@@ -13,6 +13,8 @@ html, body {
 }
 
 /* TABELLEN */
+
+
 tr {
     font: bold 16px Arial,Verdana,sans-serif;
     padding: 3px;
@@ -22,6 +24,7 @@ tr {
     color: white;
     font-weight: normal;
     height: 35px;
+    overflow: auto;
 }
 td {
     font: normal 14px Arial,Verdana,sans-serif;
@@ -32,11 +35,39 @@ td {
     line-height: 130%;
     text-align: center;
 }
-tb {
-    height: 50px;
-    width: 30px;
-    overflow:auto;
+
+
+table {
+    width: 100%;
 }
+thead, tbody, tr, td, th { display: block; }
+
+tr:after {
+    content: ' ';
+    display: block;
+    visibility: hidden;
+    clear: both;
+}
+thead th {
+    height: 30px;
+
+    /*text-align: left;*/
+}
+tbody {
+    height: 120px;
+    overflow-y: auto;
+}
+thead {
+    /* fallback */
+}
+tbody td, thead th {
+    width: 10%;
+    float: left;
+}
+
+
+
+
 
 
 
@@ -99,3 +130,23 @@ tb {
     background: -webkit-gradient(linear, left top, left bottom, from(grey), to(lightgrey));
     background: -moz-linear-gradient(top,  grey,  lightgrey);
 }
+
+
+
+
+ul#actions
+{
+    display:none;
+}
+#actions:target
+{
+    display: block;
+}
+
+
+
+
+
+
+
+
