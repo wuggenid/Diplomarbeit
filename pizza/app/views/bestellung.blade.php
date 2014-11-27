@@ -39,58 +39,60 @@
                 </li>
                 <li>
                     <label for="msg"> Informationen</label><br/>
-                    <span class="msgbox"><textarea class="area" id="msg" name="msg" rows="8" cols="30"></textarea></span>
+                    <span class="msgbox"><textarea class="area" id="msg" name="msg" rows="8" cols="30" style="resize: none;"></textarea></span>
                 </li>
             </ul>
         </div>
 
         <div style="width:68%; float: right; padding-top: 20px;">
-            <div style="position: absolute; height: 200px; overflow: auto; width: 40%;">
-                <div style="height: 200px;">
-                    <table width="100%">
-                      <th>Name</th>
-                      <th>Telefon</th>
-                      <th>Straße</th>
-                      <tb>
-                          <tr>
-                            <td>Pizza Eduardos</td>
-                            <td>04242/219199</td>
-                            <td>Irgendwos 23</td>
-                          </tr>
-                          <tr>
-                             <td>Pizza Eduardos</td>
-                             <td>04242/219199</td>
-                             <td>Irgendwos 23</td>
-                          </tr>
-                          <tr>
-                            <td>Pizza Eduardos</td>
-                            <td>04242/219199</td>
-                            <td>Irgendwos 23</td>
-                          </tr>
-                          <tr>
-                            <td>Pizza Eduardos</td>
-                            <td>04242/219199</td>
-                            <td>Irgendwos 23</td>
-                          </tr>
-                          <tr>
-                            <td>Pizza Eduardos</td>
-                            <td>04242/219199</td>
-                            <td>Irgendwos 23</td>
-                          </tr>
-                          <tr>
-                              <td>Pizza Eduardos</td>
-                              <td>04242/219199</td>
-                              <td>Irgendwos 23</td>
-                            </tr>
-                            <tr>
-                            <td>Pizza Eduardos</td>
-                            <td>04242/219199</td>
-                            <td>Irgendwos 23</td>
-                          </tr>
-                      </tb>
 
-                    </table>
-                </div>
+            <div class="contacts" style="position: absolute; height: 200px; overflow: auto; width: 40%;">
+
+            <div style="height: 200px;">
+                  <table width="100%">
+                    <th>Name</th>
+                    <th>Telefon</th>
+                    <th>Straße</th>
+                    <tb>
+                        <tr>
+                          <td>Pizza Eduardos</td>
+                          <td>04242/219199</td>
+                          <td>Irgendwos 23</td>
+                        </tr>
+                        <tr>
+                           <td>Pizza Eduardos</td>
+                           <td>04242/219199</td>
+                           <td>Irgendwos 23</td>
+                        </tr>
+                        <tr>
+                          <td>Pizza Eduardos</td>
+                          <td>04242/219199</td>
+                          <td>Irgendwos 23</td>
+                        </tr>
+                        <tr>
+                          <td>Pizza Eduardos</td>
+                          <td>04242/219199</td>
+                          <td>Irgendwos 23</td>
+                        </tr>
+                        <tr>
+                          <td>Pizza Eduardos</td>
+                          <td>04242/219199</td>
+                          <td>Irgendwos 23</td>
+                        </tr>
+                        <tr>
+                            <td>Pizza Eduardos</td>
+                            <td>04242/219199</td>
+                            <td>Irgendwos 23</td>
+                          </tr>
+                          <tr>
+                          <td>Pizza Eduardos</td>
+                          <td>04242/219199</td>
+                          <td>Irgendwos 23</td>
+                        </tr>
+                    </tb>
+
+                  </table>
+            </div>
             </div>
 
             <div style="clear: both;">
@@ -105,122 +107,63 @@
     <div style="padding-top: 10px; clear: both;">
     <h3>Artikel</h3>
     <p>
-    <div style="height: 200px; width: 100%; overflow: auto;">
+    <div style="height: 200px; width: 100%;">
         <div style="height: 250px;">
-            <table width="100%;">
-                <th><b>Artikel-Nr</b></th>
-                <th><b>Artikelbezeichnung</b></th>
-                <th><b>Einzelpreis</b></th>
-                <th><b>Menge</b></th>
-                <th><b>Rabatt</b></th>
-                <th><b>Summe</b></th>
-              <tr>
-                <td>0001</td>
-                <td>Pizza</td>
-                <td>10</td>
-                <td>1</td>
-                <td>0</td>
-                <td>10</td>
-              </tr>
-              <tr>
-                  <td>0001</td>
-                  <td>Pizza</td>
-                  <td>10</td>
-                  <td>1</td>
-                  <td>0</td>
-                  <td>10</td>
-                </tr>
-
-             <tr>
-                 <td>0001</td>
-                 <td>Pizza</td>
-                 <td>10</td>
-                 <td>1</td>
-                 <td>0</td>
-                 <td>10</td>
-               </tr>
-
-               <tr>
-                   <td>0001</td>
-                   <td>Pizza</td>
-                   <td>10</td>
-                   <td>1</td>
-                   <td>0</td>
-                   <td>10</td>
-                 </tr>
-                 <tr>
-                    <td>0001</td>
-                    <td>Pizza</td>
-                    <td>10</td>
-                    <td>1</td>
-                    <td>0</td>
-                    <td>10</td>
-                  </tr>
-                  <tr>
-                     <td>0001</td>
-                     <td>Pizza</td>
-                     <td>10</td>
-                     <td>1</td>
-                     <td>0</td>
-                     <td>10</td>
-                   </tr>
-                   <tr>
-                      <td>0001</td>
-                      <td>Pizza</td>
-                      <td>10</td>
-                      <td>1</td>
-                      <td>0</td>
-                      <td>10</td>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Artikel-Nr</th>
+                        <th>Artikelbezeichnung</th>
+                        <th>Einzelpreis</th>
+                        <th>Menge</th>
+                        <th>Rabatt</th>
+                        <th>Summe</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="filterable-cell">0001</td>
+                        <td class="filterable-cell">Pizza</td>
+                        <td class="filterable-cell">5</td>
+                        <td class="filterable-cell">1</td>
+                        <td class="filterable-cell">0</td>
+                        <td class="filterable-cell">5</td>
                     </tr>
                     <tr>
-                       <td>0001</td>
-                       <td>Pizza</td>
-                       <td>10</td>
-                       <td>1</td>
-                       <td>0</td>
-                       <td>10</td>
-                     </tr>
-                  <tr>
-                    <td>0001</td>
-                    <td>Pizza</td>
-                    <td>10</td>
-                    <td>1</td>
-                    <td>0</td>
-                    <td>10</td>
-                  </tr>
-                  <tr>
-                     <td>0001</td>
-                     <td>Pizza</td>
-                     <td>10</td>
-                     <td>1</td>
-                     <td>0</td>
-                     <td>10</td>
-                   </tr>
-                   <tr>
-                      <td>0001</td>
-                      <td>Pizza</td>
-                      <td>10</td>
-                      <td>1</td>
-                      <td>0</td>
-                      <td>10</td>
+                        <td class="filterable-cell">0001</td>
+                        <td class="filterable-cell">Pizza</td>
+                        <td class="filterable-cell">5</td>
+                        <td class="filterable-cell">1</td>
+                        <td class="filterable-cell">0</td>
+                        <td class="filterable-cell">5</td>
                     </tr>
                     <tr>
-                       <td>0001</td>
-                       <td>Pizza</td>
-                       <td>10</td>
-                       <td>1</td>
-                       <td>0</td>
-                       <td>10</td>
-                     </tr>
-                     <tr>
-                        <td>0001</td>
-                        <td>Pizza</td>
-                        <td>10</td>
-                        <td>1</td>
-                        <td>0</td>
-                        <td>10</td>
-                      </tr>
-            </table>
+                        <td class="filterable-cell">0001</td>
+                        <td class="filterable-cell">Pizza</td>
+                        <td class="filterable-cell">5</td>
+                        <td class="filterable-cell">1</td>
+                        <td class="filterable-cell">0</td>
+                        <td class="filterable-cell">5</td>
+                    </tr>
+                    <tr>
+                        <td class="filterable-cell">0001</td>
+                        <td class="filterable-cell">Pizza</td>
+                        <td class="filterable-cell">5</td>
+                        <td class="filterable-cell">1</td>
+                        <td class="filterable-cell">0</td>
+                        <td class="filterable-cell">5</td>
+                    </tr>
+                    <tr>
+                        <td class="filterable-cell">0001</td>
+                        <td class="filterable-cell">Pizza</td>
+                        <td class="filterable-cell">5</td>
+                        <td class="filterable-cell">1</td>
+                        <td class="filterable-cell">0</td>
+                        <td class="filterable-cell">5</td>
+                    </tr>
+                </tbody>
+
+                </table>
             </div>
         </div>
         </p>
@@ -232,6 +175,28 @@
     <button class="bbutton"> Drucken </button>
     <button class="bbutton"> Bestellung ändern... </button>
     <button class="bbutton"> Speichern </button>
+
+
+
+
+    <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+    <div class="actions">
+    <a href="#actions" id="TakeAction">Take Action</a>
+
+    <ul id="actions">
+      <li>action 1</li>
+      <li>action 2</li>
+    </ul>
+    </div>
+
+
+
+
+
+
+
+
+
 
 
 @stop
