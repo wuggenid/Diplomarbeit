@@ -18,7 +18,10 @@
             </div>
         </div>
 
+
+        <div style="padding: 0 15%; position: center;">
         @yield('content')
+        </div>
 
     </body>
 </html>

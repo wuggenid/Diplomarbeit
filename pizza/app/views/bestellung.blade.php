@@ -10,27 +10,27 @@
             <ul id="contactform">
                 <li>
                     <label for="name"> Vorname</label><br/>
-                    <span class="fieldbox"><input type="text" name="vname" id="vname" value=""/></span>
+                    <span class="fieldbox"><input type="text" name="vname" id="vname" disabled="true" value=""/></span>
                 </li>
                 <li>
                     <label for="name"> Nachname</label><br/>
-                    <span class="fieldbox"><input type="text" name="nname" id="nname" value=""/></span>
+                    <span class="fieldbox"><input type="text" name="nname" id="nname" disabled="true" value=""/></span>
                 </li>
                 <li>
                     <label for="email"> Telefon</label><br/>
-                    <span class="fieldbox"><input type="text" name="tel" id="tel" value=""/></span>
+                    <span class="fieldbox"><input type="text" name="tel" id="tel" disabled="true" value=""/></span>
                 </li>
                 <li>
                     <label for="contact"> Adresse</label><br/>
-                    <span class="fieldbox"><input type="text" name="add" id="add" value=""/></span>
+                    <span class="fieldbox"><input type="text" name="add" id="add" disabled="true" value=""/></span>
                 </li>
                 <li>
                     <label for="contact"> Ort</label><br/>
-                    <span class="fieldbox"><input type="text" name="ort" id="ort" value=""/></span>
+                    <span class="fieldbox"><input type="text" name="ort" id="ort" disabled="true" value=""/></span>
                 </li>
                 <li>
                     <label for="msg"> Informationen</label><br/>
-                    <span class="msgbox"><textarea class="area" id="msg" name="msg" rows="8" cols="30" style="resize: none;"></textarea></span>
+                    <span class="msgbox"><textarea class="area" id="msg" name="msg" disabled="true" rows="8" cols="30" style="resize: none;"></textarea></span>
                 </li>
             </ul>
         </div>
@@ -40,6 +40,7 @@
 
             <div class="contacts" style="float:right; height: 200px; width: 100%;">
 
+            <p>Name / Telefon</p>
             <div style="height: 200px;">
             <script type="text/javascript">
                 function toggle(cell) {
@@ -57,8 +58,8 @@
                     }
                   }
                 }
-                </script>
-                  <table width="100%">
+            </script>
+                  <table width="100%" class="table1">
                     <thead>
                       <tr>
                         <th onclick="toggle(this);"><div style="border: 3px solid black"><b>aufklappen</b></div></th>
@@ -129,66 +130,66 @@
                         <tr>
                             <td class="filterable-cell">0001</td>
                             <td class="filterable-cell">Pizza</td>
-                            <td class="filterable-cell">5</td>
+                            <td class="filterable-cell">5,00€</td>
                             <td class="filterable-cell">1</td>
-                            <td class="filterable-cell">0</td>
-                            <td class="filterable-cell">5</td>
+                            <td class="filterable-cell">0%</td>
+                            <td class="filterable-cell">5,00€</td>
                         </tr>
                         <tr>
                             <td class="filterable-cell">0001</td>
                             <td class="filterable-cell">Pizza</td>
-                            <td class="filterable-cell">5</td>
+                            <td class="filterable-cell">5,00€</td>
                             <td class="filterable-cell">1</td>
-                            <td class="filterable-cell">0</td>
-                            <td class="filterable-cell">5</td>
+                            <td class="filterable-cell">0%</td>
+                            <td class="filterable-cell">5,00€</td>
                         </tr>
                         <tr>
                             <td class="filterable-cell">0001</td>
                             <td class="filterable-cell">Pizza</td>
-                            <td class="filterable-cell">5</td>
+                            <td class="filterable-cell">5,00€</td>
                             <td class="filterable-cell">1</td>
-                            <td class="filterable-cell">0</td>
-                            <td class="filterable-cell">5</td>
+                            <td class="filterable-cell">0%</td>
+                            <td class="filterable-cell">5,00€</td>
                         </tr>
                         <tr>
                             <td class="filterable-cell">0001</td>
                             <td class="filterable-cell">Pizza</td>
-                            <td class="filterable-cell">5</td>
+                            <td class="filterable-cell">5,00€</td>
                             <td class="filterable-cell">1</td>
-                            <td class="filterable-cell">0</td>
-                            <td class="filterable-cell">5</td>
+                            <td class="filterable-cell">0%</td>
+                            <td class="filterable-cell">5,00€</td>
                         </tr>
                         <tr>
                             <td class="filterable-cell">0001</td>
                             <td class="filterable-cell">Pizza</td>
-                            <td class="filterable-cell">5</td>
+                            <td class="filterable-cell">5,00€</td>
                             <td class="filterable-cell">1</td>
-                            <td class="filterable-cell">0</td>
-                            <td class="filterable-cell">5</td>
+                            <td class="filterable-cell">0%</td>
+                            <td class="filterable-cell">5,00€</td>
                         </tr>
                         <tr>
                             <td class="filterable-cell">0001</td>
                             <td class="filterable-cell">Pizza</td>
-                            <td class="filterable-cell">5</td>
+                            <td class="filterable-cell">5,00€</td>
                             <td class="filterable-cell">1</td>
-                            <td class="filterable-cell">0</td>
-                            <td class="filterable-cell">5</td>
+                            <td class="filterable-cell">0%</td>
+                            <td class="filterable-cell">5,00€</td>
                         </tr>
                         <tr>
                             <td class="filterable-cell">0001</td>
                             <td class="filterable-cell">Pizza</td>
-                            <td class="filterable-cell">5</td>
+                            <td class="filterable-cell">5,00€</td>
                             <td class="filterable-cell">1</td>
-                            <td class="filterable-cell">0</td>
-                            <td class="filterable-cell">5</td>
+                            <td class="filterable-cell">0%</td>
+                            <td class="filterable-cell">5,00€</td>
                         </tr>
                         <tr>
                             <td class="filterable-cell">0001</td>
                             <td class="filterable-cell">Pizza</td>
-                            <td class="filterable-cell">5</td>
+                            <td class="filterable-cell">5,00€</td>
                             <td class="filterable-cell">1</td>
-                            <td class="filterable-cell">0</td>
-                            <td class="filterable-cell">5</td>
+                            <td class="filterable-cell">0%</td>
+                            <td class="filterable-cell">5,00€</td>
                         </tr>
                     </tbody>
 
@@ -197,7 +198,7 @@
         </div>
         </p>
     </div>
-    <br/>
+    <br/><br/><br/><br/><br/><br/><br/>
 
     <button class="bbutton"> Zurück </button>
     <button class="bbutton"> Rückgängig </button>

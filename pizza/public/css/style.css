@@ -2,7 +2,7 @@ html, body {
     height: 100%;
     font-family:"arial","Terminal","monospace";
     background-color: white;
-    font-size: 22px;
+    font-size: 20px;
 }
 
 
@@ -16,9 +16,9 @@ html, body {
 /* TABELLEN */
 
 tr {
-    font: bold 28px Arial,Verdana,sans-serif;
+    font: bold 26px Arial,Verdana,sans-serif;
     padding: 3px;
-    background-color: grey;
+    background-color: lightgrey;
     border: 1px solid #FFFFFF;
     text-align: center;
     color: white;
@@ -27,18 +27,16 @@ tr {
     overflow: auto;
 }
 td, th {
-    font: normal 22px Arial,Verdana,sans-serif;
+    font: normal 20px Arial,Verdana,sans-serif;
     color: black;
     padding: 5px 5px;
-    background-color: lightgrey;
     line-height: 130%;
     text-align: center;
     height: 35px;
 }
 
 th {
-    font: bold 24px Arial,Verdana,sans-serif;
-    background-color: grey;
+    font: bold 22px Arial,Verdana,sans-serif;
     height: 30px;
 }
 
@@ -58,16 +56,23 @@ thead th {
     text-align: center;
 }
 tbody {
-    height: 150px;
+    height: 300px;
     overflow-y: auto;
 }
 thead {
     height: max;
 }
+thead tr {
+    background-color: grey;
+}
 tbody td, thead th {
     width: 15%;
     float: left;
 }
+.table1 tbody td, .table1 thead th {
+    width: 20%;
+}
+
 
 
 
