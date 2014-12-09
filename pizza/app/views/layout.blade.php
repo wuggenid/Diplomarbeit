@@ -2,7 +2,9 @@
 <html>
 <head>
 <title>{{$title}}</title>
-{{ HTML::style('css/style.css'); }}
+{{ HTML::style('css/bootstrap.min.css') }}
+{{-- HTML::style('css/style.css'); --}}
+
 </head>
 
     <body>
@@ -19,9 +21,11 @@
         </div>
 
 
-        <div style="padding: 0 15%; position: center;">
+        {{--<div style="padding: 0 15%; position: center;">--}}
+        <div class="container">
         @yield('content')
         </div>
-
+        <script src="js/bootstrap.min.js"></script>
     </body>
+
 </html>
