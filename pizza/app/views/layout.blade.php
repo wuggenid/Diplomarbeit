@@ -3,11 +3,12 @@
 <head>
 <title>{{$title}}</title>
 {{ HTML::style('css/bootstrap.min.css') }}
-{{-- HTML::style('css/style.css'); --}}
+{{ HTML::style('css/style.css'); }}
 
 </head>
 
     <body>
+
         <div class="head" style="height: 250px;">
             <div style="float: left;">
                 {{HTML::image('/img/fallback-start.png')}}

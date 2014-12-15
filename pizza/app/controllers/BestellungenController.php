@@ -9,6 +9,9 @@ class BestellungenController extends \BaseController {
 	 */
 	public function index()
 	{
+        $data['articles']= DB::table('xartikel')->get();
+        $data['addresses']= DB::table('xadress')->get();
+
         $data['title'] = "Bestellungen";
         return View::make('bestellung',$data);
 	}
