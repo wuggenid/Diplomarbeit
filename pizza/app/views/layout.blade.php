@@ -4,6 +4,7 @@
 <title>{{$title}}</title>
 {{ HTML::style('css/bootstrap.min.css') }}
 {{-- HTML::style('css/style.css'); --}}
+</div>
 
 </head>
 
@@ -11,7 +12,6 @@
         <div class="head" style="height: 250px;">
             <div style="float: left;">
                 {{HTML::image('/img/fallback-start.png')}}
-            </div>
 
             <div style="padding-left: 300px;">
                 <h1>Eduardos Pizza Service GmbH</h1>

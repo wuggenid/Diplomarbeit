@@ -10,27 +10,27 @@
             <ul id="contactform">
                 <li>
                     <label for="name"> Vorname</label><br/>
-                    <span class="fieldbox"><input type="text" name="vname" id="vname" disabled="true" value=""/></span>
+                    <span class="fieldbox"><input type="text" name="vname" id="vname" disabled="true" value="{{$bestellung['NA1']}}"/></span>
                 </li>
                 <li>
                     <label for="name"> Nachname</label><br/>
-                    <span class="fieldbox"><input type="text" name="nname" id="nname" disabled="true" value=""/></span>
+                    <span class="fieldbox"><input type="text" name="nname" id="nname" disabled="true" value="{{$bestellung['NA2']}}"/></span>
                 </li>
                 <li>
                     <label for="email"> Telefon</label><br/>
-                    <span class="fieldbox"><input type="text" name="tel" id="tel" disabled="true" value=""/></span>
+                    <span class="fieldbox"><input type="text" name="tel" id="tel" disabled="true" value="{{$bestellung['TEL']}}"/></span>
                 </li>
                 <li>
                     <label for="contact"> Adresse</label><br/>
-                    <span class="fieldbox"><input type="text" name="add" id="add" disabled="true" value=""/></span>
+                    <span class="fieldbox"><input type="text" name="add" id="add" disabled="true" value="{{$bestellung['STR']}}"/></span>
                 </li>
                 <li>
                     <label for="contact"> Ort</label><br/>
-                    <span class="fieldbox"><input type="text" name="ort" id="ort" disabled="true" value=""/></span>
+                    <span class="fieldbox"><input type="text" name="ort" id="ort" disabled="true" value="{{$bestellung['ORT']}}"/></span>
                 </li>
                 <li>
                     <label for="msg"> Informationen</label><br/>
-                    <span class="msgbox"><textarea class="area" id="msg" name="msg" disabled="true" rows="8" cols="30" style="resize: none;"></textarea></span>
+                    <span class="msgbox"><textarea class="area" id="msg" name="msg" disabled="true" rows="8" cols="30" style="resize: none;">{{$bestellung['IF1']."\n\r".$bestellung['IF2']}}</textarea></span>
                 </li>
             </ul>
         </div>
@@ -68,6 +68,15 @@
                         <th onclick="toggle(this);">Straße</th>
                       </tr>
                     </thead>
+                    <?php $bestellungen = Bestellung::take(10)->orderBy('id','desc')->get(); ?>
+                    @for ($i = 0;$i<10;$i++)
+                        <tr>
+                            <td class="filterable-cell">{{$bestellungen[$i]['ID']}}</td>
+                            <td class="filterable-cell">{{$bestellungen[$i]['NA1']." ".$bestellungen[$i]['NA2']}}</td>
+                            <td class="filterable-cell">{{$bestellungen[$i]['TEL']}}</td>
+                            <td class="filterable-cell">{{$bestellungen[$i]['STR']}}</td>
+                        </tr>
+                    @endfor
                     <tbody style="display: none;">
                       <tr>
                         <td></td>
@@ -126,6 +135,7 @@
                             <th>Summe</th>
                         </tr>
                     </thead>
+
                     <tbody>
                         <tr>
                             <td class="filterable-cell">0001</td>

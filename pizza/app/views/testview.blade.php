@@ -1,7 +1,13 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: Daniel
- * Date: 15.12.2014
- * Time: 11:57
- */ 
+ <html>
+    <head>
+        <title>Testview</title>
+    </head>
+    <body>
+
+    <br />
+    <br />
+    <br />
+    <br />
+    {{var_dump($data)}}
+    </body>
+</html>

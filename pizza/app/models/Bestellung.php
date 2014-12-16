@@ -1,7 +1,7 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Daniel
- * Date: 15.12.2014
- * Time: 11:52
- */ 
+
+class Bestellung extends Eloquent
+{
+    protected $table = 'xadress';
+    public $timestamps = false;
+}

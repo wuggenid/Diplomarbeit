@@ -12,3 +12,4 @@
 */
 
 Route::resource('/Bestellungen', 'BestellungenController');
+Route::resource('/Testview','TestController');
