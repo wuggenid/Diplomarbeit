@@ -9,8 +9,7 @@ class BestellungenController extends \BaseController {
 	 */
 	public function index()
 	{
-        $data['title'] = "Bestellungen";
-        return View::make('bestellung',$data);
+        return View::make('bestellungen');
 	}
 
 
@@ -44,9 +43,9 @@ class BestellungenController extends \BaseController {
 	 */
 	public function show($id)
 	{
-        $data['id'] = $id;
+        $bestellung = Bestellung::find($id);
         $data['title'] = "Bestellung: ".$id;
-		return View::make('bestellung',$data);
+		return View::make('bestellung',$data)->with('bestellung',$bestellung);
 	}
 
 
