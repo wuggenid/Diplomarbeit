@@ -4,7 +4,8 @@
 
 <h2>Bestellungen</h2>
 <div style="padding: 0 30px;">
-    <div style="padding: 5px">
+
+    <div style="padding: 5px;">
     <h3>Kunde</h3>
         <div style="width:40%; float: left;">
             <ul id="contactform">
@@ -40,7 +41,6 @@
 
             <div class="contacts" style="float:right; height: 200px; width: 100%;">
 
-            <p>Name / Telefon</p>
             <div style="height: 200px;">
             <script type="text/javascript">
                 function toggle(cell) {
@@ -59,15 +59,17 @@
                   }
                 }
             </script>
-                  <table width="100%" class="table1">
+                <div class="panel panel-default">
+                  <table width="100%" class="table1" class="table table-condensed">
                     <thead>
                       <tr>
                         <th onclick="toggle(this);"><div style="border: 3px solid black"><b>aufklappen</b></div></th>
-                        <th onclick="toggle(this);">Name</th>
                         <th onclick="toggle(this);">Telefon</th>
+                        <th onclick="toggle(this);">Name</th>
                         <th onclick="toggle(this);">Straße</th>
                       </tr>
                     </thead>
+<<<<<<< HEAD
                     <?php $bestellungen = Bestellung::take(10)->orderBy('id','desc')->get(); ?>
                     @for ($i = 0;$i<10;$i++)
                         <tr>
@@ -77,40 +79,33 @@
                             <td class="filterable-cell">{{$bestellungen[$i]['STR']}}</td>
                         </tr>
                     @endfor
+=======
+                  </table>
+
+                  <div>
+                  <table class="table table-condensed">
+>>>>>>> 579b2111119b8d34f36c51292bc481b90baa8926
                     <tbody style="display: none;">
-                      <tr>
-                        <td></td>
-                        <td>Pizza Eduardos</td>
-                        <td>04242/219199</td>
-                        <td>Irgendwos 23</td>
-                      </tr>
-                      <tr>
-                        <td></td>
-                        <td>Pizza Eduardos</td>
-                        <td>04242/219199</td>
-                        <td>Irgendwos 23</td>
-                      </tr>
-                      <tr>
-                        <td></td>
-                        <td>Pizza Eduardos</td>
-                        <td>04242/219199</td>
-                        <td>Irgendwos 23</td>
-                      </tr>
-                      <tr>
-                        <td></td>
-                        <td>Pizza Eduardos</td>
-                        <td>04242/219199</td>
-                        <td>Irgendwos 23</td>
-                      </tr>
+                    <b>76,952 Datensätze, die VIEL zu lange zu laden bräuchten :D</b>
+                    {{--
+                    @foreach($addresses as $key => $address)
+                        <tr>
+                            <td>{{$address->TEL}}</td>
+                            <td>{{$address->NA1}}</td>
+                            <td>{{$address->STR}}</td>
+                        </tr>
+                    @endforeach
+                    --}}
                     </tbody>
                   </table>
+                </div>
 
             </div>
 
 
             <div style="clear: both;">
                 <br/><br/><br/>
-                <p><h3>Gesamtpreis Bestellung</h3> <input type="text" style="padding: 10px"/></p><br/>
+                <p><h4>Gesamtpreis Bestellung</h4> <input type="text" style="padding: 10px"/></p><br/>
             </div>
 
         </div>
@@ -122,9 +117,9 @@
     <div style="padding-top: 10px; clear: both;">
         <h3>Artikel</h3>
         <p>
-        <div style="height: 200px; width: 100%;">
-            <div style="height: 250px;">
-                <table class="table table-striped">
+        <div style="height: 450px; width: 100%;">
+            <div class="panel panel-default">
+                <table class="table table-condensed" >
                     <thead>
                         <tr>
                             <th>Artikel-Nr</th>
@@ -135,80 +130,32 @@
                             <th>Summe</th>
                         </tr>
                     </thead>
+<<<<<<< HEAD
 
+=======
+                </table>
+
+            <div class="div-table-content">
+                <table class="table table-condensed">
+>>>>>>> 579b2111119b8d34f36c51292bc481b90baa8926
                     <tbody>
-                        <tr>
-                            <td class="filterable-cell">0001</td>
-                            <td class="filterable-cell">Pizza</td>
-                            <td class="filterable-cell">5,00€</td>
-                            <td class="filterable-cell">1</td>
-                            <td class="filterable-cell">0%</td>
-                            <td class="filterable-cell">5,00€</td>
-                        </tr>
-                        <tr>
-                            <td class="filterable-cell">0001</td>
-                            <td class="filterable-cell">Pizza</td>
-                            <td class="filterable-cell">5,00€</td>
-                            <td class="filterable-cell">1</td>
-                            <td class="filterable-cell">0%</td>
-                            <td class="filterable-cell">5,00€</td>
-                        </tr>
-                        <tr>
-                            <td class="filterable-cell">0001</td>
-                            <td class="filterable-cell">Pizza</td>
-                            <td class="filterable-cell">5,00€</td>
-                            <td class="filterable-cell">1</td>
-                            <td class="filterable-cell">0%</td>
-                            <td class="filterable-cell">5,00€</td>
-                        </tr>
-                        <tr>
-                            <td class="filterable-cell">0001</td>
-                            <td class="filterable-cell">Pizza</td>
-                            <td class="filterable-cell">5,00€</td>
-                            <td class="filterable-cell">1</td>
-                            <td class="filterable-cell">0%</td>
-                            <td class="filterable-cell">5,00€</td>
-                        </tr>
-                        <tr>
-                            <td class="filterable-cell">0001</td>
-                            <td class="filterable-cell">Pizza</td>
-                            <td class="filterable-cell">5,00€</td>
-                            <td class="filterable-cell">1</td>
-                            <td class="filterable-cell">0%</td>
-                            <td class="filterable-cell">5,00€</td>
-                        </tr>
-                        <tr>
-                            <td class="filterable-cell">0001</td>
-                            <td class="filterable-cell">Pizza</td>
-                            <td class="filterable-cell">5,00€</td>
-                            <td class="filterable-cell">1</td>
-                            <td class="filterable-cell">0%</td>
-                            <td class="filterable-cell">5,00€</td>
-                        </tr>
-                        <tr>
-                            <td class="filterable-cell">0001</td>
-                            <td class="filterable-cell">Pizza</td>
-                            <td class="filterable-cell">5,00€</td>
-                            <td class="filterable-cell">1</td>
-                            <td class="filterable-cell">0%</td>
-                            <td class="filterable-cell">5,00€</td>
-                        </tr>
-                        <tr>
-                            <td class="filterable-cell">0001</td>
-                            <td class="filterable-cell">Pizza</td>
-                            <td class="filterable-cell">5,00€</td>
-                            <td class="filterable-cell">1</td>
-                            <td class="filterable-cell">0%</td>
-                            <td class="filterable-cell">5,00€</td>
-                        </tr>
+                    @foreach($articles as $key => $article)
+                         <tr>
+                             <td>{{$article->ANR}}</td>
+                             <td>{{$article->A0}}</td>
+                             <td>{{$article->CB}} €</td>
+                             <td> 0 </td>
+                             <td> 0 % </td>
+                             <td> 0 € </td>
+                         </tr>
+                     @endforeach
                     </tbody>
-
-                    </table>
+                </table>
             </div>
         </div>
         </p>
     </div>
-    <br/><br/><br/><br/><br/><br/><br/>
+
 
     <button class="bbutton"> Zurück </button>
     <button class="bbutton"> Rückgängig </button>

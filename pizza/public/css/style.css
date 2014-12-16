@@ -2,7 +2,7 @@ html, body {
     height: 100%;
     font-family:"arial","Terminal","monospace";
     background-color: white;
-    font-size: 20px;
+    font-size: 105%;
 }
 
 
@@ -16,62 +16,36 @@ html, body {
 /* TABELLEN */
 
 tr {
-    font: bold 26px Arial,Verdana,sans-serif;
-    padding: 3px;
     background-color: lightgrey;
-    border: 1px solid #FFFFFF;
-    text-align: center;
-    color: white;
-    font-weight: normal;
-    height: 45px;
-    overflow: auto;
-}
-td, th {
-    font: normal 20px Arial,Verdana,sans-serif;
-    color: black;
-    padding: 5px 5px;
-    line-height: 130%;
-    text-align: center;
-    height: 35px;
+    border: 2px solid #FFFFFF;
 }
 
-th {
-    font: bold 22px Arial,Verdana,sans-serif;
-    height: 30px;
+
+td, th {
+    text-align: center;
+    padding: 3px 0;
+}
+tbody {
+    background-color: lightgrey;
+    height: 300px;
+}
+tbody tr td {
+    padding: 3px 0;
+}
+thead tr {
+
+    background-color: grey;
 }
 
 table {
-    width: 100%;
+    table-layout:fixed;
 }
-thead, tbody, tr, td, th { display: block; }
+.div-table-content {
+    height:350px;
+    overflow-y:auto;
+}
 
-tr:after {
-    content: ' ';
-    display: block;
-    visibility: hidden;
-    clear: both;
-}
-thead th {
-    height: max;
-    text-align: center;
-}
-tbody {
-    height: 300px;
-    overflow-y: auto;
-}
-thead {
-    height: max;
-}
-thead tr {
-    background-color: grey;
-}
-tbody td, thead th {
-    width: 15%;
-    float: left;
-}
-.table1 tbody td, .table1 thead th {
-    width: 20%;
-}
+
 
 
 
@@ -92,7 +66,7 @@ tbody td, thead th {
     width: 300px;
 }
 #contactform li .fieldbox input {
-    height:20px;
+    height:30px;
     padding-top:5px;
     width:100%;
 }
