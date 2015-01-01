@@ -9,15 +9,11 @@ class BestellungenController extends \BaseController {
 	 */
 	public function index()
 	{
-<<<<<<< HEAD
-        return View::make('bestellungen');
-=======
         $data['articles']= DB::table('xartikel')->get();
         $data['addresses']= DB::table('xadress')->get();
 
         $data['title'] = "Bestellungen";
         return View::make('bestellung',$data);
->>>>>>> 579b2111119b8d34f36c51292bc481b90baa8926
 	}
 
 
