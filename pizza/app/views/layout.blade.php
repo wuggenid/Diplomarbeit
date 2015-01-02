@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>{{$title}}</title>
+<title>{{--$title--}}Pizzaservice</title>
 {{ HTML::style('css/bootstrap.min.css') }}
 {{-- HTML::style('css/style.css'); --}}
 

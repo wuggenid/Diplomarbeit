@@ -3,19 +3,30 @@
 @section('content')
 
 
-<div>
-    <button class="bbutton"> Bestellungen </button>
-    <button class="bbutton"> Personal </button>
-    <button class="bbutton"> Artikel </button>
-    <button class="bbutton"> Buchen </button>
-    <button class="bbutton"> Kunden </button>
-    <button class="bbutton"> Fahrer </button>
-    <button class="bbutton"> Lieferanten </button>
-    <button class="bbutton"> Statistik </button>
-    <button class="bbutton"> Bons </button>
-    <button class="bbutton"> Optionen </button>
+<div style="float: left;" class="startbuttons">
+    <ul>
+        <li><a href="/Bestellungen"> <button class="bbutton"> Bestellungen </button></a></li>
+        <li><button class="bbutton"> Artikel </button></li>
+        <li><button class="bbutton"> Kunden </button></li>
+        <li><button class="bbutton"> Lieferanten </button></li>
+        <li><button class="bbutton"> Bons </button></li>
+    </ul>
+</div>
 
-    <button class="bbutton"> Ende </button>
+<div style="float: right;" class="startbuttons">
+    <ul>
+        <li><button class="bbutton"> Personal </button></li>
+        <li><button class="bbutton"> Buchen </button></li>
+        <li><button class="bbutton"> Fahrer </button></li>
+        <li><button class="bbutton"> Statistik </button></li>
+        <li><button class="bbutton"> Optionen </button></li>
+    </ul>
+</div>
+
+<div class="startbuttons">
+    <ul>
+        <li><button class="bbutton"> Ende </button></li>
+    </ul>
 </div>
 
 

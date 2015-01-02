@@ -12,27 +12,27 @@
             <ul id="contactform">
                 <li>
                     <label for="name"> Vorname</label><br/>
-                    <span class="fieldbox"><input type="text" name="vname" id="vname" disabled="true" value="{{--$bestellung['NA1']--}}"/></span>
+                    <span class="fieldbox"><input type="text" name="vname" id="vname" value="{{--$bestellung['NA1']--}}" disabled/></span>
                 </li>
                 <li>
                     <label for="name"> Nachname</label><br/>
-                    <span class="fieldbox"><input type="text" name="nname" id="nname" disabled="true" value="{{--$bestellung['NA2']--}}"/></span>
+                    <span class="fieldbox"><input type="text" name="nname" id="nname" value="{{--$bestellung['NA2']--}}" disabled/></span>
                 </li>
                 <li>
                     <label for="email"> Telefon</label><br/>
-                    <span class="fieldbox"><input type="text" name="tel" id="tel" disabled="true" value="{{--$bestellung['TEL']--}}"/></span>
+                    <span class="fieldbox"><input type="text" name="tel" id="tel" value="{{--$bestellung['TEL']--}}" disabled/></span>
                 </li>
                 <li>
                     <label for="contact"> Adresse</label><br/>
-                    <span class="fieldbox"><input type="text" name="add" id="add" disabled="true" value="{{--$bestellung['STR']--}}"/></span>
+                    <span class="fieldbox"><input type="text" name="add" id="add" value="{{--$bestellung['STR']--}}" disabled/></span>
                 </li>
                 <li>
                     <label for="contact"> Ort</label><br/>
-                    <span class="fieldbox"><input type="text" name="ort" id="ort" disabled="true" value="{{--$bestellung['ORT']--}}"/></span>
+                    <span class="fieldbox"><input type="text" name="ort" id="ort" value="{{--$bestellung['ORT']--}}" disabled/></span>
                 </li>
                 <li>
                     <label for="msg"> Informationen</label><br/>
-                    <span class="msgbox"><textarea class="area" id="msg" name="msg" disabled="true" rows="8" cols="30" style="resize: none;">{{--$bestellung['IF1']."\n\r".$bestellung['IF2']--}}</textarea></span>
+                    <span class="msgbox"><textarea class="area" id="msg" name="msg" rows="8" cols="30" style="resize: none;" disabled>{{--$bestellung['IF1']."\n\r".$bestellung['IF2']--}}</textarea></span>
                 </li>
             </ul>
 
@@ -62,7 +62,7 @@
                 }
             </script>
                 <div class="panel panel-default">
-                  <table width="100%" class="table1" class="table table-condensed">
+                  <table width="100%" class="table1" class="div-table-content">
                     <thead>
                       <tr>
                         <th onclick="toggle(this);"><div style="border: 3px solid black"><b>aufklappen</b></div></th>
@@ -85,7 +85,7 @@
                   <div>
                   <table class="table table-condensed">
                     <tbody style="display: none;">
-                    <b>76,952 Datensätze, die VIEL zu lange zu laden bräuchten :D</b>
+                    <!--<tr><td colspan="3">76,952 Datensätze, die VIEL zu lange zu laden bräuchten :D</td></tr></b>-->
                     {{--
                     @foreach($addresses as $key => $address)
                         <tr>
@@ -115,7 +115,6 @@
 
     <div style="padding-top: 10px; clear: both;">
         <h3>Artikel</h3>
-        <p>
         <div style="height: 450px; width: 100%;">
             <div class="panel panel-default">
                 <table class="table table-condensed" >
@@ -149,11 +148,10 @@
                 </table>
             </div>
         </div>
-        </p>
     </div>
 
 
-    <button class="bbutton"> Zurück </button>
+    <a href="/"> <button class="bbutton"> Zurück </button></a>
     <button class="bbutton"> Rückgängig </button>
     <button class="bbutton"> Drucken </button>
     <button class="bbutton"> Bestellung ändern... </button>
@@ -163,9 +161,6 @@
     <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
 
 
-
-
-
-    </div>
+ </div>
 
 @stop

@@ -11,5 +11,10 @@
 |
 */
 
+Route::get('/', function()
+{
+    return View::make('start');
+});
+
 Route::resource('/Bestellungen', 'BestellungenController');
 Route::resource('/Testview','TestController');

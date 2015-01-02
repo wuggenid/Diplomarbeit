@@ -13,6 +13,15 @@ html, body {
 }
 
 
+
+/* Start Buttons */
+
+.startbuttons { width: 45%; }
+.startbuttons ul { list-style: none; padding-top: 20px;}
+.startbuttons ul li { padding: 10px 0;}
+.startbuttons ul li button { width: 500px;}
+
+
 /* TABELLEN */
 
 tr {
