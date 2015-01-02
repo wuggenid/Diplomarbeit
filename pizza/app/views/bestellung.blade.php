@@ -71,7 +71,7 @@
                         <th onclick="toggle(this);">Straße</th>
                       </tr>
                     </thead>
-                    <?php $bestellungen = Bestellung::take(10)->orderBy('id','desc')->get(); ?>
+                    <?php $bestellungen = xadress::take(10)->orderBy('id','desc')->get(); ?>
                     @for ($i = 0;$i<10;$i++)
                         <tr>
                             <td class="filterable-cell">{{$bestellungen[$i]['ID']}}</td>
@@ -130,7 +130,7 @@
                     </thead>
 
                 </table>
-
+            <?php $articles = xartikel::take(10)->get();?>
             <div class="div-table-content">
                 <table class="table table-condensed">
                     <tbody>
