@@ -9,7 +9,7 @@ class TestController extends \BaseController {
 	 */
 	public function index()
 	{
-        $data = Bestellung::find(100);
+        $data = xadress::find(100);
 		return View::make('testview')->with('data',$data);
 	}
 

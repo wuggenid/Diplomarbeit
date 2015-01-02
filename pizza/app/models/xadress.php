@@ -1,7 +1,7 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Daniel
- * Date: 02.01.2015
- * Time: 17:33
- */ 
+
+class xadress extends Eloquent
+{
+    protected $table = 'xadress';
+    public $timestamps = false;
+}
