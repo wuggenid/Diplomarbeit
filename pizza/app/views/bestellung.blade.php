@@ -7,8 +7,8 @@
 
     <div style="padding: 5px;">
     <h3>Kunde</h3>
+        <label style="float: right;" >Telefon/Name:<input type="text" id="tel" oninput="javascript:telInput()" /></label>
         <div style="width:40%; float: left;">
-
             <ul id="contactform">
                 <li>
                     <label for="name"> Vorname</label><br/>
@@ -162,5 +162,27 @@
 
 
  </div>
-
+    <script language="javascript">
+        function telInput()
+        {
+            document.getElementById('tel').style.backgroundColor = "white";
+            var number = document.getElementById('tel').value;
+            if (number > 999999)
+            {
+                var xhr = new XMLHttpRequest();
+                (xhr.onreadystatechange = function() {
+                    if (xhr.readyState == 4) {
+                        var numbers = JSON.parse(xhr.responseText);
+                        if (numbers.length <= 1)
+                        {
+                            document.getElementById('tel').value = numbers[0]['TEL'];
+                            document.getElementById('tel').style.backgroundColor = "green";
+                        }
+                    }
+                })
+                xhr.open('GET', '/api/searchNumber?number=' + number, true);
+                xhr.send(null);
+            }
+        }
+    </script>
 @stop

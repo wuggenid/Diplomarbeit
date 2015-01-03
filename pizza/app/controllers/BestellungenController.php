@@ -21,6 +21,7 @@ class BestellungenController extends \BaseController {
 	public function create()
 	{
         $data['title'] = "Neue Bestellung";
+        $date['mode'] = 'new';
 		return View::make("bestellung",$data);
 	}
 

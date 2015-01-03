@@ -18,3 +18,7 @@ Route::get('/', function()
 
 Route::resource('/Bestellungen', 'BestellungenController');
 Route::resource('/Testview','TestController');
+
+Route::group(['prefix' => '/api'], function() {
+    Route::get('searchNumber','APIController@searchNumber');
+});
