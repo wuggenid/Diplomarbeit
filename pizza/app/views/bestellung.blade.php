@@ -167,7 +167,7 @@
         {
             document.getElementById('tel').style.backgroundColor = "white";
             var number = document.getElementById('tel').value;
-            if (number > 999999)
+            if (number > 99999)
             {
                 var xhr = new XMLHttpRequest();
                 (xhr.onreadystatechange = function() {
@@ -177,6 +177,16 @@
                         {
                             document.getElementById('tel').value = numbers[0]['TEL'];
                             document.getElementById('tel').style.backgroundColor = "green";
+                            document.getElementById('vname').value = numbers[0]['NA1'];
+                            document.getElementById('nname').value = numbers[0]['NA2'];
+                            document.getElementById('tel').value = numbers[0]['TEL'];
+                            document.getElementById('add').value = numbers[0]['STR'];
+                            document.getElementById('ort').value = numbers[0]['ORT'];
+                            if (numbers[0]['IF1'] == null)
+                                numbers[0]['IF1'] = "";
+                            if (numbers[0]['IF2'] == null)
+                                numbers[0]['IF2'] = "";
+                            document.getElementById('msg').value = numbers[0]['IF1'] + "\n" + numbers[0]['IF2'];
                         }
                     }
                 })
