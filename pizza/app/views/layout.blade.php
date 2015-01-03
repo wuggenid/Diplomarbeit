@@ -11,12 +11,12 @@
 
     <body>
 
-        <div class="head" style="height: 250px;">
+        <div class="head" style="height: 150px;">
             <div style="float: left;">
-                {{HTML::image('/img/fallback-start.png')}}
+                {{HTML::image('/img/fallback-start.png','Eduardo Logo',array('width' => '150','height' => '150'))}}
             </div>
 
-            <div style="padding-left: 300px;">
+            <div style="padding-left: 150px;">
                 <h1>Eduardos Pizza Service GmbH</h1>
                 <p>{{ date('d.m.y') }}</p>
                 <p>Tel.: 04242 / 21 91 99</p><br/>

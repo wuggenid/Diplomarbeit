@@ -205,7 +205,10 @@
                             var numbers = JSON.parse(xhr.responseText);
                             if (numbers.length == 0)
                             {
-                                alert('Neuer Kunde View implementieren');
+                                if (confirm('Kunde wurde nicht gefunden! Wollen sie einen neuen Kunden aufnehmen?'))
+                                {
+                                    window.location.href = "/Kunden/create?tel=" + number;
+                                }
                             }
                         }
                     })
