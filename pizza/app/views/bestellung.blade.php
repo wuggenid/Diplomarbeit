@@ -7,7 +7,7 @@
 
     <div style="padding: 5px;">
     <h3>Kunde</h3>
-        <label style="float: right;" >Telefon/Name:<input type="text" id="tel" oninput="javascript:telInput()" /></label>
+        <label style="float: right;" >Telefon/Name:<input type="text" id="tel" oninput="javascript:telInput(this)" onkeydown="javascript:telKeyPress(this)" /></label>
         <div style="width:40%; float: left;">
             <ul id="contactform">
                 <li>
@@ -192,6 +192,25 @@
                 })
                 xhr.open('GET', '/api/searchNumber?number=' + number, true);
                 xhr.send(null);
+            }
+        }
+        function telKeyPress(e)
+        {
+            var number = document.getElementById('tel').value;
+            if (event.keyCode == 13)
+            {
+                var xhr = new XMLHttpRequest();
+                    (xhr.onreadystatechange = function() {
+                        if (xhr.readyState == 4) {
+                            var numbers = JSON.parse(xhr.responseText);
+                            if (numbers.length == 0)
+                            {
+                                alert('Neuer Kunde View implementieren');
+                            }
+                        }
+                    })
+                    xhr.open('GET', '/api/searchNumber?number=' + number, true);
+                    xhr.send(null);
             }
         }
     </script>
