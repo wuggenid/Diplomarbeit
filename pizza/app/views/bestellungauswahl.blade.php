@@ -11,7 +11,7 @@
             <label><input type="radio" name="bestellungradio">Bestellungen verändern</label><br />
             <label><input type="radio" name="bestellungradio" checked="true">Neue Bestellungen</label>
         </div>
-        <form php action="/Bestellungen/create" method="get">
+        <form action="/Bestellungen/create" method="get">
             <button type="submit" class="btn btn-lg btn-default">Bestellungen</button>
         </form>
         <br /><br />

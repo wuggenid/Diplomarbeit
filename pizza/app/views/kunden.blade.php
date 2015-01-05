@@ -7,7 +7,12 @@
 
     <div style="padding: 5px;">
     <h3>Kunde</h3>
-        <label style="float: right;" >Telefon/Name:<input type="text" id="tel" oninput="javascript:telInput(this)" onkeydown="javascript:telKeyPress(this)" /></label>
+    <div id="right" style="float: right;">
+        <label style="float: left; background-color: orange;" >Telefon/Name:<input type="text" id="tel" oninput="javascript:telInput(this)" onkeydown="javascript:telKeyPress(this)" /></label><br /><br />
+        <label style="float: left;" id="bestjahr" >Bestellungen/Jahr: </label><br /><br />
+        <label style="float: left;" id="letztebest" >Letzte Bestellung: </label><br /><br />
+        <label style="float: left;" id="umsatzjahr">Umsatz/Jahr: </label>
+    </div>
         <div style="width:40%; float: left;">
             <ul id="contactform">
                 <li>
@@ -43,7 +48,21 @@
                     <span class="fieldbox"><input type="text" name="rabbat" id="if2" /></span>
                 </li>
             </ul>
-
         </div>
-
+        <div style="width: 50%">
+            <table border="1" style="float: left;">
+                <tbody style="background-color: #ffffff;">
+                    <tr style="background-color: #ffffff;">
+                        <td><a href="/Kunden/create"><input type="button" class="btn btn-lg btn-default" value="Neuer Kunde" /></a></td>
+                        <td><a href="/Kunden/delete"><input type="button" class="btn btn-lg btn-default" value="Kunden löschen" /></a></td>
+                        <td><a href=""><input type="button" class="btn btn-lg btn-default" value="Etikettendruck"></a></td>
+                    </tr>
+                    <tr style="background-color: #ffffff;">
+                        <td><a href=""><input type="button" class="btn btn-lg btn-default" value="Rückgängig" /></a></td>
+                        <td><a href="/Kunden/update"><input type="button" class="btn btn-lg btn-default" value="Kunden speichern" /></a></td>
+                        <td><a href=""><input type="button" class="btn btn-lg btn-default" value="Kundenliste drucken" /></a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 @stop
