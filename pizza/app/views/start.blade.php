@@ -6,8 +6,8 @@
 <div style="float: left;" class="startbuttons">
     <ul>
         <li><a href="/Bestellungen"> <button class="bbutton"> Bestellungen </button></a></li>
-        <li><button class="bbutton"> Artikel </button></li>
-        <li><a href="/Kunden/create"><button class="bbutton"> Kunden </button></li></a>
+        <li><a href="/Artikel"> <button class="bbutton"> Artikel </button></a></li>
+        <li><a href="/Kunden/create"><button class="bbutton"> Kunden </button></a></li>
         <li><button class="bbutton"> Lieferanten </button></li>
         <li><button class="bbutton"> Bons </button></li>
     </ul>

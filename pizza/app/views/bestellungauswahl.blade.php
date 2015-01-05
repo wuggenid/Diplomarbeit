@@ -20,7 +20,7 @@
 
         <button type="button" class="btn btn-lg btn-default">Letzte Anrufe</button><br /><br />
 
-        <button type="button" class="btn btn-lg btn-default">Exit</button>
+        <a href="/"><button type="button" class="btn btn-lg btn-default">Exit</button></a>
     </div>
 </div>
 
