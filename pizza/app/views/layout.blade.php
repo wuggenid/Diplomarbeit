@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
+{{ HTML::script('//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js') }}
+
+
 <title>{{--$title--}}Pizzaservice</title>
 {{ HTML::style('css/bootstrap.min.css') }}
-{{-- HTML::style('css/style.css'); --}}
 
 {{ HTML::style('css/style.css'); }}
+
+@yield('head')
 
 </head>
 
@@ -28,7 +32,7 @@
         <div class="container">
         @yield('content')
         </div>
-        <script src="js/bootstrap.min.js"></script>
+        {{ HTML::script('/js/bootstrap.min.js') }}
     </body>
 
 </html>

@@ -1,5 +1,11 @@
 @extends('layout')
 
+@section('head')
+
+{{ HTML::style('css/chosen.css') }}
+{{ HTML::script('js/chosen.jquery.js') }}
+{{ HTML::script('js/chosen.jquery.min.js') }}
+
 @section('content')
 
 <h2>Bestellungen</h2>
@@ -7,8 +13,23 @@
 <div style="padding: 5px 30px;">
 
     <h3>Kunde</h3>
-    <label style="float: right;" >Telefon/Name: <input type="text" id="tel" oninput="javascript:telInput(this)" onkeydown="javascript:telKeyPress(this)" /></label>
-
+    <div class="chosen-container chosen-container-multi">
+        <label>Telefon/Name:</label>
+            <ul class="chosen-choices">
+                <li class="search-field">
+                    <input type="text" id="tel" class="default" oninput="javascript:telInput(this)" onkeydown="javascript:telKeyPress(this)" />
+                </li>
+            </ul>
+        <div class="chosen-drop">
+            <ul class="chosen-results">
+                <li class="active-result" data-option-array-index="1">test1</li>
+                <li class="active-result" data-option-array-index="2">test2</li>
+                <li class="active-result" data-option-array-index="3">test3</li>
+                <li class="active-result" data-option-array-index="4">test4</li>
+                <li class="active-result" data-option-array-index="5">test5</li>
+            </ul>
+        </div>
+    </div>
     <div style="width:40%; float: left;">
         <ul id="contactform">
             <li>
@@ -210,4 +231,5 @@
             }
         }
     </script>
+
 @stop
