@@ -2,6 +2,6 @@
 
 class xartikel extends Eloquent
 {
-    protected $table = 'xadress';
+    protected $table = 'xartikel';
     public $timestamps = false;
 }

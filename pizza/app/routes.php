@@ -23,4 +23,5 @@ Route::get('/Artikel', function(){return View::make('artikel');});
 
 Route::group(['prefix' => '/api'], function() {
     Route::get('searchNumber','APIController@searchNumber');
+    Route::get('getArtikel','APIController@getArtikel');
 });

@@ -3,7 +3,7 @@
 @section('head')
 
 {{ HTML::style('css/chosen.css') }}
-{{ HTML::script('js/chosen.jquery.js') }}
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
 @section('content')
 
@@ -96,7 +96,7 @@
                 </div>
             </div>
 
-                <div style="clear: both;">
+                <div id="gesamtpreis" style="clear: both;">
                     <br/><br/><br/>
                     <p><h4>Gesamtpreis Bestellung</h4> <input type="text" style="padding: 10px"/></p><br/>
                 </div>
@@ -125,24 +125,20 @@
                     </thead>
                 </table>
 
-                <?php $articles = xartikel::take(10)->get();?>
                 <div class="div-table-content">
 
-                    <table class="table table-condensed">
+                    <table id="artikelTable" class="table table-condensed">
                         <tbody>
-                            @foreach($articles as $key => $article)
                              <tr>
-                                <td><input type="text" style="width: 100%;"/></td>
-                                <td>{{$article->A0}}</td>
-                                <td>{{$article->CB}} €</td>
+                                <td><input style="text-align: center;" type="text" onkeydown="javascript:artikelKeyPress(this,1)" /></td>
+                                <td></td>
+                                <td></td>
                                 <td> 0 </td>
                                 <td> 0 % </td>
                                 <td> 0 € </td>
                              </tr>
-                            @endforeach
                         </tbody>
                     </table>
-
                 </div>
             </div>
         </div>
@@ -164,8 +160,15 @@
 
 
 
-
     <script language="javascript">
+        function artikelKeyPress(x,y)
+        {
+            var table = document.getElementById('artikelTable');
+            var cells = table.getElementByTagName('td');
+            //var cells = rows[y];
+            //console.log(cells);
+        }
+
         function telInput()
         {
             document.getElementById('tel').style.backgroundColor = "white";
@@ -212,6 +215,10 @@
                                 {
                                     window.location.href = "/Kunden/create?tel=" + number;
                                 }
+                            }
+                            else if (numbers.length == 1)
+                            {
+                                window.location.href = "#gesamtpreis";
                             }
                         }
                     })

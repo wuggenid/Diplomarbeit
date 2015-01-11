@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-{{ HTML::script('//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js') }}
 
 
 <title>{{--$title--}}Pizzaservice</title>
