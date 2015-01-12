@@ -7,7 +7,8 @@
 {{ HTML::style('css/bootstrap.min.css') }}
 
 {{ HTML::style('css/style.css'); }}
-
+{{ HTML::script('/js/jquery-1.11.2.min.js') }}
+{{ HTML::script('/js/bootstrap.min.js') }}
 
 
 @yield('head')
@@ -17,7 +18,7 @@
     <body>
 
         <div class="head" style="height: 150px;">
-            <div style="float: left;">
+            <div style="float: left; padding-right: 5px;">
                 {{HTML::image('/img/fallback-start.png','Eduardo Logo',array('width' => '150','height' => '150'))}}
             </div>
 
@@ -33,9 +34,7 @@
         <div class="container">
         @yield('content')
         </div>
-        {{ HTML::script('/js/bootstrap.min.js') }}
-        {{ HTML::script('/js/') }}
-        <script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+
     </body>
 
 </html>

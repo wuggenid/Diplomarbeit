@@ -132,9 +132,9 @@
                                 <td><input id="textbox" style="text-align: center;" size="5" type="text"/></td>
                                 <td></td>
                                 <td></td>
-                                <td> 0 </td>
+                                <td> 0,00 € </td>
                                 <td> 0 % </td>
-                                <td> 0 € </td>
+                                <td> 0,00 € </td>
                              </tr>
                         </tbody>
                     </table>
@@ -166,7 +166,10 @@
 
         	var keycode = (event.keyCode ? event.keyCode : event.which);
         	if(keycode == '13'){
-        		alert('You pressed a "enter" key in textbox');
+                alert($("#textbox").val());
+
+                //select artikel where id = x
+
         	}
         	event.stopPropagation();
         });
@@ -212,6 +215,7 @@
                 xhr.open('GET', '/api/searchNumber?number=' + number, true);
                 xhr.send(null);
             }
+
         }
         function telKeyPress(e)
         {
