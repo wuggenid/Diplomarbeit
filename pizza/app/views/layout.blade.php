@@ -8,6 +8,8 @@
 
 {{ HTML::style('css/style.css'); }}
 
+
+
 @yield('head')
 
 </head>
@@ -32,6 +34,8 @@
         @yield('content')
         </div>
         {{ HTML::script('/js/bootstrap.min.js') }}
+        {{ HTML::script('/js/') }}
+        <script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
     </body>
 
 </html>

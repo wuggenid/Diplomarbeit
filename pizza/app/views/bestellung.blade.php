@@ -3,7 +3,6 @@
 @section('head')
 
 {{ HTML::style('css/chosen.css') }}
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
 @section('content')
 
@@ -86,8 +85,8 @@
                             @for ($i = 0;$i<10;$i++)
                                 <tr>
                                     <td class="filterable-cell">{{$bestellungen[$i]['ID']}}</td>
-                                    <td class="filterable-cell">{{$bestellungen[$i]['NA1']." ".$bestellungen[$i]['NA2']}}</td>
                                     <td class="filterable-cell">{{$bestellungen[$i]['TEL']}}</td>
+                                    <td class="filterable-cell">{{$bestellungen[$i]['NA1']." ".$bestellungen[$i]['NA2']}}</td>
                                     <td class="filterable-cell">{{$bestellungen[$i]['STR']}}</td>
                                 </tr>
                             @endfor
@@ -130,7 +129,7 @@
                     <table id="artikelTable" class="table table-condensed">
                         <tbody>
                              <tr>
-                                <td><input style="text-align: center;" type="text" onkeydown="javascript:artikelKeyPress(this,1)" /></td>
+                                <td><input id="textbox" style="text-align: center;" size="5" type="text"/></td>
                                 <td></td>
                                 <td></td>
                                 <td> 0 </td>
@@ -154,6 +153,7 @@
 
     <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
 
+
 </div>
 
 
@@ -161,12 +161,25 @@
 
 
     <script language="javascript">
+
+        $('#textbox').keypress(function(event){
+
+        	var keycode = (event.keyCode ? event.keyCode : event.which);
+        	if(keycode == '13'){
+        		alert('You pressed a "enter" key in textbox');
+        	}
+        	event.stopPropagation();
+        });
+
+
         function artikelKeyPress(x,y)
         {
             var table = document.getElementById('artikelTable');
             var cells = table.getElementByTagName('td');
             //var cells = rows[y];
             //console.log(cells);
+            alert(cells);
+            alert(table);
         }
 
         function telInput()
