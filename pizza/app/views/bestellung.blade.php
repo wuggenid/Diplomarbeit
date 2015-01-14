@@ -129,7 +129,7 @@
                     <table id="artikelTable" class="table table-condensed">
                         <tbody>
                              <tr>
-                                <td><input id="textbox" style="text-align: center;" size="5" type="text"/></td>
+                                <td><input class="artikelnummerTbx" id="textbox" style="text-align: center;" size="5" type="text"/></td>
                                 <td id="artikelbezeichnung"></td>
                                 <td id="einzelpreis"></td>
                                 <td id="menge"><input id="mengeBox" style="text-align: center;" size="5" type="text"/></td>
@@ -169,17 +169,27 @@
             {
                 var einzelpreis = document.getElementById('einzelpreis').innerText.split('€')[0];
                 document.getElementById('summe').innerText = (einzelpreis * $("#mengeBox").val()) + "€";
+                var table = document.getElementById('artikelTable');
+                var row = table.insertRow(-1);
+                var artikelnummer = row.insertCell(-1);
+                var artikelbezeichnung = row.insertCell(-1);
+                var einzelpreis = row.insertCell(-1);
+                var menge = row.insertCell(-1);
+                var rabbat = row.insertCell(-1);
+                var summe = row.insertCell(-1);
+                artikelnummer.innerHTML = '<input class="artikelnummerTbx" id="textbox" style="text-align: center;" size="5" type="text"/>';
+                var tbxs = document.getElementsByClassName('artikelnummerTbx');
+                tbxs[tbxs.length-1].focus();
             }
         });
 
 
-        $('#textbox').keypress(function(event){
+        $('.artikelnummerTbx').keypress(function(event){
 
         	var keycode = (event.keyCode ? event.keyCode : event.which);
         	if(keycode == '13')
         	{
         	    var ANR =  $("#textbox").val();
-                //alert($("#textbox").val());
 
                 var xhr = new XMLHttpRequest();
                 (xhr.onreadystatechange = function()
