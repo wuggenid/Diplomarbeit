@@ -130,11 +130,11 @@
                         <tbody>
                              <tr>
                                 <td><input id="textbox" style="text-align: center;" size="5" type="text"/></td>
-                                <td></td>
-                                <td></td>
-                                <td> 0,00 € </td>
-                                <td> 0 % </td>
-                                <td> 0,00 € </td>
+                                <td id="artikelbezeichnung"></td>
+                                <td id="einzelpreis"></td>
+                                <td id="menge"><input id="mengeBox" style="text-align: center;" size="5" type="text"/></td>
+                                <td id="rabbat"></td>
+                                <td id="summe"></td>
                              </tr>
                         </tbody>
                     </table>
@@ -162,15 +162,41 @@
 
     <script language="javascript">
 
+        $('#mengeBox').keypress(function(event){
+
+            var keycode = (event.keyCode ? event.keyCode : event.which);
+            if(keycode == '13')
+            {
+                var einzelpreis = document.getElementById('einzelpreis').innerText.split('€')[0];
+                document.getElementById('summe').innerText = (einzelpreis * $("#mengeBox").val()) + "€";
+            }
+        });
+
+
         $('#textbox').keypress(function(event){
 
         	var keycode = (event.keyCode ? event.keyCode : event.which);
-        	if(keycode == '13'){
-                alert($("#textbox").val());
+        	if(keycode == '13')
+        	{
+        	    var ANR =  $("#textbox").val();
+                //alert($("#textbox").val());
 
-                //select artikel where id = x
-
-        	}
+                var xhr = new XMLHttpRequest();
+                (xhr.onreadystatechange = function()
+                {
+                    if (xhr.readyState == 4)
+                    {
+                        var artikel = JSON.parse(xhr.responseText);
+                        document.getElementById('artikelbezeichnung').innerText = artikel[0]['A0'];
+                        document.getElementById('einzelpreis').innerText = artikel[0]['CB'] + '€';
+                        document.getElementById('rabbat').innerText = artikel[0]['CB'];
+                        document.getElementById('mengeBox').focus();
+                        document.getElementById('rabbat').innerText = rabbat;
+                    }
+                })
+                xhr.open('GET', '/api/getArtikel?artikel=' + ANR, true);
+                xhr.send(null);
+            }
         	event.stopPropagation();
         });
 
@@ -185,6 +211,7 @@
             alert(table);
         }
 
+        var rabbat = -1;
         function telInput()
         {
             document.getElementById('tel').style.backgroundColor = "white";
@@ -209,6 +236,7 @@
                             if (numbers[0]['IF2'] == null)
                                 numbers[0]['IF2'] = "";
                             document.getElementById('msg').value = numbers[0]['IF1'] + "\n" + numbers[0]['IF2'];
+                            rabbat = numbers[0]['KRAB'];
                         }
                     }
                 })
@@ -236,6 +264,7 @@
                             else if (numbers.length == 1)
                             {
                                 window.location.href = "#gesamtpreis";
+                                document.getElementById('textbox').focus();
                             }
                         }
                     })
