@@ -33,7 +33,6 @@ class BestellungenController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
 	}
 
 
@@ -45,9 +44,9 @@ class BestellungenController extends \BaseController {
 	 */
 	public function show($id)
 	{
-        $bestellung = Bestellung::find($id);
+        /*$bestellung = Bestellung::find($id);
         $data['title'] = "Bestellung: ".$id;
-		return View::make('bestellung',$data)->with('bestellung',$bestellung);
+		return View::make('bestellung',$data)->with('bestellung',$bestellung);*/
 	}
 
 
@@ -85,6 +84,21 @@ class BestellungenController extends \BaseController {
 	{
 		//
 	}
+    public function storeSingleValue()
+    {
+        $GM = Input::get('GM');
+        $ANR = Input::get('ANR');
+        $A0 = Input::get('A0');
+        $CB = Input::get('CB');
+        $SU = Input::get('SU');
 
+        $xpos = new xpos();
+        $xpos->GM = $GM;
+        $xpos->ANR = $ANR;
+        $xpos->A0 = $A0;
+        $xpos->CB = $CB;
+        $xpos->SU = $SU;
+        $xpos->save();
+    }
 
 }

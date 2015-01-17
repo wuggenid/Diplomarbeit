@@ -146,9 +146,9 @@
 
     <a href="/Bestellungen"> <button class="bbutton"> Zurück </button></a>
     <button class="bbutton"> Rückgängig </button>
-    <button class="bbutton"> Drucken </button>
+    <button onclick="javascript:saveOrder()" class="bbutton"> Drucken </button>
     <button class="bbutton"> Bestellung ändern... </button>
-    <button class="bbutton"> Speichern </button>
+    <!--<button class="bbutton"> Speichern </button>-->
 
 
     <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
@@ -161,6 +161,32 @@
 
 
     <script language="javascript">
+        function saveOrder()
+        {
+            var summeBoxes = document.getElementsByClassName('summe');
+            var einzelpreisBoxes = document.getElementsByClassName('einzelpreis');
+            var mengeBoxes = document.getElementsByClassName('mengeBox');
+            var artikelnummerBoxes = document.getElementsByClassName('artikelnummerTbx');
+            var artikelbezeichnungen = document.getElementsByClassName('artikelbezeichnung');
+            for (i = 0;i<summeBoxes.length;i++)
+            {
+                var xhr = new XMLHttpRequest();
+                (xhr.onreadystatechange = function()
+                {
+                   if (xhr.readyState == 4)
+                   {
+                        alert('Sent!');
+                   }
+                })
+                xhr.open('GET', 'storeSingleValue', true);
+                var GM = mengeBoxes[i].value;
+                var ANR = artikelnummerBoxes[i].value;
+                var A0 =  artikelbezeichnungen[i].innerText;
+                var CB = einzelpreisBoxes[i].innerText.split('€')[0];
+                var SU = summeBoxes[i].innerText.split('€')[0];
+                xhr.send('GM='+GM+'&ANR='+ANR+'&A0='+A0+'&CB='+CB+'&SU='+SU);
+            }
+        }
         function mengeBoxKeyPress()
         {
             var keycode = event.keyCode;
