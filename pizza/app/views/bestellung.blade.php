@@ -97,7 +97,7 @@
 
                 <div id="gesamtpreis" style="clear: both;">
                     <br/><br/><br/>
-                    <p><h4>Gesamtpreis Bestellung</h4> <input type="text" style="padding: 10px"/></p><br/>
+                    <p><h4>Gesamtpreis Bestellung</h4> <input id="gesamtpreisBox" type="text" style="padding: 10px"/></p><br/>
                 </div>
         </div>
     </div>
@@ -166,9 +166,19 @@
             var keycode = event.keyCode;
             if(keycode == '13')
             {
-                var einzelpreis = document.getElementById('einzelpreis').innerText.split('€')[0];
+                //var einzelpreis = document.getElementById('einzelpreis').innerText.split('€')[0];
                 //document.getElementById('summe').innerText = (einzelpreis * $(".mengeBox").val()) + "€";
-                document.getElementsByClassName('summe')[document.getElementsByClassName('summe')-1].innerText = document.getElementsByClassName('einzelpreis')[document.getElementsByClassName('einzelpreis')-1]
+                var summeBoxes = document.getElementsByClassName('summe');
+                var einzelpreisBoxes = document.getElementsByClassName('einzelpreis');
+                var mengeBoxes = document.getElementsByClassName('mengeBox');
+                var gesamtsumme = 0;
+                for (i = 0;i<summeBoxes.length;i++)
+                {
+                    var summe = einzelpreisBoxes[i].innerText.split('€')[0] * mengeBoxes[i].value;
+                    summeBoxes[i].innerText = summe + '€';
+                    gesamtsumme += summe;
+                }
+                document.getElementById('gesamtpreisBox').value = gesamtsumme + '€';
                 var table = document.getElementById('artikelTable');
                 var row = table.insertRow(-1);
                 var artikelnummer = row.insertCell(-1);
