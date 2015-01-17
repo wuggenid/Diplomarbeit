@@ -129,12 +129,12 @@
                     <table id="artikelTable" class="table table-condensed">
                         <tbody>
                              <tr>
-                                <td><input class="artikelnummerTbx" id="textbox" style="text-align: center;" size="5" type="text"/></td>
-                                <td id="artikelbezeichnung"></td>
-                                <td id="einzelpreis"></td>
-                                <td id="menge"><input id="mengeBox" style="text-align: center;" size="5" type="text"/></td>
-                                <td id="rabbat"></td>
-                                <td id="summe"></td>
+                                <td><input onkeydown="javascript:artikelnummerKeyPress()" class="artikelnummerTbx" id="textbox" style="text-align: center;" size="5" type="text"/></td>
+                                <td class="artikelbezeichnung" id="artikelbezeichnung"></td>
+                                <td class="einzelpreis" id="einzelpreis"></td>
+                                <td class="menge" id="menge"><input class="mengeBox" id="mengeBox" onkeypress="javascript:mengeBoxKeyPress()" style="text-align: center;" size="5" type="text"/></td>
+                                <td class="rabbat" id="rabbat"></td>
+                                <td class="summe" id="summe"></td>
                              </tr>
                         </tbody>
                     </table>
@@ -161,57 +161,62 @@
 
 
     <script language="javascript">
-
-        $('#mengeBox').keypress(function(event){
-
-            var keycode = (event.keyCode ? event.keyCode : event.which);
+        function mengeBoxKeyPress()
+        {
+            var keycode = event.keyCode;
             if(keycode == '13')
             {
                 var einzelpreis = document.getElementById('einzelpreis').innerText.split('€')[0];
-                document.getElementById('summe').innerText = (einzelpreis * $("#mengeBox").val()) + "€";
+                //document.getElementById('summe').innerText = (einzelpreis * $(".mengeBox").val()) + "€";
+                document.getElementsByClassName('summe')[document.getElementsByClassName('summe')-1].innerText = document.getElementsByClassName('einzelpreis')[document.getElementsByClassName('einzelpreis')-1]
                 var table = document.getElementById('artikelTable');
                 var row = table.insertRow(-1);
                 var artikelnummer = row.insertCell(-1);
+                artikelnummer.className = "artikelnummer";
                 var artikelbezeichnung = row.insertCell(-1);
+                artikelbezeichnung.className="artikelbezeichnung";
                 var einzelpreis = row.insertCell(-1);
+                einzelpreis.className = "einzelpreis";
                 var menge = row.insertCell(-1);
+                menge.className = "menge";
                 var rabbat = row.insertCell(-1);
+                rabbat.className = "rabbat";
                 var summe = row.insertCell(-1);
-                artikelnummer.innerHTML = '<input class="artikelnummerTbx" id="textbox" style="text-align: center;" size="5" type="text"/>';
+                summe.className = "summe";
+                artikelnummer.innerHTML = '<input class="artikelnummerTbx" onkeydown="javascript:artikelnummerKeyPress()" id="textbox" style="text-align: center;" size="5" type="text"/>';
+                menge.innerHTML = '<input class="mengeBox" id="mengeBox" onkeypress="javascript:mengeBoxKeyPress()" style="text-align: center;" size="5" type="text"/>';
                 var tbxs = document.getElementsByClassName('artikelnummerTbx');
                 tbxs[tbxs.length-1].focus();
             }
-        });
+        }
 
-
-        $('.artikelnummerTbx').keypress(function(event){
-
-        	var keycode = (event.keyCode ? event.keyCode : event.which);
-        	if(keycode == '13')
-        	{
-        	    var ANR =  $("#textbox").val();
-
+        function artikelnummerKeyPress(e)
+        {
+            if (event.keyCode == 13)
+            {
+                var ANR = document.activeElement.value;
                 var xhr = new XMLHttpRequest();
                 (xhr.onreadystatechange = function()
                 {
-                    if (xhr.readyState == 4)
-                    {
+                   if (xhr.readyState == 4)
+                   {
                         var artikel = JSON.parse(xhr.responseText);
-                        document.getElementById('artikelbezeichnung').innerText = artikel[0]['A0'];
+                        document.getElementsByClassName('artikelbezeichnung')[document.getElementsByClassName('artikelbezeichnung').length-1].innerText = artikel[0]['A0'];
+                        document.getElementsByClassName('einzelpreis')[document.getElementsByClassName('einzelpreis').length-1].innerText = artikel[0]['CB'] + '€';
+                        document.getElementsByClassName('mengeBox')[document.getElementsByClassName('mengeBox').length-1].focus();
+                        document.getElementsByClassName('rabbat')[document.getElementsByClassName('rabbat').length-1].innerText = rabbat;
+                        /*document.getElementById('artikelbezeichnung').innerText = artikel[0]['A0'];
                         document.getElementById('einzelpreis').innerText = artikel[0]['CB'] + '€';
-                        document.getElementById('rabbat').innerText = artikel[0]['CB'];
                         document.getElementById('mengeBox').focus();
-                        document.getElementById('rabbat').innerText = rabbat;
-                    }
+                        document.getElementById('rabbat').innerText = rabbat;*/
+                   }
                 })
                 xhr.open('GET', '/api/getArtikel?artikel=' + ANR, true);
                 xhr.send(null);
             }
-        	event.stopPropagation();
-        });
+        }
 
-
-        function artikelKeyPress(x,y)
+        /*function artikelKeyPress(x,y)
         {
             var table = document.getElementById('artikelTable');
             var cells = table.getElementByTagName('td');
@@ -219,7 +224,7 @@
             //console.log(cells);
             alert(cells);
             alert(table);
-        }
+        }*/
 
         var rabbat = -1;
         function telInput()
