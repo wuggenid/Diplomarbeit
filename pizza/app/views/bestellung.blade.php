@@ -178,13 +178,13 @@
                         alert('Sent!');
                    }
                 })
-                xhr.open('GET', 'storeSingleValue', true);
                 var GM = mengeBoxes[i].value;
                 var ANR = artikelnummerBoxes[i].value;
                 var A0 =  artikelbezeichnungen[i].innerText;
                 var CB = einzelpreisBoxes[i].innerText.split('€')[0];
                 var SU = summeBoxes[i].innerText.split('€')[0];
-                xhr.send('GM='+GM+'&ANR='+ANR+'&A0='+A0+'&CB='+CB+'&SU='+SU);
+                xhr.open('GET', 'storeSingleValue?GM='+GM+'&ANR='+ANR+'&A0='+A0+'&CB='+CB+'&SU='+SU, true);
+                xhr.send();
             }
         }
         function mengeBoxKeyPress()
