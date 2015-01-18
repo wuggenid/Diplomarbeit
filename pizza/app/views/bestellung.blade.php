@@ -12,11 +12,11 @@
     <h3>Kunde</h3>
     <div class="chosen-container chosen-container-multi">
         <label>Telefon/Name:</label>
-            <ul class="chosen-choices">
-                <li class="search-field">
-                    <input type="text" id="tel" class="default" oninput="javascript:telInput(this)" onkeydown="javascript:telKeyPress(this)" />
-                </li>
-            </ul>
+        <ul class="chosen-choices">
+            <li class="search-field">
+                <input type="text" id="tel" class="default" oninput="javascript:telInput(this)" onkeydown="javascript:telKeyPress(this)" />
+            </li>
+        </ul>
     </div>
     <div style="width:40%; float: left;">
         <ul id="contactform">
@@ -101,6 +101,7 @@
                 </div>
         </div>
     </div>
+</div>
 
 
 
@@ -154,7 +155,7 @@
     <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
 
 
-</div>
+
 
 
 

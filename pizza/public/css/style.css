@@ -72,7 +72,7 @@ table {
 #contactform li .fieldbox {
     float:left;
     height:20px;
-    width: 300px;
+    width: 100%;
 }
 #contactform li .fieldbox input {
     height:30px;
@@ -82,7 +82,7 @@ table {
 #contactform li .msgbox {
     float:left;
     height:70px;
-    width: 300px;
+    width: 100%;
 }
 #contactform li .msgbox textarea {
     height:60px;

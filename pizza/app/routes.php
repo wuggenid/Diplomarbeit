@@ -20,7 +20,10 @@ Route::get('/Bestellungen/storeSingleValue','BestellungenController@storeSingleV
 Route::resource('/Bestellungen', 'BestellungenController');
 Route::resource('/Testview','TestController');
 Route::resource('/Kunden','KundenController');
-Route::get('/Artikel', function(){return View::make('artikel');});
+
+
+Route::get('/Artikelauswahl', function(){return View::make('artikelauswahl');});
+Route::resource('/Artikel', 'ArtikelController');
 
 Route::group(['prefix' => '/api'], function() {
     Route::get('searchNumber','APIController@searchNumber');
