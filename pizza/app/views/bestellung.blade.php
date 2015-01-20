@@ -18,6 +18,7 @@
             </li>
         </ul>
     </div>
+
     <div style="width:40%; float: left;">
         <ul id="contactform">
             <li>
@@ -49,7 +50,9 @@
 
 
     <div style="width:58%; float: right; padding-top: 20px; ">
-        <div class="contacts" style="float:right; height: 200px; width: 100%;">
+
+            <br/><br/>
+        <div class="contacts" style="float:right; height: 200px; width: 100%; overflow: auto;">
             <div style="height: 200px;">
 
                 <script type="text/javascript">
@@ -95,11 +98,12 @@
                 </div>
             </div>
 
-                <div id="gesamtpreis" style="clear: both;">
-                    <br/><br/><br/>
-                    <p><h4>Gesamtpreis Bestellung</h4> <input id="gesamtpreisBox" type="text" style="padding: 10px"/></p><br/>
-                </div>
+
         </div>
+        <div id="gesamtpreis" style="clear: both;">
+              <br/><br/><br/>
+              <p><h4>Gesamtpreis Bestellung</h4> <input id="gesamtpreisBox" type="text" style="padding: 10px"/></p><br/>
+          </div>
     </div>
 </div>
 
@@ -153,9 +157,6 @@
 
 
     <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-
-
-
 
 
 
