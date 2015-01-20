@@ -25,6 +25,10 @@ Route::resource('/Kunden','KundenController');
 Route::get('/Artikelauswahl', function(){return View::make('artikelauswahl');});
 Route::resource('/Artikel', 'ArtikelController');
 
+Route::resource('/Personal','PersonalController');
+
+Route::get('/Login',function(){return View::make('login');});
+
 Route::group(['prefix' => '/api'], function() {
     Route::get('searchNumber','APIController@searchNumber');
     Route::get('getArtikel','APIController@getArtikel');
