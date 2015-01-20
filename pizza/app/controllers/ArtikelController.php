@@ -79,7 +79,11 @@ class ArtikelController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+        return Redirect::to(url('http://www.google.at'));
+        $artikel = xartikel::find($id);
+        $artikel->delete();
+
+        return Redirect::to(url('/Artikel'));
 	}
 
 
