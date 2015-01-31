@@ -84,10 +84,10 @@
                             </tr>
                         </thead>
                         <tbody style="display: none;">
-                            <?php $bestellungen = xadress::take(10)->orderBy('id','desc')->get(); ?>
+                            <?php $bestellungen = xadress::take(10)->get(); ?>
                             @for ($i = 0;$i<10;$i++)
                                 <tr>
-                                    <td class="filterable-cell">{{$bestellungen[$i]['ID']}}</td>
+                                    <td class="filterable-cell">Useless column</td>
                                     <td class="filterable-cell">{{$bestellungen[$i]['TEL']}}</td>
                                     <td class="filterable-cell">{{$bestellungen[$i]['NA1']." ".$bestellungen[$i]['NA2']}}</td>
                                     <td class="filterable-cell">{{$bestellungen[$i]['STR']}}</td>
