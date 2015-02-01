@@ -108,8 +108,6 @@
 </div>
 
 
-
-
     <div style="padding-top: 10px; clear: both;">
         <h3>Artikel</h3>
 
@@ -170,6 +168,18 @@
             var mengeBoxes = document.getElementsByClassName('mengeBox');
             var artikelnummerBoxes = document.getElementsByClassName('artikelnummerTbx');
             var artikelbezeichnungen = document.getElementsByClassName('artikelbezeichnung');
+
+            var rechnungsnummer = 0;
+            var xhr = new XMLHttpRequest();
+            (xhr.onreadystatechange = function()
+            {
+                if (xhr.readyState == 4)
+                {
+                    rechnungsnummer = xhr.responseText;
+                }
+            })
+            xhr.open('GET','/api/getLastBillNumber/', false);
+            xhr.send();
             for (i = 0;i<summeBoxes.length;i++)
             {
                 var xhr = new XMLHttpRequest();
@@ -185,7 +195,8 @@
                 var A0 =  artikelbezeichnungen[i].innerText;
                 var CB = einzelpreisBoxes[i].innerText.split('€')[0];
                 var SU = summeBoxes[i].innerText.split('€')[0];
-                xhr.open('GET', 'storeSingleValue?GM='+GM+'&ANR='+ANR+'&A0='+A0+'&CB='+CB+'&SU='+SU, true);
+                console.log("sending store request");
+                xhr.open('GET', 'storeSingleValue?GM='+GM+'&ANR='+ANR+'&A0='+A0+'&CB='+CB+'&SU='+SU+'&RNR='+rechnungsnummer, true);
                 xhr.send();
             }
         }

@@ -16,9 +16,11 @@ Route::get('/', function()
     return View::make('start');
 });
 
-Route::get('/Bestellungen/storeSingleValue','BestellungenController@storeSingleValue');
 Route::resource('/Bestellungen', 'BestellungenController');
+Route::get('/Bestellungen/storeSingleValue','BestellungenController@storeSingleValue');
+
 Route::resource('/Testview','TestController');
+
 Route::resource('/Kunden','KundenController');
 
 
@@ -32,4 +34,5 @@ Route::get('/Login',function(){return View::make('login');});
 Route::group(['prefix' => '/api'], function() {
     Route::get('searchNumber','APIController@searchNumber');
     Route::get('getArtikel','APIController@getArtikel');
+    Route::get('getLastBillNumber','APIController@getLastBillnumber');
 });
