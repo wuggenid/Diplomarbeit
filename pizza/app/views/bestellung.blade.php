@@ -10,7 +10,7 @@
 <div style="padding: 5px 30px;">
 
     <h3>Kunde</h3>
-    <div class="chosen-container chosen-container-multi">
+    <div class="chosen-container chosen-container-multi" style="padding-left: 4%;">
         <label>Telefon/Name:</label>
         <ul class="chosen-choices">
             <li class="search-field">
@@ -19,7 +19,7 @@
         </ul>
     </div>
 
-    <div style="width:40%; float: left;">
+    <div style="width:38%; float: left;">
         <ul id="contactform">
             <li>
                 <label for="name"> Vorname</label><br/>
@@ -50,15 +50,16 @@
 
 
     <div style="width:58%; float: right; padding-top: 20px; ">
-
-            <br/><br/>
         <div class="contacts" style="float:right; height: 200px; width: 100%; overflow: auto;">
             <div style="height: 200px;">
 
                 <script type="text/javascript">
                     function toggle(cell) {
+                      document.getElementById("toggA").style.display= "none";
+                      document.getElementById("toggT").style.display="table-cell";
+                      document.getElementById("toggN").style.display="table-cell";
+                      document.getElementById("toggS").style.display= "table-cell";
                       var table = cell.parentNode;
-
                       while (table && (table.nodeName != 'TABLE')) {
                         table = table.parentNode;
                       }
@@ -67,7 +68,7 @@
                         var tbody = table.getElementsByTagName('tbody')[0];
 
                         if (tbody) {
-                          tbody.style.display = (tbody.style.display == 'none') ? 'table-row-group' : 'none';
+                          tbody.style.display = (tbody.style.display == 'none') ? 'table-row-group' : 'none'
                         }
                       }
                     }
@@ -77,17 +78,16 @@
                     <table width="100%" class="table1">
                         <thead>
                             <tr>
-                                <th onclick="toggle(this);"><div style="border: 3px solid black"><b>aufklappen</b></div></th>
-                                <th onclick="toggle(this);">Telefon</th>
-                                <th onclick="toggle(this);">Name</th>
-                                <th onclick="toggle(this);">Straße</th>
+                                <th id="toggA" onclick="toggle(this);"><b>Aufklappen</b></th>
+                                <th id="toggT" style="display:none;" onclick="toggle(this);">Telefon</th>
+                                <th id="toggN" style="display:none;" onclick="toggle(this);">Name</th>
+                                <th id="toggS" style="display:none;" onclick="toggle(this);">Straße</th>
                             </tr>
                         </thead>
                         <tbody style="display: none;">
                             <?php $bestellungen = xadress::take(10)->get(); ?>
                             @for ($i = 0;$i<10;$i++)
                                 <tr>
-                                    <td class="filterable-cell">Useless column</td>
                                     <td class="filterable-cell">{{$bestellungen[$i]['TEL']}}</td>
                                     <td class="filterable-cell">{{$bestellungen[$i]['NA1']." ".$bestellungen[$i]['NA2']}}</td>
                                     <td class="filterable-cell">{{$bestellungen[$i]['STR']}}</td>
@@ -105,7 +105,7 @@
               <p><h4>Gesamtpreis Bestellung</h4> <input id="gesamtpreisBox" type="text" style="padding: 10px"/></p><br/>
           </div>
     </div>
-</div>
+
 
 
     <div style="padding-top: 10px; clear: both;">
@@ -145,6 +145,7 @@
             </div>
         </div>
     </div>
+</div>
 
 
     <a href="/Bestellungen"> <button class="bbutton"> Zurück </button></a>
