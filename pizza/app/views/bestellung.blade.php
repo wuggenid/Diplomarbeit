@@ -87,7 +87,12 @@
                         <tbody style="display: none;">
                             <?php $bestellungen = xadress::take(10)->get(); ?>
                             @for ($i = 0;$i<10;$i++)
-                                <tr>
+                                <tr class="tablerow" onclick="
+                                                            document.getElementById('vname').value = '{{$bestellungen[$i]['NA1']}}';
+                                                            document.getElementById('nname').value = '{{$bestellungen[$i]['NA2']}}';
+                                                            document.getElementById('add').value = '{{$bestellungen[$i]['STR']}}';
+                                                            document.getElementById('ort').value = '{{$bestellungen[$i]['ORT']}}';
+                                                            document.getElementById('msg').value = '{{$bestellungen[$i]['IF1']}} {{$bestellungen[$i]['IF2']}}';">
                                     <td class="filterable-cell">{{$bestellungen[$i]['TEL']}}</td>
                                     <td class="filterable-cell">{{$bestellungen[$i]['NA1']." ".$bestellungen[$i]['NA2']}}</td>
                                     <td class="filterable-cell">{{$bestellungen[$i]['STR']}}</td>
@@ -337,6 +342,7 @@
                     xhr.send(null);
             }
         }
+
     </script>
 
 @stop

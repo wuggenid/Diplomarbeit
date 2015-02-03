@@ -53,6 +53,10 @@ table {
     height:350px;
     overflow-y:auto;
 }
+.tablerow:hover {
+    background-color: white;
+    cursor: pointer;
+}
 
 
 
