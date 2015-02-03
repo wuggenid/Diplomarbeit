@@ -14,7 +14,7 @@
         <label>Telefon/Name:</label>
         <ul class="chosen-choices">
             <li class="search-field">
-                <input type="text" id="tel" class="default" oninput="javascript:telInput(this)" onkeydown="javascript:telKeyPress(this)" />
+                <input type="text" id="tels" class="default" oninput="javascript:telInput(this)" onkeydown="javascript:telKeyPress(this)" />
             </li>
         </ul>
     </div>
@@ -90,6 +90,7 @@
                                 <tr class="tablerow" onclick="
                                                             document.getElementById('vname').value = '{{$bestellungen[$i]['NA1']}}';
                                                             document.getElementById('nname').value = '{{$bestellungen[$i]['NA2']}}';
+                                                            document.getElementById('tel').value = '{{$bestellungen[$i]['TEL']}}';
                                                             document.getElementById('add').value = '{{$bestellungen[$i]['STR']}}';
                                                             document.getElementById('ort').value = '{{$bestellungen[$i]['ORT']}}';
                                                             document.getElementById('msg').value = '{{$bestellungen[$i]['IF1']}} {{$bestellungen[$i]['IF2']}}';">
@@ -284,8 +285,8 @@
         var rabbat = -1;
         function telInput()
         {
-            document.getElementById('tel').style.backgroundColor = "white";
-            var number = document.getElementById('tel').value;
+            document.getElementById('tels').style.backgroundColor = "white";
+            var number = document.getElementById('tels').value;
             if (number > 99999)
             {
                 var xhr = new XMLHttpRequest();
@@ -317,7 +318,7 @@
         }
         function telKeyPress(e)
         {
-            var number = document.getElementById('tel').value;
+            var number = document.getElementById('tels').value;
             if (event.keyCode == 13)
             {
                 var xhr = new XMLHttpRequest();
