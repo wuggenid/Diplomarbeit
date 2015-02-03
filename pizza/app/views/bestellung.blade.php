@@ -10,14 +10,7 @@
 <div style="padding: 5px 30px;">
 
     <h3>Kunde</h3>
-    <div class="chosen-container chosen-container-multi" style="padding-left: 4%;">
-        <label>Telefon/Name:</label>
-        <ul class="chosen-choices">
-            <li class="search-field">
-                <input type="text" id="tels" class="default" oninput="javascript:telInput(this)" onkeydown="javascript:telKeyPress(this)" />
-            </li>
-        </ul>
-    </div>
+
 
     <div style="width:38%; float: left;">
         <ul id="contactform">
@@ -50,6 +43,15 @@
 
 
     <div style="width:58%; float: right; padding-top: 20px; ">
+        <div class="chosen-container chosen-container-multi">
+            <label>Telefon/Name:</label>
+            <ul class="chosen-choices">
+                <li class="search-field">
+                    <input type="text" id="tels" class="default" oninput="javascript:telInput(this)" onkeydown="javascript:telKeyPress(this)" /><input type="button" id="aufk" onclick="toggle(this);" value="Aufklappen"/>
+                </li>
+            </ul>
+        </div>
+
         <div class="contacts" style="float:right; height: 200px; width: 100%; overflow: auto;">
             <div style="height: 200px;">
 
@@ -59,6 +61,16 @@
                       document.getElementById("toggT").style.display="table-cell";
                       document.getElementById("toggN").style.display="table-cell";
                       document.getElementById("toggS").style.display= "table-cell";
+
+                      if(document.getElementById('table1').style.display == "none") {
+                        document.getElementById('table1').style.display="table";
+                        document.getElementById('aufk').value = "Zuklappen";
+                        }
+                      else {
+                        document.getElementById('table1').style.display="none";
+                        document.getElementById('aufk').value = "Aufklappen";
+                        }
+
                       var table = cell.parentNode;
                       while (table && (table.nodeName != 'TABLE')) {
                         table = table.parentNode;
@@ -74,8 +86,8 @@
                     }
                 </script>
 
-                <div class="panel panel-default">
-                    <table width="100%" class="table1">
+                <div>
+                    <table width="100%" class="table1" id="table1" style="display: none;">
                         <thead>
                             <tr>
                                 <th id="toggA" onclick="toggle(this);"><b>Aufklappen</b></th>
@@ -84,7 +96,7 @@
                                 <th id="toggS" style="display:none;" onclick="toggle(this);">Straße</th>
                             </tr>
                         </thead>
-                        <tbody style="display: none;">
+                        <tbody>
                             <?php $bestellungen = xadress::take(10)->get(); ?>
                             @for ($i = 0;$i<10;$i++)
                                 <tr class="tablerow" onclick="
@@ -109,7 +121,7 @@
         <div id="gesamtpreis" style="clear: both;">
               <br/><br/><br/>
               <p><h4>Gesamtpreis Bestellung</h4> <input id="gesamtpreisBox" type="text" style="padding: 10px"/></p><br/>
-          </div>
+        </div>
     </div>
 
 
