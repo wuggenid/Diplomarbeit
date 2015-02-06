@@ -52,7 +52,7 @@
             </ul>
         </div>
 
-        <div class="contacts" style="float:right; height: 200px; width: 100%; overflow: auto;">
+        <div class="contacts" style="float:right; height: 200px; width: 100%;">
             <div style="height: 200px;">
 
                 <script type="text/javascript">
@@ -88,17 +88,17 @@
 
                 <div>
                     <table width="100%" class="table1" id="table1" style="display: none;">
-                        <thead>
+                        <thead style="display: table-header-group;">
                             <tr>
                                 <th id="toggA" onclick="toggle(this);"><b>Aufklappen</b></th>
-                                <th id="toggT" style="display:none;" onclick="toggle(this);">Telefon</th>
-                                <th id="toggN" style="display:none;" onclick="toggle(this);">Name</th>
-                                <th id="toggS" style="display:none;" onclick="toggle(this);">Straße</th>
+                                <th id="toggT" style="display:none;">Telefon</th>
+                                <th id="toggN" style="display:none;">Name</th>
+                                <th id="toggS" style="display:none;">Straße</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <?php $bestellungen = xadress::take(10)->get(); ?>
-                            @for ($i = 0;$i<10;$i++)
+                        <tbody style="overflow-y: auto; max-height: 200px; display: inline-block; width: 300%;">
+                            <?php $bestellungen = xadress::take(100)->get(); ?>
+                            @for ($i = 0;$i<100;$i++)
                                 <tr class="tablerow" onclick="
                                                             document.getElementById('vname').value = '{{$bestellungen[$i]['NA1']}}';
                                                             document.getElementById('nname').value = '{{$bestellungen[$i]['NA2']}}';
