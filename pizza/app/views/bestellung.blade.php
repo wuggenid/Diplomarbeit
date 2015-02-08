@@ -97,20 +97,21 @@
                             </tr>
                         </thead>
                         <tbody style="overflow-y: auto; max-height: 200px; display: inline-block; width: 300%;">
-                            <?php $bestellungen = xadress::take(100)->get(); ?>
-                            @for ($i = 0;$i<100;$i++)
+                        <!--
+                            <-?php $bestellungen = xadress::take(100)->get(); ?>
+                            for ($i = 0;$i<100;$i++)
                                 <tr class="tablerow" onclick="
-                                                            document.getElementById('vname').value = '{{$bestellungen[$i]['NA1']}}';
-                                                            document.getElementById('nname').value = '{{$bestellungen[$i]['NA2']}}';
-                                                            document.getElementById('tel').value = '{{$bestellungen[$i]['TEL']}}';
-                                                            document.getElementById('add').value = '{{$bestellungen[$i]['STR']}}';
-                                                            document.getElementById('ort').value = '{{$bestellungen[$i]['ORT']}}';
-                                                            document.getElementById('msg').value = '{{$bestellungen[$i]['IF1']}} {{$bestellungen[$i]['IF2']}}';">
-                                    <td class="filterable-cell">{{$bestellungen[$i]['TEL']}}</td>
-                                    <td class="filterable-cell">{{$bestellungen[$i]['NA1']." ".$bestellungen[$i]['NA2']}}</td>
-                                    <td class="filterable-cell">{{$bestellungen[$i]['STR']}}</td>
+                                                            document.getElementById('vname').value = '{s{$bestellungen[$i]['NA1']}}';
+                                                            document.getElementById('nname').value = '{s{$bestellungen[$i]['NA2']}}';
+                                                            document.getElementById('tel').value = '{s{$bestellungen[$i]['TEL']}}';
+                                                            document.getElementById('add').value = '{s{$bestellungen[$i]['STR']}}';
+                                                            document.getElementById('ort').value = '{s{$bestellungen[$i]['ORT']}}';
+                                                            document.getElementById('msg').value = '{s{$bestellungen[$i]['IF1']}} {s{$bestellungen[$i]['IF2']}}';">
+                                    <td class="filterable-cell">{s{$bestellungen[$i]['TEL']}}</td>
+                                    <td class="filterable-cell">{s{$bestellungen[$i]['NA1']." ".$bestellungen[$i]['NA2']}}</td>
+                                    <td class="filterable-cell">{s{$bestellungen[$i]['STR']}}</td>
                                 </tr>
-                            @endfor
+                            endfor-->
                         </tbody>
                      </table>
                 </div>
@@ -320,6 +321,33 @@
                                 numbers[0]['IF2'] = "";
                             document.getElementById('msg').value = numbers[0]['IF1'] + "\n" + numbers[0]['IF2'];
                             rabbat = numbers[0]['KRAB'];
+                        }
+                        if (numbers.length<10)
+                        {
+                            var table = document.getElementById('table1');
+                            var table = document.getElementById('table1');
+                            while(table.hasChildNodes())
+                            {
+                               table.removeChild(table.firstChild);
+                            }
+                            var header = table.createTHead();
+
+                            for (var i = 0;i<numbers.length;i++)
+                            {
+                                var row = table.insertRow(0);
+                                var telCell = row.insertCell(0);
+                                telCell.innerText = numbers[i]['TEL'];
+                                var nameCell = row.insertCell(-1);
+                                var name = "";
+                                if (numbers[i]['NA1'] != null && numbers[i]['NA1'] != "")
+                                    name += numbers[i]['NA1'];
+                                if (numbers[i]['NA2'] != null && numbers[i]['NA2'] != "")
+                                    name += " " + numbers[i]['NA2'];
+                                nameCell.innerText = name;
+                                var streetCell = row.insertCell(-1);
+                                streetCell.innerText = numbers[i]['STR'];
+                            }
+                            header.innerHTML = "<tr><th id=\"toggA\" onclick=\"toggle(this);\"><b>Aufklappen</b></th><th id=\"toggT\" style=\"display:none;\">Telefon</th><th id=\"toggN\" style=\"display:none;\">Name</th><th id=\"toggS\" style=\"display:none;\">Straße</th></tr>";
                         }
                     }
                 })
