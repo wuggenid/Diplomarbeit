@@ -86,8 +86,7 @@ class BestellungenController extends \BaseController {
 	}
     public function storeSingleValue()
     {
-        return View::make('artikel');
-        /*$GM = Input::get('GM');
+        $GM = Input::get('GM');
         $ANR = Input::get('ANR');
         $A0 = Input::get('A0');
         $CB = Input::get('CB');
@@ -100,8 +99,9 @@ class BestellungenController extends \BaseController {
         $xpos->A0 = $A0;
         $xpos->CB = $CB;
         $xpos->SU = $SU;
-        $xpos->RNR = $RNR;
-        $xpos->save();*/
+        $xpos->RNR = $RNR + 1;
+        $xpos->save();
+
     }
 
 }

@@ -17,8 +17,8 @@ Route::get('/', function()
 });
 
 //Bestellungen
-Route::resource('/Bestellungen', 'BestellungenController');
 Route::get('/Bestellungen/storeSingleValue','BestellungenController@storeSingleValue');
+Route::resource('/Bestellungen', 'BestellungenController');
 
 //Testing
 Route::resource('/Testview','TestController');

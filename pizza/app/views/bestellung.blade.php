@@ -97,21 +97,6 @@
                             </tr>
                         </thead>
                         <tbody style="overflow-y: auto; max-height: 200px; display: inline-block; width: 300%;">
-                        <!--
-                            <-?php $bestellungen = xadress::take(100)->get(); ?>
-                            for ($i = 0;$i<100;$i++)
-                                <tr class="tablerow" onclick="
-                                                            document.getElementById('vname').value = '{s{$bestellungen[$i]['NA1']}}';
-                                                            document.getElementById('nname').value = '{s{$bestellungen[$i]['NA2']}}';
-                                                            document.getElementById('tel').value = '{s{$bestellungen[$i]['TEL']}}';
-                                                            document.getElementById('add').value = '{s{$bestellungen[$i]['STR']}}';
-                                                            document.getElementById('ort').value = '{s{$bestellungen[$i]['ORT']}}';
-                                                            document.getElementById('msg').value = '{s{$bestellungen[$i]['IF1']}} {s{$bestellungen[$i]['IF2']}}';">
-                                    <td class="filterable-cell">{s{$bestellungen[$i]['TEL']}}</td>
-                                    <td class="filterable-cell">{s{$bestellungen[$i]['NA1']." ".$bestellungen[$i]['NA2']}}</td>
-                                    <td class="filterable-cell">{s{$bestellungen[$i]['STR']}}</td>
-                                </tr>
-                            endfor-->
                         </tbody>
                      </table>
                 </div>
@@ -225,8 +210,6 @@
             var keycode = event.keyCode;
             if(keycode == '13')
             {
-                //var einzelpreis = document.getElementById('einzelpreis').innerText.split('€')[0];
-                //document.getElementById('summe').innerText = (einzelpreis * $(".mengeBox").val()) + "€";
                 var summeBoxes = document.getElementsByClassName('summe');
                 var einzelpreisBoxes = document.getElementsByClassName('einzelpreis');
                 var mengeBoxes = document.getElementsByClassName('mengeBox');
@@ -274,26 +257,12 @@
                         document.getElementsByClassName('einzelpreis')[document.getElementsByClassName('einzelpreis').length-1].innerText = artikel[0]['CB'] + '€';
                         document.getElementsByClassName('mengeBox')[document.getElementsByClassName('mengeBox').length-1].focus();
                         document.getElementsByClassName('rabbat')[document.getElementsByClassName('rabbat').length-1].innerText = rabbat;
-                        /*document.getElementById('artikelbezeichnung').innerText = artikel[0]['A0'];
-                        document.getElementById('einzelpreis').innerText = artikel[0]['CB'] + '€';
-                        document.getElementById('mengeBox').focus();
-                        document.getElementById('rabbat').innerText = rabbat;*/
                    }
                 })
                 xhr.open('GET', '/api/getArtikel?artikel=' + ANR, true);
                 xhr.send(null);
             }
         }
-
-        /*function artikelKeyPress(x,y)
-        {
-            var table = document.getElementById('artikelTable');
-            var cells = table.getElementByTagName('td');
-            //var cells = rows[y];
-            //console.log(cells);
-            alert(cells);
-            alert(table);
-        }*/
 
         var rabbat = -1;
         function telInput()
