@@ -16,21 +16,28 @@ Route::get('/', function()
     return View::make('start');
 });
 
+//Bestellungen
 Route::resource('/Bestellungen', 'BestellungenController');
 Route::get('/Bestellungen/storeSingleValue','BestellungenController@storeSingleValue');
 
+//Testing
 Route::resource('/Testview','TestController');
 
+//Kunden
+Route::get('/Kunden/update','KundenController@update');
+Route::get('/Kunden/store','KundenController@store');
 Route::resource('/Kunden','KundenController');
 
-
+//Artikel
 Route::get('/Artikelauswahl', function(){return View::make('artikelauswahl');});
 Route::resource('/Artikel', 'ArtikelController');
 
+//Personal
 Route::resource('/Personal','PersonalController');
 
 Route::get('/Login',function(){return View::make('login');});
 
+//API
 Route::group(['prefix' => '/api'], function() {
     Route::get('searchNumber','APIController@searchNumber');
     Route::get('getArtikel','APIController@getArtikel');

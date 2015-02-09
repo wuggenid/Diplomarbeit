@@ -34,7 +34,27 @@ class KundenController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
+        $tel = Input::get('tel');
+        $vname = Input::get('vname');
+        $nname = Input::get('nname');
+        $str = Input::get('add');
+        $ort = Input::get('ort');
+        $if1 = Input::get('if1');
+        $if2 = Input::get('if2');
+        $rab = Input::get('rab');
+
+        $kunde = new xadress();
+        $kunde->TEL = $tel;
+        $kunde->NA1 = $vname;
+        $kunde->NA2 = $nname;
+        $kunde->STR = $str;
+        $kunde->ORT = $ort;
+        $kunde->IF1 = $if1;
+        $kunde->IF2 = $if2;
+        $kunde->KRAB = $rab;
+        $kunde->save();
+
+        return Redirect::to('/');
 	}
 
 
@@ -68,9 +88,30 @@ class KundenController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update()
 	{
-		//
+        $oldTel = Input::get('oldTel');
+        $tel = Input::get('tel');
+        $vname = Input::get('vname');
+        $nname = Input::get('nname');
+        $str = Input::get('add');
+        $ort = Input::get('ort');
+        $if1 = Input::get('if1');
+        $if2 = Input::get('if2');
+        $rab = Input::get('rab');
+
+        //$kunde = DB::table('xadress')->where('TEL','=',$tel)->get();
+        DB::table('xadress')->where('TEL',$oldTel)->update(array(
+            'TEL' => $tel,
+            'NA1' => $vname,
+            'NA2' => $nname,
+            'STR' => $str,
+            'ORT' => $ort,
+            'IF1' => $if1,
+            'IF2' => $if2,
+            'KRAB' => $rab
+        ));
+        return Redirect::to('/');
 	}
 
 
