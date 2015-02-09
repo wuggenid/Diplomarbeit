@@ -92,6 +92,7 @@ class BestellungenController extends \BaseController {
         $CB = Input::get('CB');
         $SU = Input::get('SU');
         $RNR = Input::get('RNR');
+        $PNR = Input::get('PNR');
 
         $xpos = new xpos();
         $xpos->GM = $GM;
@@ -100,6 +101,7 @@ class BestellungenController extends \BaseController {
         $xpos->CB = $CB;
         $xpos->SU = $SU;
         $xpos->RNR = $RNR + 1;
+        $xpos->PNR = $PNR;
         $xpos->save();
 
     }

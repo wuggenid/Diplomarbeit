@@ -200,9 +200,13 @@
                 var A0 =  artikelbezeichnungen[i].innerText;
                 var CB = einzelpreisBoxes[i].innerText.split('€')[0];
                 var SU = summeBoxes[i].innerText.split('€')[0];
-                console.log("sending store request");
-                xhr.open('GET', 'storeSingleValue?GM='+GM+'&ANR='+ANR+'&A0='+A0+'&CB='+CB+'&SU='+SU+'&RNR='+rechnungsnummer, true);
-                xhr.send();
+                console.log(ANR);
+                console.log(GM);
+                if (ANR != "" && GM != "")
+                {
+                    xhr.open('GET', 'storeSingleValue?GM='+GM+'&ANR='+ANR+'&A0='+A0+'&CB='+CB+'&SU='+SU+'&RNR='+rechnungsnummer+'&PNR='+i, true);
+                    xhr.send();
+                }
             }
         }
         function mengeBoxKeyPress()
@@ -216,10 +220,11 @@
                 var gesamtsumme = 0;
                 for (i = 0;i<summeBoxes.length;i++)
                 {
-                    var summe = einzelpreisBoxes[i].innerText.split('€')[0] * mengeBoxes[i].value;
+                    var summe = Math.round((einzelpreisBoxes[i].innerText.split('€')[0] * mengeBoxes[i].value)*100000000)/100000000;
                     summeBoxes[i].innerText = summe + '€';
                     gesamtsumme += summe;
                 }
+                gesamtsumme = Math.round(gesamtsumme*100000000)/100000000;
                 document.getElementById('gesamtpreisBox').value = gesamtsumme + '€';
                 var table = document.getElementById('artikelTable');
                 var row = table.insertRow(-1);
