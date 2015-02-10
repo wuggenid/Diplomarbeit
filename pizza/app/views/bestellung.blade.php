@@ -87,13 +87,13 @@
                 </script>
 
                 <div>
-                    <table width="100%" class="table1" id="table1" style="display: none;">
+                    <table width="100%" class="table1" id="table1" >
                         <thead style="display: table-header-group;">
                             <tr>
-                                <th id="toggA" onclick="toggle(this);"><b>Aufklappen</b></th>
-                                <th id="toggT" style="display:none;">Telefon</th>
-                                <th id="toggN" style="display:none;">Name</th>
-                                <th id="toggS" style="display:none;">Straße</th>
+                                <th id="toggA" onclick="toggle(this);" style="display: none;"><b>Aufklappen</b></th>
+                                <th id="toggT">Telefon</th>
+                                <th id="toggN">Name</th>
+                                <th id="toggS">Straße</th>
                             </tr>
                         </thead>
                         <tbody style="overflow-y: auto; max-height: 200px; display: inline-block; width: 300%;">
@@ -166,6 +166,7 @@
 
 
     <script language="javascript">
+        document.getElementById('tels').focus();
         function saveOrder()
         {
             var summeBoxes = document.getElementsByClassName('summe');
@@ -200,7 +201,7 @@
                     xhr.send();
                 }
             }
-            alert('Bestellung gespeichert!')
+
             window.location.href = "/";
         }
         function mengeBoxKeyPress(e)
@@ -315,7 +316,7 @@
                                 var streetCell = row.insertCell(-1);
                                 streetCell.innerText = numbers[i]['STR'];
                             }
-                            header.innerHTML = "<tr><th id=\"toggA\" onclick=\"toggle(this);\"><b>Aufklappen</b></th><th id=\"toggT\" style=\"display:none;\">Telefon</th><th id=\"toggN\" style=\"display:none;\">Name</th><th id=\"toggS\" style=\"display:none;\">Straße</th></tr>";
+                            header.innerHTML = "<tr><th id=\"toggA\" onclick=\"toggle(this);\" style=\"display: none;\"><b>Aufklappen</b></th><th id=\"toggT\" >Telefon</th><th id=\"toggN\" >Name</th><th id=\"toggS\">Straße</th></tr>";
                         }
                     }
                 })
