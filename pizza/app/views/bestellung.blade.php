@@ -87,7 +87,7 @@
                 </script>
 
                 <div>
-                    <table width="100%" class="table1" id="table1" >
+                    <table  width="100%" class="table1" id="table1" >
                         <thead style="display: table-header-group;">
                             <tr>
                                 <th id="toggA" onclick="toggle(this);" style="display: none;"><b>Aufklappen</b></th>
@@ -134,10 +134,10 @@
                     <table id="artikelTable" class="table table-condensed">
                         <tbody>
                              <tr>
-                                <td><input onkeydown="javascript:artikelnummerKeyPress()" class="artikelnummerTbx" id="textbox" style="text-align: center;" size="5" type="text"/></td>
+                                <td><input onkeyup="javascript:artikelnummerKeyPress(this)" class="artikelnummerTbx" id="textbox" style="text-align: center;" size="5" type="text"/></td>
                                 <td class="artikelbezeichnung" id="artikelbezeichnung"></td>
                                 <td class="einzelpreis" id="einzelpreis"></td>
-                                <td class="menge" id="menge"><input class="mengeBox" id="mengeBox" onkeypress="javascript:mengeBoxKeyPress(this)" style="text-align: center;" size="5" type="text"/></td>
+                                <td class="menge" id="menge"><input class="mengeBox" id="mengeBox" onkeyup="javascript:mengeBoxKeyPress(this)" style="text-align: center;" size="5" type="text"/></td>
                                 <td class="rabbat" id="rabbat"></td>
                                 <td class="summe" id="summe"></td>
                              </tr>
@@ -150,10 +150,10 @@
 </div>
 
 
-    <a href="/Bestellungen"> <button class="btn btn-lg btn-danger"> Zurück </button></a>
+    <a href="/Bestellungen"> <button style="width: 7em;" class="btn btn-lg btn-danger"><span class="glyphicon glyphicon-chevron-left"></span> Zurück</button></a>
     <!--<button class="bbutton"> Rückgängig </button>-->
-    <button class="btn btn-lg btn-primary"> Bestellung ändern... </button>
-    <button onclick="javascript:saveOrder()" class="btn btn-lg btn-success"> Drucken </button>
+    <button class="btn btn-lg btn-primary"><span class="glyphicon glyphicon-pencil"></span> Bestellung ändern...</button>
+    <button onclick="javascript:saveOrder()" id="btn_drucken" class="btn btn-lg btn-success"><span class="glyphicon glyphicon-print"></span> Drucken</button>
     <!--<button class="bbutton"> Speichern </button>-->
 
 
@@ -235,8 +235,8 @@
                 rabbat.className = "rabbat";
                 var summe = row.insertCell(-1);
                 summe.className = "summe";
-                artikelnummer.innerHTML = '<input class="artikelnummerTbx" onkeydown="javascript:artikelnummerKeyPress()" id="textbox" style="text-align: center;" size="5" type="text"/>';
-                menge.innerHTML = '<input class="mengeBox" id="mengeBox" onkeypress="javascript:mengeBoxKeyPress(this)" style="text-align: center;" size="5" type="text"/>';
+                artikelnummer.innerHTML = '<input class="artikelnummerTbx" onkeyup="javascript:artikelnummerKeyPress(this)" id="textbox" style="text-align: center;" size="5" type="text"/>';
+                menge.innerHTML = '<input class="mengeBox" id="mengeBox" onkeyup="javascript:mengeBoxKeyPress(this)" style="text-align: center;" size="5" type="text"/>';
                 var tbxs = document.getElementsByClassName('artikelnummerTbx');
                 tbxs[tbxs.length-1].focus();
             }
@@ -246,21 +246,26 @@
         {
             if (event.keyCode == 13)
             {
-                var ANR = document.activeElement.value;
-                var xhr = new XMLHttpRequest();
-                (xhr.onreadystatechange = function()
+                var ANR = e.value;
+                if (ANR == "")
+                    document.getElementById("btn_drucken").focus();
+                else
                 {
-                   if (xhr.readyState == 4)
-                   {
-                        var artikel = JSON.parse(xhr.responseText);
-                        document.getElementsByClassName('artikelbezeichnung')[document.getElementsByClassName('artikelbezeichnung').length-1].innerText = artikel[0]['A0'];
-                        document.getElementsByClassName('einzelpreis')[document.getElementsByClassName('einzelpreis').length-1].innerText = artikel[0]['CB'] + '€';
-                        document.getElementsByClassName('mengeBox')[document.getElementsByClassName('mengeBox').length-1].focus();
-                        document.getElementsByClassName('rabbat')[document.getElementsByClassName('rabbat').length-1].innerText = rabbat;
-                   }
-                })
-                xhr.open('GET', '/api/getArtikel?artikel=' + ANR, true);
-                xhr.send(null);
+                    var xhr = new XMLHttpRequest();
+                    (xhr.onreadystatechange = function()
+                    {
+                       if (xhr.readyState == 4)
+                       {
+                            var artikel = JSON.parse(xhr.responseText);
+                            document.getElementsByClassName('artikelbezeichnung')[document.getElementsByClassName('artikelbezeichnung').length-1].innerText = artikel[0]['A0'];
+                            document.getElementsByClassName('einzelpreis')[document.getElementsByClassName('einzelpreis').length-1].innerText = artikel[0]['CB'] + '€';
+                            document.getElementsByClassName('mengeBox')[document.getElementsByClassName('mengeBox').length-1].focus();
+                            document.getElementsByClassName('rabbat')[document.getElementsByClassName('rabbat').length-1].innerText = rabbat;
+                       }
+                    })
+                    xhr.open('GET', '/api/getArtikel?artikel=' + ANR, true);
+                    xhr.send(null);
+                }
             }
         }
 
@@ -317,7 +322,7 @@
                                 var streetCell = row.insertCell(-1);
                                 streetCell.innerText = numbers[i]['STR'];
                             }
-                            header.innerHTML = "<tr><th id=\"toggA\" onclick=\"toggle(this);\" style=\"display: none;\"><b>Aufklappen</b></th><th id=\"toggT\" >Telefon</th><th id=\"toggN\" >Name</th><th id=\"toggS\">Straße</th></tr>";
+                            header.innerHTML = "<tr><th id=\"toggA\" onclick=\"toggle(this);\" style=\" display: none;\"><b>Aufklappen</b></th><th id=\"toggT\" >Telefon</th><th id=\"toggN\" >Name</th><th id=\"toggS\">Straße</th></tr>";
                         }
                     }
                 })
@@ -337,8 +342,9 @@
                 selectedTel--;
             if (selectedTel < 1)
                 selectedTel++;
-            rows[oldSelectedTel].style.backgroundColor = "lightgrey";
-            rows[selectedTel].style.backgroundColor = "#3F3";
+            rows[oldSelectedTel].style.backgroundColor = "";
+            rows[selectedTel].style.backgroundColor = "#D8D8D8";
+            rows[selectedTel].style.color = "#333332";
             var number = rows[selectedTel].cells[0].innerText;
             document.getElementById('tels').value = number;
             var xhr = new XMLHttpRequest();
@@ -348,7 +354,6 @@
                     if (numbers.length == 1)
                     {
                         document.getElementById('tel').value = numbers[0]['TEL'];
-                        document.getElementById('tel').style.backgroundColor = "#3F3";
                         document.getElementById('vname').value = numbers[0]['NA1'];
                         document.getElementById('nname').value = numbers[0]['NA2'];
                         document.getElementById('tel').value = numbers[0]['TEL'];
@@ -401,7 +406,5 @@
                     xhr.send(null);
             }
         }
-
     </script>
-
 @stop

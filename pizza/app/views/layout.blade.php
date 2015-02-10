@@ -17,7 +17,7 @@
 
     <body>
         <div style="float: left; padding-right: 5px;position: absolute;margin-left: 3em;">
-            {{HTML::image('/img/fallback-start_edited.png','Eduardo Logo',array('width' => '150','height' => '150'))}}
+            <a href="/" >{{HTML::image('/img/fallback-start_edited.png','Eduardo Logo',array('width' => '150','height' => '150'))}}</a>
         </div>
         <div class="head" >
             <div style="padding-left: 150px;" class="navbar navbar-static-top">

@@ -8,15 +8,15 @@
     <br />
     <br />
         <form action="/Artikel" method="get">
-            <button type="submit" class="btn btn-lg btn-default">Artikelstamm</button>
+            <button type="submit" class="btn btn-lg btn-success">Artikelstamm</button>
         </form>
         <br /><br />
 
-        <button type="button" class="btn btn-lg btn-default">Artikel-Gruppe</button><br /><br />
+        <button type="button" class="btn btn-lg btn-primary">Artikel-Gruppe</button><br /><br />
 
-        <button type="button" class="btn btn-lg btn-default">Artikeleinkauf</button><br /><br />
+        <button type="button" class="btn btn-lg btn-warning">Artikeleinkauf</button><br /><br />
 
-        <a href="/"><button type="button" class="btn btn-lg btn-default">Exit</button></a>
+        <a href="/"><button type="button" class="btn btn-lg btn-danger"><span class="glyphicon glyphicon-chevron-left"></span> Zurück</button></a>
     </div>
 </div>
 

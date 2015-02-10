@@ -62,19 +62,18 @@
 
 <div style="clear: both;">
     <br/><br/>
-    <button onClick="artnr.value = artbez.value = artgru.value = mwst.value = ''; epreis.value = vmenge.value = '0';" class="bbutton"> Neuer Artikel </button>
+    <button style="width: 12em;" onClick="artnr.value = artbez.value = artgru.value = mwst.value = ''; epreis.value = vmenge.value = '0';" class="btn btn-lg btn-success"><span class="glyphicon glyphicon-plus"></span> Neuer Artikel </button>
 
     {{ Form::open(array('url' => "/Artikel/$artikel->(artnr.value)" , 'method' => 'delete')) }}
-        <button class="bbutton"> Artikel löschen </button>
+        <button style="width: 12em;" class="btn btn-lg btn-danger"><span class="glyphicon glyphicon-trash"></span> Artikel löschen </button>
     {{ Form::close() }}
 
-    <button class="bbutton"> Artikelmonatsstatistik </button>
+    <button style="width: 12em;" class="btn btn-lg btn-warning"><span class="glyphicon glyphicon-stats"></span> Artikelmonatsstatistik</button>
     <br/><br/>
-    <button class="bbutton"> Rückgängig Änderung </button>
-    <button class="bbutton"> Artikel speichern </button>
-    <button class="bbutton"> Artikelliste drucken </button>
+    <a href="/"><button style="width: 12em;" class="btn btn-lg btn-danger"><span class="glyphicon glyphicon-chevron-left"></span> Zurück</button></a>
+    <button style="width: 12em;" class="btn btn-lg btn-success"><span class="glyphicon glyphicon-floppy-save"></span> Artikel speichern</button>
+    <button style="width: 12em;" class="btn btn-lg btn-warning"><span class="glyphicon glyphicon-print"></span> Artikelliste drucken </button>
     <br/><br/>
-    <a href="/"> <button class="bbutton"> Ende </button></a>
 </div>
 
 

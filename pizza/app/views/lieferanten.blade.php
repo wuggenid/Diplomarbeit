@@ -2,7 +2,7 @@
 
 @section('content')
 
-<h2>Kundenstammverwaltung</h2>
+<h2>Lieferantenstammverwaltung</h2>
 
 <div style="padding: 0 30px;">
 
@@ -46,7 +46,8 @@
                 </li>
                 <li>
                     <label for="contact"> Memo:</label><br/>
-                    <span class="fieldbox"><input type="text" name="rabbat" id="rabbat" /></span>
+                    <span class="fieldbox"><textarea name="memo" id="memo"></textarea></span>
+                    <br /><br />
                 </li>
             </ul>
         </div>
@@ -54,14 +55,14 @@
             <table border="1" style="float: left;">
                 <tbody style="background-color: #ffffff;">
                     <tr style="background-color: #ffffff;">
-                        <td><input type="button" onclick="javascript:newClick()" class="btn btn-lg btn-default" value="Neuer Lieferant" /></td>
-                        <td><a href="/Lieferanten/delete"><input type="button" class="btn btn-lg btn-default" value="Lieferanten löschen" /></a></td>
-                        <td><input type="button" class="btn btn-lg btn-default" value="Etikettendruck"></td>
+                        <td><a href="/Kunden/delete"><button style="width: 12em;" class="btn btn-lg btn-danger" /><span class="glyphicon glyphicon-trash"></span> Lieferant löschen</button></a></td>
+                        <td><button style="width: 12em;" onclick="javascript:newClick()" class="btn btn-lg btn-success" ><span class="glyphicon glyphicon-plus"></span> Neuer Lieferant</button></td>
+                        <td><button style="width: 12em;" class="btn btn-lg btn-warning"><span class="glyphicon glyphicon-print"></span> Etikettendruck</button></td>
                     </tr>
                     <tr style="background-color: #ffffff;">
-                        <td><a href=""><input type="button" class="btn btn-lg btn-default" value="Rückgängig" /></a></td>
-                        <td><input type="button" onclick="javascript:updateClick()" class="btn btn-lg btn-default" value="Lieferanten speichern" /></td>
-                        <td><a href=""><input type="button" class="btn btn-lg btn-default" value="Lieferantenliste drucken" /></a></td>
+                        <td><a href=""><a href="/"><button style="width: 12em;" class="btn btn-lg btn-danger"><span class="glyphicon glyphicon-chevron-left"></span> Zurück</button></a></td>
+                        <td><button style="width: 12em;" onclick="javascript:updateClick()" class="btn btn-lg btn-success" /><span class="glyphicon glyphicon-floppy-save"></span> Lieferant speichern</td>
+                        <td><a href=""><button style="width: 14em;" class="btn btn-lg btn-warning" ><span class="glyphicon glyphicon-print"></span> Lieferantenliste drucken</button></a></td>
                     </tr>
                 </tbody>
             </table>

@@ -53,14 +53,14 @@
             <table border="1" style="float: left;">
                 <tbody style="background-color: #ffffff;">
                     <tr style="background-color: #ffffff;">
-                        <td><input type="button" onclick="javascript:newClick()" class="btn btn-lg btn-default" value="Neuer Kunde" /></td>
-                        <td><a href="/Kunden/delete"><input type="button" class="btn btn-lg btn-default" value="Kunden löschen" /></a></td>
-                        <td><input type="button" class="btn btn-lg btn-default" value="Etikettendruck"></td>
+                        <td><a href="/Kunden/delete"><button style="width: 12em;" class="btn btn-lg btn-danger" /><span class="glyphicon glyphicon-trash"></span> Kunden löschen</button></a></td>
+                        <td><button style="width: 12em;" onclick="javascript:newClick()" class="btn btn-lg btn-success" ><span class="glyphicon glyphicon-plus"></span> Neuer Kunde</button></td>
+                        <td><button style="width: 12em;" class="btn btn-lg btn-warning"><span class="glyphicon glyphicon-print"></span> Etikettendruck</button></td>
                     </tr>
                     <tr style="background-color: #ffffff;">
-                        <td><a href=""><input type="button" class="btn btn-lg btn-default" value="Rückgängig" /></a></td>
-                        <td><input type="button" onclick="javascript:updateClick()" class="btn btn-lg btn-default" value="Kunden speichern" /></td>
-                        <td><a href=""><input type="button" class="btn btn-lg btn-default" value="Kundenliste drucken" /></a></td>
+                        <td><a href=""><a href="/"><button style="width: 12em;" class="btn btn-lg btn-danger"><span class="glyphicon glyphicon-chevron-left"></span> Zurück</button></a></td>
+                        <td><button style="width: 12em;" onclick="javascript:updateClick()" class="btn btn-lg btn-success" /><span class="glyphicon glyphicon-floppy-save"></span> Kunden speichern</td>
+                        <td><a href=""><button class="btn btn-lg btn-warning" ><span class="glyphicon glyphicon-print"></span> Kundenliste drucken</button></a></td>
                     </tr>
                 </tbody>
             </table>
