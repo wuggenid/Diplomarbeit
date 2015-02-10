@@ -16,19 +16,19 @@
 </head>
 
     <body>
-
-        <div class="head" style="height: 150px;">
-            <div style="float: left; padding-right: 5px;">
-                {{HTML::image('/img/fallback-start.png','Eduardo Logo',array('width' => '150','height' => '150'))}}
-            </div>
-
-            <div style="padding-left: 150px;">
-                <h1>Eduardos Pizza Service GmbH</h1>
-                <p>{{ date('d.m.y') }}</p>
-                <p>Tel.: 04242 / 21 91 99</p><br/>
+        <div style="float: left; padding-right: 5px;position: absolute;margin-left: 3em;">
+            {{HTML::image('/img/fallback-start_edited.png','Eduardo Logo',array('width' => '150','height' => '150'))}}
+        </div>
+        <div class="head" >
+            <div style="padding-left: 150px;" class="navbar navbar-static-top">
+                <div class="container">
+                    <a href="/" style="margin-left: 3em;" class="navbar-brand">Eduardos Pizza Service GmbH</a>
+                </div>
             </div>
         </div>
-
+        <br />
+        <br />
+        <br />
 
         {{--<div style="padding: 0 15%; position: center;">--}}
         <div class="container">
