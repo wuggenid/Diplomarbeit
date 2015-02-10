@@ -5,29 +5,22 @@
 
 <div style="float: left;" class="startbuttons">
     <ul>
-        <li><a href="/Bestellungen"> <button class="bbutton"> Bestellungen </button></a></li>
-        <li><a href="/Artikelauswahl"> <button class="bbutton"> Artikel </button></a></li>
-        <li><a href="/Kunden/create"><button class="bbutton"> Kunden </button></a></li>
-        <li><a href="/Lieferanten"><button class="bbutton"> Lieferanten </button></a></li>
-        <li><button class="bbutton"> Bons </button></li>
+        <li><a href="/Bestellungen"> <button class="btn btn-lg btn-success"> Bestellungen </button></a></li>
+        <li><a href="/Artikelauswahl"> <button class="btn btn-lg btn-primary"> Artikel </button></a></li>
+        <li><a href="/Kunden/create"><button class="btn btn-lg btn-info"> Kunden </button></a></li>
+        <li><a href="/Lieferanten"><button class="btn btn-lg btn-warning"> Lieferanten </button></a></li>
+        <li><button class="btn btn-lg"> Bons </button></li>
     </ul>
 </div>
 
 <div style="float: right;" class="startbuttons">
     <ul>
-        <li><button class="bbutton"> Personal </button></li>
-        <li><button class="bbutton"> Buchen </button></li>
-        <li><button class="bbutton"> Fahrer </button></li>
-        <li><button class="bbutton"> Statistik </button></li>
-        <li><button class="bbutton"> Optionen </button></li>
+        <li><button class="btn btn-lg btn-danger"> Personal </button></li>
+        <li><button class="btn btn-lg btn-warning"> Buchen </button></li>
+        <li><button class="btn btn-lg"> Fahrer </button></li>
+        <li><button class="btn btn-lg btn-primary"> Statistik </button></li>
+        <li><button class="btn btn-lg btn-default"> Optionen </button></li>
     </ul>
 </div>
-
-<div class="startbuttons">
-    <ul>
-        <li><button class="bbutton"> Ende </button></li>
-    </ul>
-</div>
-
 
 @stop
