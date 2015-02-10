@@ -101,8 +101,6 @@
                      </table>
                 </div>
             </div>
-
-
         </div>
         <div id="gesamtpreis" style="clear: both;">
               <br/><br/><br/>
@@ -204,9 +202,11 @@
 
             window.location.href = "/";
         }
+
         function mengeBoxKeyPress(e)
         {
             var keycode = event.keyCode;
+
             if(keycode == '13')
             {
                 var summeBoxes = document.getElementsByClassName('summe');
@@ -267,6 +267,7 @@
         var rabbat = -1;
         function telInput()
         {
+            selectedTel = 1;
             document.getElementById('tels').style.backgroundColor = "white";
             var number = document.getElementById('tels').value;
             if (number > 99999)
@@ -325,8 +326,31 @@
             }
 
         }
+        var selectedTel = 1;
+        function changeSelectedTel(cselectedTel)
+        {
+            var oldSelectedTel = selectedTel;
+            selectedTel = cselectedTel;
+            var table = document.getElementById('table1');
+            var rows = table.rows;
+            if (selectedTel > rows.length-1)
+                selectedTel--;
+            if (selectedTel < 1)
+                selectedTel++;
+            rows[oldSelectedTel].style.backgroundColor = "lightgrey";
+            rows[selectedTel].style.backgroundColor = "#3F3";
+            document.getElementById('tels').value = rows[selectedTel].cells[0].innerText;
+        }
         function telKeyPress(e)
         {
+            if (event.keyCode == 40)
+            {
+                changeSelectedTel(selectedTel+1);
+            }
+            else if (event.keyCode == 38)
+            {
+                changeSelectedTel(selectedTel-1);
+            }
             var number = document.getElementById('tels').value;
             if (event.keyCode == 13)
             {
