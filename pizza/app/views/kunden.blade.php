@@ -17,11 +17,11 @@
             <ul id="contactform">
                 <li>
                     <label for="name"> Vorname</label><br/>
-                    <span class="fieldbox"><input type="text" name="vname" id="vname" /></span>
+                    <span class="fieldbox"><input onkeypress="javascript:vornameKeyPress()" type="text" name="vname" id="vname" /></span>
                 </li>
                 <li>
                     <label for="name"> Nachname</label><br/>
-                    <span class="fieldbox"><input type="text" name="nname" id="nname" /></span>
+                    <span class="fieldbox"><input onkeypress="javascript:nachnameKeyPress()" type="text" name="nname" id="nname" /></span>
                 </li>
                 <li>
                     <label for="email"> Telefon</label><br/>
@@ -29,19 +29,19 @@
                 </li>
                 <li>
                     <label for="contact"> Adresse</label><br/>
-                    <span class="fieldbox"><input type="text" name="add" id="add" /></span>
+                    <span class="fieldbox"><input onkeypress="javascript:addKeyPress()" type="text" name="add" id="add" /></span>
                 </li>
                 <li>
                     <label for="contact"> Ort</label><br/>
-                    <span class="fieldbox"><input type="text" name="ort" id="ort" /></span>
+                    <span class="fieldbox"><input onkeypress="javscript:ortKeyPress()" type="text" name="ort" id="ort" /></span>
                 </li>
                 <li>
                     <label for="contact"> Information 1:</label><br/>
-                    <span class="fieldbox"><input type="text" name="if1" id="if1" /></span>
+                    <span class="fieldbox"><input onkeypress="javascript:if1KeyPress()" type="text" name="if1" id="if1" /></span>
                 </li>
                 <li>
                     <label for="contact"> Information 2:</label><br/>
-                    <span class="fieldbox"><input type="text" name="if2" id="if2" /></span>
+                    <span class="fieldbox"><input onkeypress="javscript:if2KeyPress()" type="text" name="if2" id="if2" /></span>
                 </li>
                 <li>
                     <label for="contact"> Kundenrabbat(10% = 0,1):</label><br/>
@@ -66,6 +66,39 @@
             </table>
         </div>
         <script language="javascript">
+            document.getElementById('tel').focus(); //am beginn wird die telefonnummer fokusiert
+
+            function if2KeyPress()
+            {
+                if (event.keyCode == 13)
+                    document.getElementById('rabbat').focus();
+            }
+            function if1KeyPress()
+            {
+                if (event.keyCode == 13)
+                    document.getElementById("if2").focus();
+            }
+            function ortKeyPress()
+            {
+                if (event.keyCode == 13)
+                    document.getElementById('if1').focus();
+            }
+            function addKeyPress()
+            {
+                if (event.keyCode == 13)
+                    document.getElementById('ort').focus();
+            }
+            function nachnameKeyPress()
+            {
+                if (event.keyCode == 13)
+                    document.getElementById('add').focus();
+            }
+            function vornameKeyPress()
+            {
+                if (event.keyCode == 13)
+                    document.getElementById("nname").focus();
+            }
+
             function tel2Change()
             {
                 document.getElementById("tel").value = document.getElementById("tel2").value;
@@ -153,10 +186,7 @@
                             var numbers = JSON.parse(xhr.responseText);
                             if (numbers.length == 0)
                             {
-                                if (confirm('Kunde wurde nicht gefunden! Wollen sie einen neuen Kunden aufnehmen?'))
-                                {
-                                    window.location.href = "/Kunden/create?tel=" + number;
-                                }
+                                document.getElementById('vname').focus();
                             }
                             else if (numbers.length == 1)
                             {
