@@ -12,15 +12,15 @@
             <label><input type="radio" name="bestellungradio" checked="true">Neue Bestellungen</label>
         </div>
         <form action="/Bestellungen/create" method="get">
-            <button type="submit" class="btn btn-lg btn-default">Bestellungen</button>
+            <button type="submit" class="btn btn-lg btn-success">Bestellungen</button>
         </form>
         <br /><br />
 
-        <button type="button" class="btn btn-lg btn-default">Drucken</button><br /><br />
+        <button type="button" class="btn btn-lg btn-warning">Drucken</button><br /><br />
 
-        <button type="button" class="btn btn-lg btn-default">Letzte Anrufe</button><br /><br />
+        <button type="button" class="btn btn-lg btn-primary">Letzte Anrufe</button><br /><br />
 
-        <a href="/"><button type="button" class="btn btn-lg btn-default">Exit</button></a>
+        <a href="/"><button type="button" class="btn btn-lg btn-danger">Exit</button></a>
     </div>
 </div>
 
