@@ -87,7 +87,7 @@
                 </script>
 
                 <div>
-                    <table  width="100%" class="table1" id="table1" >
+                    <table  width="100%" class="table1" id="table1" style="display: none;">
                         <thead style="display: table-header-group;">
                             <tr>
                                 <th id="toggA" onclick="toggle(this);" style="display: none;"><b>Aufklappen</b></th>
@@ -272,6 +272,7 @@
         var rabbat = -1;
         function telInput()
         {
+            check = 0;
             selectedTel = 1;
             document.getElementById('tels').style.backgroundColor = "white";
             var number = document.getElementById('tels').value;
@@ -300,7 +301,6 @@
                         if (numbers.length<10)
                         {
                             var table = document.getElementById('table1');
-                            var table = document.getElementById('table1');
                             while(table.hasChildNodes())
                             {
                                table.removeChild(table.firstChild);
@@ -323,6 +323,10 @@
                                 streetCell.innerText = numbers[i]['STR'];
                             }
                             header.innerHTML = "<tr><th id=\"toggA\" onclick=\"toggle(this);\" style=\" display: none;\"><b>Aufklappen</b></th><th id=\"toggT\" >Telefon</th><th id=\"toggN\" >Name</th><th id=\"toggS\">Straße</th></tr>";
+                            if(document.getElementById('table1').style.display == "none") {
+                                document.getElementById('table1').style.display="table";
+                                document.getElementById('aufk').value = "Zuklappen";
+                            }
                         }
                     }
                 })
@@ -371,11 +375,18 @@
             xhr.open('GET', '/api/searchNumber?number=' + number, true);
             xhr.send();
         }
+
+        var check = 0;
         function telKeyPress(e)
         {
             if (event.keyCode == 40)
             {
-                changeSelectedTel(selectedTel+1);
+                if(check == 0) {
+                    changeSelectedTel(selectedTel);
+                    check = 1;
+                }
+                else
+                    changeSelectedTel(selectedTel+1);
             }
             else if (event.keyCode == 38)
             {
