@@ -150,10 +150,10 @@
 </div>
 
 
-    <a href="/Bestellungen"> <button class="bbutton"> Zurück </button></a>
-    <button class="bbutton"> Rückgängig </button>
-    <button onclick="javascript:saveOrder()" class="bbutton"> Drucken </button>
-    <button class="bbutton"> Bestellung ändern... </button>
+    <a href="/Bestellungen"> <button class="btn btn-lg btn-danger"> Zurück </button></a>
+    <!--<button class="bbutton"> Rückgängig </button>-->
+    <button class="btn btn-lg btn-primary"> Bestellung ändern... </button>
+    <button onclick="javascript:saveOrder()" class="btn btn-lg btn-success"> Drucken </button>
     <!--<button class="bbutton"> Speichern </button>-->
 
 
@@ -279,7 +279,7 @@
                         if (numbers.length <= 1)
                         {
                             document.getElementById('tel').value = numbers[0]['TEL'];
-                            document.getElementById('tel').style.backgroundColor = "green";
+                            document.getElementById('tel').style.backgroundColor = "#3F3";
                             document.getElementById('vname').value = numbers[0]['NA1'];
                             document.getElementById('nname').value = numbers[0]['NA2'];
                             document.getElementById('tel').value = numbers[0]['TEL'];
@@ -339,7 +339,32 @@
                 selectedTel++;
             rows[oldSelectedTel].style.backgroundColor = "lightgrey";
             rows[selectedTel].style.backgroundColor = "#3F3";
-            document.getElementById('tels').value = rows[selectedTel].cells[0].innerText;
+            var number = rows[selectedTel].cells[0].innerText;
+            document.getElementById('tels').value = number;
+            var xhr = new XMLHttpRequest();
+            (xhr.onreadystatechange = function() {
+                if (xhr.readyState == 4) {
+                    var numbers = JSON.parse(xhr.responseText);
+                    if (numbers.length == 1)
+                    {
+                        document.getElementById('tel').value = numbers[0]['TEL'];
+                        document.getElementById('tel').style.backgroundColor = "#3F3";
+                        document.getElementById('vname').value = numbers[0]['NA1'];
+                        document.getElementById('nname').value = numbers[0]['NA2'];
+                        document.getElementById('tel').value = numbers[0]['TEL'];
+                        document.getElementById('add').value = numbers[0]['STR'];
+                        document.getElementById('ort').value = numbers[0]['ORT'];
+                        if (numbers[0]['IF1'] == null)
+                            numbers[0]['IF1'] = "";
+                        if (numbers[0]['IF2'] == null)
+                            numbers[0]['IF2'] = "";
+                        document.getElementById('msg').value = numbers[0]['IF1'] + "\n" + numbers[0]['IF2'];
+                        rabbat = numbers[0]['KRAB'];
+                    }
+                }
+            })
+            xhr.open('GET', '/api/searchNumber?number=' + number, true);
+            xhr.send();
         }
         function telKeyPress(e)
         {
