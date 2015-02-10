@@ -139,7 +139,7 @@
                                 <td><input onkeydown="javascript:artikelnummerKeyPress()" class="artikelnummerTbx" id="textbox" style="text-align: center;" size="5" type="text"/></td>
                                 <td class="artikelbezeichnung" id="artikelbezeichnung"></td>
                                 <td class="einzelpreis" id="einzelpreis"></td>
-                                <td class="menge" id="menge"><input class="mengeBox" id="mengeBox" onkeypress="javascript:mengeBoxKeyPress()" style="text-align: center;" size="5" type="text"/></td>
+                                <td class="menge" id="menge"><input class="mengeBox" id="mengeBox" onkeypress="javascript:mengeBoxKeyPress(this)" style="text-align: center;" size="5" type="text"/></td>
                                 <td class="rabbat" id="rabbat"></td>
                                 <td class="summe" id="summe"></td>
                              </tr>
@@ -188,30 +188,23 @@
             for (i = 0;i<summeBoxes.length;i++)
             {
                 var xhr = new XMLHttpRequest();
-                (xhr.onreadystatechange = function()
-                {
-                   if (xhr.readyState == 4)
-                   {
-                        alert('Sent!');
-                   }
-                })
                 var GM = mengeBoxes[i].value;
                 var ANR = artikelnummerBoxes[i].value;
                 var A0 =  artikelbezeichnungen[i].innerText;
                 var CB = einzelpreisBoxes[i].innerText.split('€')[0];
                 var SU = summeBoxes[i].innerText.split('€')[0];
-                console.log(ANR);
-                console.log(GM);
+
                 if (ANR != "" && GM != "")
                 {
-                    xhr.open('GET', 'storeSingleValue?GM='+GM+'&ANR='+ANR+'&A0='+A0+'&CB='+CB+'&SU='+SU+'&RNR='+rechnungsnummer+'&PNR='+i, true);
+                    xhr.open('GET', 'storeSingleValue?GM='+GM+'&ANR='+ANR+'&A0='+A0+'&CB='+CB+'&SU='+SU+'&RNR='+rechnungsnummer+'&PNR='+i, false);
                     xhr.send();
                 }
             }
+            alert('Bestellung gespeichert!')
+            window.location.href = "/";
         }
-        function mengeBoxKeyPress()
+        function mengeBoxKeyPress(e)
         {
-            var keycode = event.keyCode;
             if(keycode == '13')
             {
                 var summeBoxes = document.getElementsByClassName('summe');
@@ -241,7 +234,7 @@
                 var summe = row.insertCell(-1);
                 summe.className = "summe";
                 artikelnummer.innerHTML = '<input class="artikelnummerTbx" onkeydown="javascript:artikelnummerKeyPress()" id="textbox" style="text-align: center;" size="5" type="text"/>';
-                menge.innerHTML = '<input class="mengeBox" id="mengeBox" onkeypress="javascript:mengeBoxKeyPress()" style="text-align: center;" size="5" type="text"/>';
+                menge.innerHTML = '<input class="mengeBox" id="mengeBox" onkeypress="javascript:mengeBoxKeyPress(this)" style="text-align: center;" size="5" type="text"/>';
                 var tbxs = document.getElementsByClassName('artikelnummerTbx');
                 tbxs[tbxs.length-1].focus();
             }
