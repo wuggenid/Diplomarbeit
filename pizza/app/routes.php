@@ -37,6 +37,9 @@ Route::resource('/Personal','PersonalController');
 
 Route::get('/Login',function(){return View::make('login');});
 
+//Lieferanten
+Route::resource('/Lieferanten','LieferantenController');
+
 //API
 Route::group(['prefix' => '/api'], function() {
     Route::get('searchNumber','APIController@searchNumber');

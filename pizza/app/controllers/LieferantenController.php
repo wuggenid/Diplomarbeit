@@ -1,6 +1,6 @@
 <?php
 
-class PersonalController extends \BaseController {
+class LieferantenController extends \BaseController {
 
 	/**
 	 * Display a listing of the resource.
@@ -9,7 +9,7 @@ class PersonalController extends \BaseController {
 	 */
 	public function index()
 	{
-		return Hash::make('pizza');
+        return View::make('lieferanten');
 	}
 
 

@@ -205,6 +205,7 @@
         }
         function mengeBoxKeyPress(e)
         {
+            var keycode = event.keyCode;
             if(keycode == '13')
             {
                 var summeBoxes = document.getElementsByClassName('summe');

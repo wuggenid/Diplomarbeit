@@ -9,7 +9,7 @@ class BestellungenSeeder extends Seeder {
      */
     public function run()
     {
-        for ($i = 0;$i<5;$i++)
+        /*for ($i = 0;$i<5;$i++)
         {
             $xpos = new xpos();
             $xpos->RNR = -1;
@@ -21,7 +21,7 @@ class BestellungenSeeder extends Seeder {
             $xpos->SU = -1;
             $xpos->RNR = -1;
             $xpos->save();
-        }
+        }*/
     }
 
 }

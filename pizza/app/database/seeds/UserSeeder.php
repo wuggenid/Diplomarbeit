@@ -9,9 +9,9 @@ class UserSeeder extends Seeder {
      */
     public function run()
     {
-        $user = new User;
+        /*$user = new User;
         $user->email = 'Eduardo@eduardo.com';
-        $user->save();
+        $user->save();*/
     }
 
 }
