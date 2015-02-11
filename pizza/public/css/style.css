@@ -29,10 +29,9 @@ tr {
     border: 2px solid #FFFFFF;
 }
 
-
 td, th {
     text-align: center;
-    padding: 3px 0;
+    padding: 3px 5px;
 }
 tbody {
     background-color: #ACACAC;

@@ -5,8 +5,8 @@
 
 <title>{{--$title--}}Pizzaservice</title>
 {{ HTML::style('css/bootstrap.min.css') }}
-
 {{ HTML::style('css/style.css'); }}
+
 {{ HTML::script('/js/jquery-1.11.2.min.js') }}
 {{ HTML::script('/js/bootstrap.min.js') }}
 

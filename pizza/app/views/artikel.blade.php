@@ -35,25 +35,36 @@
     </div>
 
 
-    <div style="width:58%; float: right; padding-top: 20px; padding-left: 5%; ">
+    <div style="width:60%; float: right; padding-top: 20px; padding-left: 5%; ">
         <h3>Suchkriterium</h3>
 
-        <?php $artikels = xartikel::orderby('ANR')->get(); ?>
+        <table class="scroll" style="width: 63%;">
+            <thead>
+                <tr>
+                    <th>Art-Nr</th>
+                    <th>Bezeichnung</th>
+                </tr>
+            </thead>
+            </table>
+            <table style="height: 300px; width: 63%; overflow-y: auto; display: block;">
+            <tbody>
+                @foreach($articles as $key => $article)
+                     <tr class="tablerow" id="{{$article->ANR}}"
+                     onClick="artnr.value = '{{$article->ANR}}';
+                              artbez.value = '{{$article->A0}}';
+                              artgru.value = '{{$article->AG}}';
+                              epreis.value = '{{$article->CB}}';
+                              mwst.value = '1';
+                              vmenge.value = '{{$article->VGS}}';">
 
-        <select name="suchkriterium" id="suchkriterium" size="10">
-            @foreach($artikels as $key => $artikel)
+                         <td style="width: 20%;">{{$article->ANR}}</td>
+                         <td style="width: 250%;">{{$article->A0}}</td>
+                     </tr>
+                @endforeach
+            </tbody>
+        </table>
 
-            <option id="{{$artikel['ANR']}}" onClick="artnr.value = '{{$artikel['ANR']}}';
-                            artbez.value = '{{$artikel['A0']}}';
-                            artgru.value = '{{$artikel['AG']}}';
-                            epreis.value = '{{$artikel['CB']}}';
-                            mwst.value = '1';
-                            vmenge.value = '{{$artikel['VGS']}}';">
-            {{$artikel['ANR']}} | {{$artikel['A0']}}
 
-            </option>
-            @endforeach
-        </select>
 
     </div>
 </div>
@@ -64,9 +75,9 @@
     <br/><br/>
     <button style="width: 12em;" onClick="artnr.value = artbez.value = artgru.value = mwst.value = ''; epreis.value = vmenge.value = '0';" class="btn btn-lg btn-success"><span class="glyphicon glyphicon-plus"></span> Neuer Artikel </button>
 
-    {{ Form::open(array('url' => "/Artikel/$artikel->(artnr.value)" , 'method' => 'delete')) }}
+    {{-- Form::open(array('url' => "/Artikel/$article->(artnr.value)" , 'method' => 'delete')) --}}
         <button style="width: 12em;" class="btn btn-lg btn-danger"><span class="glyphicon glyphicon-trash"></span> Artikel löschen </button>
-    {{ Form::close() }}
+    {{-- Form::close() --}}
 
     <button style="width: 12em;" class="btn btn-lg btn-warning"><span class="glyphicon glyphicon-stats"></span> Artikelmonatsstatistik</button>
     <br/><br/>
@@ -78,25 +89,21 @@
 
 
 <script language="javascript">
-function sgroup()
-{
-    <?php $xag = xag::orderby('AGNR')->get(); ?>
+    function sgroup()
+    {
+        <?php $xag = xag::orderby('AGNR')->get(); ?>
 
-    @foreach($xag as $key => $ag)
-    alert(document.getElementById("suchkriterium").option[e.selectedIndex].value);
+        @foreach($xag as $key => $ag)
+        alert(document.getElementById("suchkriterium").option[e.selectedIndex].value);
 
-    @endforeach
-}
+        @endforeach
+    }
 
-
-function deleteart(id)
-{
-    alert(id);
-
-    window.location.href = "{{ url('/Artikel' . $artikel->id . 'destroy') }}";
-
-
-}
+    function deleteart(id)
+    {
+        alert(id);
+        //**window.location.href = "{{-- url('/Artikel' . $article->id . 'destroy') --}}";
+    }
 </script>
 
 @stop

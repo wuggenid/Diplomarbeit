@@ -9,7 +9,8 @@ class ArtikelController extends \BaseController {
 	 */
 	public function index()
 	{
-        return View::make('artikel');
+        $data['articles']= DB::table('xartikel')->get();
+        return View::make('artikel',$data);
 	}
 
 
