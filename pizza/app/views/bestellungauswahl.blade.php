@@ -18,7 +18,7 @@
 
         <button type="button" class="btn btn-lg btn-warning">Drucken</button><br /><br />
 
-        <button type="button" class="btn btn-lg btn-primary">Letzte Anrufe</button><br /><br />
+        <a href="/Bestellungen/letzteAnrufe"><button type="button" class="btn btn-lg btn-primary">Letzte Anrufe</button></a><br /><br />
 
         <a href="/"><button type="button" class="btn btn-lg btn-danger">Exit</button></a>
     </div>

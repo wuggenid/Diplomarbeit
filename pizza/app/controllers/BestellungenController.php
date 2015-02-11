@@ -103,7 +103,10 @@ class BestellungenController extends \BaseController {
         $xpos->RNR = $RNR + 1;
         $xpos->PNR = $PNR;
         $xpos->save();
-
+    }
+    public function letzteAnrufe()
+    {
+        return View::make('letzteAnrufe');
     }
 
 }

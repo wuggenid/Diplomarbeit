@@ -17,6 +17,7 @@ Route::get('/', function()
 });
 
 //Bestellungen
+Route::get('/Bestellungen/letzteAnrufe','BestellungenController@letzteAnrufe');
 Route::get('/Bestellungen/storeSingleValue','BestellungenController@storeSingleValue');
 Route::resource('/Bestellungen', 'BestellungenController');
 
