@@ -104,7 +104,7 @@
         </div>
         <div id="gesamtpreis" style="clear: both;">
               <br/><br/><br/>
-              <p><h4>Gesamtpreis Bestellung</h4> <input id="gesamtpreisBox" type="text" style="padding: 10px"/></p><br/>
+              <p><h4>Gesamtpreis Bestellung</h4> <input id="gesamtpreisBox" type="text" style="padding: 10px" disabled/></p><br/>
         </div>
     </div>
 
@@ -134,10 +134,10 @@
                     <table id="artikelTable" class="table table-condensed">
                         <tbody>
                              <tr>
-                                <td><input onkeyup="javascript:artikelnummerKeyPress(this)" class="artikelnummerTbx" id="textbox" style="text-align: center;" size="5" type="text"/></td>
+                                <td><input onkeyup="javascript:artikelnummerKeyPress(this)" class="artikelnummerTbx" id="textbox" style="text-align: center;" size="5" type="text" disabled/></td>
                                 <td class="artikelbezeichnung" id="artikelbezeichnung"></td>
                                 <td class="einzelpreis" id="einzelpreis"></td>
-                                <td class="menge" id="menge"><input class="mengeBox" id="mengeBox" onkeyup="javascript:mengeBoxKeyPress(this)" style="text-align: center;" size="5" type="text"/></td>
+                                <td class="menge" id="menge"><input class="mengeBox" id="mengeBox" onkeyup="javascript:mengeBoxKeyPress(this)" style="text-align: center;" size="5" type="text" disabled/></td>
                                 <td class="rabbat" id="rabbat"></td>
                                 <td class="summe" id="summe"></td>
                              </tr>
@@ -257,6 +257,7 @@
                             var artikel = JSON.parse(xhr.responseText);
                             document.getElementsByClassName('artikelbezeichnung')[document.getElementsByClassName('artikelbezeichnung').length-1].innerText = artikel[0]['A0'];
                             document.getElementsByClassName('einzelpreis')[document.getElementsByClassName('einzelpreis').length-1].innerText = artikel[0]['CB'] + '€';
+                            document.getElementById('mengeBox').removeAttribute("disabled");
                             document.getElementsByClassName('mengeBox')[document.getElementsByClassName('mengeBox').length-1].focus();
                             document.getElementsByClassName('rabbat')[document.getElementsByClassName('rabbat').length-1].innerText = rabbat;
                        }
@@ -393,6 +394,7 @@
             var number = document.getElementById('tels').value;
             if (event.keyCode == 13)
             {
+
                 var xhr = new XMLHttpRequest();
                     (xhr.onreadystatechange = function() {
                         if (xhr.readyState == 4) {
@@ -407,6 +409,7 @@
                             else if (numbers.length == 1)
                             {
                                 window.location.href = "#gesamtpreis";
+                                document.getElementById('textbox').removeAttribute("disabled");
                                 document.getElementById('textbox').focus();
                             }
                         }
