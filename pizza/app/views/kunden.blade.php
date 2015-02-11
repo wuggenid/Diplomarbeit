@@ -6,13 +6,38 @@
 <div style="padding: 0 30px;">
 
     <div style="padding: 5px;">
-    <h3>Kunde</h3>
-    <div id="right" style="float: right;">
-        <label style="float: left; background-color: orange;" >Telefon/Name:<input type="text" id="tel" oninput="javascript:telChange()" onkeydown="javascript:telKeyPress(this)" /></label><br /><br />
-        <label style="float: left;" id="bestjahr" >Bestellungen/Jahr: </label><br /><br />
-        <label style="float: left;" id="letztebest" >Letzte Bestellung: </label><br /><br />
-        <label style="float: left;" id="umsatzjahr">Umsatz/Jahr: </label>
-    </div>
+        <h3>Kunde</h3>
+        <div id="right" style="float: right; width: 50%;">
+            <label style="float: left; background-color: orange;" >Telefon/Name:<input type="text" id="tel" oninput="javascript:telChange()" onkeydown="javascript:telKeyPress(this)" /><input type="button" id="aufk" onclick="toggle(this);" value="Aufklappen"/></label><br/>
+            <div class="contacts" style="float:right; height: 200px; width: 100%;">
+                <div style="height: 200px;">
+                    <div>
+                        <table  width="100%" class="table1" id="table1" style="display: none;">
+                            <thead style="display: table-header-group;">
+                                <tr>
+                                    <th id="toggA" onclick="toggle(this);" style="display: none;"><b>Aufklappen</b></th>
+                                    <th id="toggT">Telefon</th>
+                                    <th id="toggN">Name</th>
+                                    <th id="toggS">Straße</th>
+                                </tr>
+                            </thead>
+                            <tbody style="overflow-y: auto; height: 200px; width: 100%;">
+                                <tr>
+                                    <td>xTelefon</td>
+                                    <td>xName</td>
+                                    <td>xStraße</td>
+                                </tr>
+                            </tbody>
+                         </table>
+                    </div>
+                </div>
+            </div>
+
+            <label style="float: left;" id="bestjahr" >Bestellungen/Jahr: </label><br /><br />
+            <label style="float: left;" id="letztebest" >Letzte Bestellung: </label><br /><br />
+            <label style="float: left;" id="umsatzjahr">Umsatz/Jahr: </label>
+        </div>
+
         <div style="width:40%; float: left;">
             <ul id="contactform">
                 <li>
@@ -49,6 +74,7 @@
                 </li>
             </ul>
         </div>
+
         <div style="width: 50%">
             <table border="1" style="float: left;">
                 <tbody style="background-color: #ffffff;">
@@ -206,6 +232,38 @@
                        xhr.open('GET', '/api/searchNumber?number=' + number, true);
                        xhr.send(null);
                 }
+            }
+
+
+
+
+            function toggle(cell) {
+              document.getElementById("toggA").style.display= "none";
+              document.getElementById("toggT").style.display="table-cell";
+              document.getElementById("toggN").style.display="table-cell";
+              document.getElementById("toggS").style.display= "table-cell";
+
+              if(document.getElementById('table1').style.display == "none") {
+                document.getElementById('table1').style.display="table";
+                document.getElementById('aufk').value = "Zuklappen";
+                }
+              else {
+                document.getElementById('table1').style.display="none";
+                document.getElementById('aufk').value = "Aufklappen";
+                }
+
+              var table = cell.parentNode;
+              while (table && (table.nodeName != 'TABLE')) {
+                table = table.parentNode;
+              }
+
+              if (table) {
+                var tbody = table.getElementsByTagName('tbody')[0];
+
+                if (tbody) {
+                  tbody.style.display = (tbody.style.display == 'none') ? 'table-row-group' : 'none'
+                }
+              }
             }
         </script>
 @stop

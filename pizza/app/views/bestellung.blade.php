@@ -155,9 +155,7 @@
     <button class="btn btn-lg btn-primary"><span class="glyphicon glyphicon-pencil"></span> Bestellung ändern...</button>
     <button onclick="javascript:saveOrder()" id="btn_drucken" class="btn btn-lg btn-success"><span class="glyphicon glyphicon-print"></span> Drucken</button>
     <!--<button class="bbutton"> Speichern </button>-->
-
-
-    <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+    <br/><br/>
 
 
 
