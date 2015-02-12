@@ -5,15 +5,15 @@
 <h2>Artikel</h2>
 <div style="padding: 5px 30px;">
 
-    <div style="width:40%; float: left; padding-right: 5%;">
+    <div style="width:35%; float: left; padding-right: 5%;">
         <ul id="contactform">
             <li>
                 <label for="name"> Artikel-Nr </label><br/>
-                <span class="fieldbox"><input type="text" name="artnr" id="artnr" value="" /></span>
+                <span class="fieldbox"><input onfocus="javascript:sartikel()" type="text" name="artnr" id="artnr" value="" /></span>
             </li>
             <li>
                 <label for="name"> Artikel-Bezeichnung </label><br/>
-                <span class="fieldbox"><input type="text" name="artbez" id="artbez" value="" /></span>
+                <span class="fieldbox"><input onfocus="javascript:sartikel()" type="text" name="artbez" id="artbez" value="" /></span>
             </li>
             <li>
                 <label for="email"> Artikel-Gruppe </label><br/>
@@ -35,18 +35,18 @@
     </div>
 
 
-    <div style="width:60%; float: right; padding-top: 20px; padding-left: 5%; ">
+    <div style="width:65%; float: right; padding-top: 20px; padding-left: 5%; ">
         <h3>Suchkriterium</h3>
 
         <table class="scroll" style="width: 63%;">
             <thead>
                 <tr>
-                    <th>Art-Nr</th>
-                    <th>Bezeichnung</th>
+                    <th id="aid" style="text-align: left;">Art-Nr</th>
+                    <th id="abez" style="text-align: left;">Bezeichnung</th>
                 </tr>
             </thead>
             </table>
-            <table style="height: 300px; width: 63%; overflow-y: auto; display: block;">
+            <table id="artikel" style="height: 300px; width: 63%; overflow-y: auto; display: block;">
             <tbody>
                 @foreach($articles as $key => $article)
                      <tr class="tablerow" id="{{$article->ANR}}"
@@ -57,11 +57,27 @@
                               mwst.value = '1';
                               vmenge.value = '{{$article->VGS}}';">
 
-                         <td style="width: 20%;">{{$article->ANR}}</td>
+                         <td style="width: 25%;">{{$article->ANR}}</td>
                          <td style="width: 250%;">{{$article->A0}}</td>
                      </tr>
                 @endforeach
+
+
             </tbody>
+            </table>
+
+            <table id="artikelgruppe" style="height: 300px; width: 62%; overflow-y: auto; display: none;">
+                <tbody>
+                    <?php $xag = xag::orderby('AGNR')->get(); ?>
+
+                    @foreach($xag as $key => $ag)
+                         <tr  id="artikelgruppe"class="tablerow" id="{{$ag->AGNR}}">
+                             <td style="padding-left: 10%;">{{$ag->AGNR}}</td>
+                             <td style="width: 500px;">{{$ag->AGBEZ}}</td>
+                         </tr>
+                    @endforeach
+                </tbody>
+            </table>
         </table>
 
 
@@ -91,12 +107,17 @@
 <script language="javascript">
     function sgroup()
     {
-        <?php $xag = xag::orderby('AGNR')->get(); ?>
-
-        @foreach($xag as $key => $ag)
-        alert(document.getElementById("suchkriterium").option[e.selectedIndex].value);
-
-        @endforeach
+        document.getElementById('artikel').style.display = "none";
+        document.getElementById('artikelgruppe').style.display = "block";
+        document.getElementById('aid').innerText = "Gruppen-Nr";
+        document.getElementById('abez').innerText = "Gruppenbezeichnung";
+    }
+    function sartikel()
+    {
+        document.getElementById('artikel').style.display = "block";
+        document.getElementById('artikelgruppe').style.display = "none";
+        document.getElementById('aid').innerText = "Art-Nr";
+        document.getElementById('abez').innerText = "Bezeichnung";
     }
 
     function deleteart(id)
