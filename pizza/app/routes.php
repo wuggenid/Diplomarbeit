@@ -31,6 +31,7 @@ Route::resource('/Kunden','KundenController');
 
 //Artikel
 Route::get('/Artikelauswahl', function(){return View::make('artikelauswahl');});
+Route::get('/Artikelgruppe', function(){return View::make('artikelgruppe');});
 Route::resource('/Artikel', 'ArtikelController');
 
 //Personal

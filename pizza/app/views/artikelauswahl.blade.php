@@ -12,7 +12,7 @@
         </form>
         <br /><br />
 
-        <button type="button" class="btn btn-lg btn-primary">Artikel-Gruppe</button><br /><br />
+        <a href="/Artikelgruppe"><button type="button" class="btn btn-lg btn-primary">Artikel-Gruppe</button></a><br /><br />
 
         <button type="button" class="btn btn-lg btn-warning">Artikeleinkauf</button><br /><br />
 
