@@ -1,5 +1,9 @@
 @extends('layout')
 
+@section('head')
+
+{{ HTML::style('css/chosen.css') }}
+
 @section('content')
 
 <h2>Kundenstammverwaltung</h2>
@@ -7,8 +11,17 @@
 
     <div style="padding: 5px;">
         <h3>Kunde</h3>
+        <div style="width:58%; float: right; padding-top: 20px; ">
+            <div class="chosen-container chosen-container-multi">
+                <label>Telefon/Name:</label>
+                <ul class="chosen-choices">
+                    <li class="search-field">
+                      <input type="text" id="tel" class="default" oninput="javascript:telInput(this)" onkeydown="javascript:telKeyPress(this)" /><input type="button" id="aufk" onclick="toggle(this);" value="Aufklappen"/>
+                    </li>
+                </ul>
+            </div>
+        </div>
         <div id="right" style="float: right; width: 50%;">
-            <label style="float: left; background-color: orange;" >Telefon/Name:<input type="text" id="tel" oninput="javascript:telChange()" onkeydown="javascript:telKeyPress(this)" /><input type="button" id="aufk" onclick="toggle(this);" value="Aufklappen"/></label><br/>
             <div class="contacts" style="float:right; height: 200px; width: 100%;">
                 <div style="height: 200px;">
                     <div>
@@ -200,8 +213,60 @@
                             + "&rab=" + $rab;
                 }
             }
+
+            var selectedTel = 1;
+            function changeSelectedTel(cselectedTel)
+            {
+                var oldSelectedTel = selectedTel;
+                selectedTel = cselectedTel;
+                var table = document.getElementById('table1');
+                var rows = table.rows;
+                if (selectedTel > rows.length-1)
+                    selectedTel--;
+                if (selectedTel < 1)
+                    selectedTel++;
+                rows[oldSelectedTel].style.backgroundColor = "";
+                rows[selectedTel].style.backgroundColor = "#D8D8D8";
+                rows[selectedTel].style.color = "#333332";
+                var number = rows[selectedTel].cells[0].innerText;
+                document.getElementById('tels').value = number;
+                var xhr = new XMLHttpRequest();
+                (xhr.onreadystatechange = function() {
+                    if (xhr.readyState == 4) {
+                        var numbers = JSON.parse(xhr.responseText);
+                        if (numbers.length == 1)
+                        {
+                            document.getElementById('tel').value = numbers[0]['TEL'];
+                            document.getElementById('vname').value = numbers[0]['NA1'];
+                            document.getElementById('nname').value = numbers[0]['NA2'];
+                            document.getElementById('tel').value = numbers[0]['TEL'];
+                            document.getElementById('add').value = numbers[0]['STR'];
+                            document.getElementById('ort').value = numbers[0]['ORT'];
+                            if (numbers[0]['IF1'] == null)
+                                numbers[0]['IF1'] = "";
+                            if (numbers[0]['IF2'] == null)
+                                numbers[0]['IF2'] = "";
+                            document.getElementById('msg').value = numbers[0]['IF1'] + "\n" + numbers[0]['IF2'];
+                            rabbat = numbers[0]['KRAB'];
+                        }
+                    }
+                })
+            }
             function telKeyPress()
             {
+                if (event.keyCode == 40)
+                {
+                    if(check == 0) {
+                        changeSelectedTel(selectedTel);
+                        check = 1;
+                }
+                else
+                    changeSelectedTel(selectedTel+1);
+                }
+                else if (event.keyCode == 38)
+                {
+                    changeSelectedTel(selectedTel-1);
+                }
                 var number = document.getElementById('tel').value;
 
                 if (event.keyCode == 13)

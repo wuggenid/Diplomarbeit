@@ -193,7 +193,8 @@
 
                 if (ANR != "" && GM != "")
                 {
-                    xhr.open('GET', 'storeSingleValue?GM='+GM+'&ANR='+ANR+'&A0='+A0+'&CB='+CB+'&SU='+SU+'&RNR='+rechnungsnummer+'&PNR='+i, false);
+                    $href = 'storeSingleValue?GM='+GM+'&ANR='+ANR+'&A0='+A0+'&CB='+CB+'&SU='+SU+'&RNR='+rechnungsnummer+'&PNR='+i;
+                    xhr.open('GET', $href, false);
                     xhr.send();
                 }
             }

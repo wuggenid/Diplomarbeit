@@ -94,6 +94,21 @@ class BestellungenController extends \BaseController {
         $RNR = Input::get('RNR');
         $PNR = Input::get('PNR');
 
+        if ($PNR == 0)
+        {
+            $xstamm = new xstamm();
+            $xstamm->RNR = $RNR;
+            $xstamm->TEL = $ANR;
+            $xstamm->RDT = date("Y-m-d"). " 00:00:00";
+            $xstamm->RZT = "1899-12-30 ".date("H-i-s");
+            $xstamm->RSU = $SU;
+            $xstamm->INT = 1;
+            $xstamm->KKF = 0;
+            $xstamm->MW1 = 10;
+            $xstamm->MW2 = 20;
+            $xstamm->save();
+        }
+
         $xpos = new xpos();
         $xpos->GM = $GM;
         $xpos->ANR = $ANR;

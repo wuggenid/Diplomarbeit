@@ -20,7 +20,7 @@
 
         <a href="/Bestellungen/letzteAnrufe"><button type="button" class="btn btn-lg btn-primary">Letzte Anrufe</button></a><br /><br />
 
-        <a href="/"><button type="button" class="btn btn-lg btn-danger">Exit</button></a>
+        <a href="/"><button type="button" class="btn btn-lg btn-danger"><span class="glyphicon glyphicon-chevron-left"></span> Zurück</button></a>
     </div>
 </div>
 
