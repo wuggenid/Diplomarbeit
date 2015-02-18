@@ -5,20 +5,20 @@
 
 <div style="float: left;" class="startbuttons">
     <ul>
-        <li><a href="/Bestellungen"> <button class="btn btn-lg btn-success vagueSuccessButton" > Bestellungen </button></a></li>
-        <li><a href="/Artikelauswahl"> <button class="btn btn-lg btn-primary vaguePrimaryButton"> Artikel </button></a></li>
-        <li><a href="/Kunden/create"><button class="btn btn-lg btn-info vagueInfoButton"> Kunden </button></a></li>
-        <li><a href="/Lieferanten"><button class="btn btn-lg btn-warning vagueWarningButton"> Lieferanten </button></a></li>
-        <li><button class="btn btn-lg"> Bons </button></li>
+        <li><a href="/Bestellungen"> <button class="btn btn-lg btn-danger vagueDangerButton" > Bestellungen </button></a></li>
+        <li><a href="/Artikelauswahl"> <button class="btn btn-lg btn-danger vagueDangerButton"> Artikel </button></a></li>
+        <li><a href="/Kunden/create"><button class="btn btn-lg btn-success vagueSuccessButton"> Kunden </button></a></li>
+        <li><a href="/Lieferanten"><button class="btn btn-lg btn-success vagueSuccessButton"> Lieferanten </button></a></li>
+        <li><button class="btn btn-lg btn-default vagueDefaultButton"> Bons </button></li>
     </ul>
 </div>
 
 <div style="float: right;" class="startbuttons">
     <ul>
-        <li><button class="btn btn-lg btn-danger vagueDangerButton"> Personal </button></li>
+        <li><button class="btn btn-lg btn-primary vaguePrimaryButton"> Personal </button></li>
+        <li><button class="btn btn-lg btn-primary vaguePrimaryButton"> Fahrer </button></li>
         <li><button class="btn btn-lg btn-warning vagueWarningButton"> Buchen </button></li>
-        <li><button class="btn btn-lg vagueButton"> Fahrer </button></li>
-        <li><button class="btn btn-lg btn-primary vaguePrimaryButton"> Statistik </button></li>
+        <li><button class="btn btn-lg btn-warning vagueWarningButton"> Statistik </button></li>
         <li><button class="btn btn-lg btn-default vagueDefaultButton"> Optionen </button></li>
     </ul>
 </div>
