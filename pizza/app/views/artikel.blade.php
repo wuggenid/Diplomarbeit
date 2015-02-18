@@ -38,7 +38,7 @@
     <div style="width:65%; float: right; padding-top: 20px; padding-left: 5%; ">
         <h3>Suchkriterium</h3>
 
-        <table class="scroll" style="width: 63%;">
+        <table class="scroll" style="width: 100%;">
             <thead>
                 <tr>
                     <th id="aid" style="text-align: left;">Art-Nr</th>
@@ -46,7 +46,7 @@
                 </tr>
             </thead>
         </table>
-        <table id="artikel" style="height: 300px; width: 63%; overflow-y: auto; display: block;">
+        <table id="artikel" style="height: 300px; width: 100%; overflow-y: auto; display: block;">
             <tbody>
                 @foreach($articles as $key => $article)
                      <tr class="tablerow" id="{{$article->ANR}}"
@@ -58,34 +58,34 @@
                               vmenge.value = '{{$article->VGS}}';
                               newarticle = 0;">
 
-                         <td style="width: 25%;">{{$article->ANR}}</td>
-                         <td style="width: 250%;">{{$article->A0}}</td>
+                         <td style="padding-left: 5%;">{{$article->ANR}}</td>
+                         <td style="width: 1000px; padding-left: 5%;">{{$article->A0}}</td>
                      </tr>
                 @endforeach
             </tbody>
         </table>
 
-        <table id="artikelgruppe" style="height: 300px; width: 63%; overflow-y: auto; display: none;">
+        <table id="artikelgruppe" style="height: 300px; width: 100%; overflow-y: auto; display: none;">
             <tbody>
                 <?php $xag = xag::orderby('AGNR')->get(); ?>
 
                 @foreach($xag as $key => $ag)
                      <tr class="tablerow" id="{{$ag->AGNR}}" onclick="artgru.value = '{{$ag->AGNR}}';">
-                         <td style="padding-left: 10%;">{{$ag->AGNR}}</td>
-                         <td style="width: 500px;">{{$ag->AGBEZ}}</td>
+                         <td style="padding-left: 5%;">{{$ag->AGNR}}</td>
+                         <td style="width: 1000px; padding-left: 5%;">{{$ag->AGBEZ}}</td>
                      </tr>
                 @endforeach
             </tbody>
         </table>
 
-        <table id="artikelmwst" style="height: 300px; width: 63%; overflow-y: auto; display: none;">
+        <table id="artikelmwst" style="height: 300px; width: 100%; overflow-y: auto; display: none;">
             <tbody >
                  <tr style="text-align: left;" class="tablerow" onclick="mwst.value = '1';">
-                     <td style="text-align: left; padding-left: 10%;" width="100%;"> 1 </td>
-                     <td style="text-align: left;" width="100%;"> 10% </td>
+                     <td style="text-align: left; padding-left: 5%;" width="100%;"> 1 </td>
+                     <td style="text-align: left; "> 10% </td>
                  </tr>
                  <tr class="tablerow"  onclick="mwst.value = '2';" >
-                     <td style="text-align: left; padding-left: 10%;"> 2 </td>
+                     <td style="text-align: left; padding-left: 5%;"> 2 </td>
                      <td style="text-align: left;"> 20% </td>
                  </tr>
             </tbody>
@@ -97,12 +97,11 @@
 
 <div style="clear: both;">
     <br/><br/>
-    <button style="width: 12em;" onClick="javascript:newarticle()" class="btn btn-lg btn-success"><span class="glyphicon glyphicon-plus"></span> Neuer Artikel </button>
-
     {{-- Form::open(array('url' => "/Artikel/$article->(artnr.value)" , 'method' => 'delete')) --}}
-        <button style="width: 12em;" class="btn btn-lg btn-danger"><span class="glyphicon glyphicon-trash"></span> Artikel löschen </button>
-    {{-- Form::close() --}}
+            <button style="width: 12em;" class="btn btn-lg btn-danger"><span class="glyphicon glyphicon-trash"></span> Artikel löschen </button>
+        {{-- Form::close() --}}
 
+    <button style="width: 12em;" onClick="javascript:newarticle()" class="btn btn-lg btn-success"><span class="glyphicon glyphicon-plus"></span> Neuer Artikel </button>
     <button style="width: 12em;" class="btn btn-lg btn-warning"><span class="glyphicon glyphicon-stats"></span> Artikelmonatsstatistik</button>
     <br/><br/>
     <a href="/"><button style="width: 12em;" class="btn btn-lg btn-danger"><span class="glyphicon glyphicon-chevron-left"></span> Zurück</button></a>
