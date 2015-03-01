@@ -46,6 +46,7 @@
                 </div>
             </div>
 
+            <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
             <label style="float: left;" id="bestjahr" >Bestellungen/Jahr: </label><br /><br />
             <label style="float: left;" id="letztebest" >Letzte Bestellung: </label><br /><br />
             <label style="float: left;" id="umsatzjahr">Umsatz/Jahr: </label>
@@ -106,6 +107,171 @@
         </div>
         <script language="javascript">
             document.getElementById('tel').focus(); //am beginn wird die telefonnummer fokusiert
+
+            var selectedTel = 1;
+            var check = 0;
+            function telInput()
+            {
+                check = 0;
+                selectedTel = 1;
+                document.getElementById('tel').style.backgroundColor = "white";
+                var number = document.getElementById('tel').value;
+                if (number > 99999)
+                {
+                    var xhr = new XMLHttpRequest();
+                    (xhr.onreadystatechange = function() {
+                        if (xhr.readyState == 4) {
+                            var numbers = JSON.parse(xhr.responseText);
+                            if (numbers.length <= 1)
+                            {
+                                document.getElementById('tel2').value = numbers[0]['TEL'];
+                                document.getElementById('tel2').style.backgroundColor = "#3F3";
+                                document.getElementById('vname').value = numbers[0]['NA1'];
+                                document.getElementById('nname').value = numbers[0]['NA2'];
+                                document.getElementById('tel2').value = numbers[0]['TEL'];
+                                document.getElementById('add').value = numbers[0]['STR'];
+                                document.getElementById('ort').value = numbers[0]['ORT'];
+                                document.getElementById('if1').value = numbers[0]['if1'];
+                                document.getElementById('if2').value = numbers[0]['if2'];
+                            }
+                            if (numbers.length<10)
+                            {
+                                var table = document.getElementById('table1');
+                                while(table.hasChildNodes())
+                                {
+                                   table.removeChild(table.firstChild);
+                                }
+                                var header = table.createTHead();
+
+                                for (var i = 0;i<numbers.length;i++)
+                                {
+                                    var row = table.insertRow(0);
+                                    var telCell = row.insertCell(0);
+                                    telCell.innerText = numbers[i]['TEL'];
+                                    var nameCell = row.insertCell(-1);
+                                    var name = "";
+                                    if (numbers[i]['NA1'] != null && numbers[i]['NA1'] != "")
+                                        name += numbers[i]['NA1'];
+                                    if (numbers[i]['NA2'] != null && numbers[i]['NA2'] != "")
+                                        name += " " + numbers[i]['NA2'];
+                                    nameCell.innerText = name;
+                                    var streetCell = row.insertCell(-1);
+                                    streetCell.innerText = numbers[i]['STR'];
+                                }
+                                header.innerHTML = "<tr><th id=\"toggA\" onclick=\"toggle(this);\" style=\" display: none;\"><b>Aufklappen</b></th><th id=\"toggT\" >Telefon</th><th id=\"toggN\" >Name</th><th id=\"toggS\">Straße</th></tr>";
+                                if(document.getElementById('table1').style.display == "none") {
+                                    document.getElementById('table1').style.display="table";
+                                    document.getElementById('aufk').value = "Zuklappen";
+                                }
+                            }
+                        }
+                    })
+                    xhr.open('GET', '/api/searchNumber?number=' + number, true);
+                    xhr.send(null);
+                }
+            }
+
+            function changeSelectedTel(cselectedTel)
+            {
+                var oldSelectedTel = selectedTel;
+                selectedTel = cselectedTel;
+                var table = document.getElementById('table1');
+                var rows = table.rows;
+                if (selectedTel > rows.length-1)
+                    selectedTel--;
+                if (selectedTel < 1)
+                    selectedTel++;
+                rows[oldSelectedTel].style.backgroundColor = "";
+                rows[selectedTel].style.backgroundColor = "#D8D8D8";
+                rows[selectedTel].style.color = "#333332";
+                var number = rows[selectedTel].cells[0].innerText;
+                document.getElementById('tel').value = number;
+                var xhr = new XMLHttpRequest();
+                (xhr.onreadystatechange = function() {
+                    if (xhr.readyState == 4) {
+                        var numbers = JSON.parse(xhr.responseText);
+                        if (numbers.length == 1)
+                        {
+                            document.getElementById('tel2').value = numbers[0]['TEL'];
+                            document.getElementById('vname').value = numbers[0]['NA1'];
+                            document.getElementById('nname').value = numbers[0]['NA2'];
+                            document.getElementById('tel').value = numbers[0]['TEL'];
+                            document.getElementById('add').value = numbers[0]['STR'];
+                            document.getElementById('ort').value = numbers[0]['ORT'];
+                            document.getElementById('if1').value = numbers[0]['IF1'];
+                            document.getElementById('if2').value = numbers[0]['IF2'];
+
+                            //Get Orders Per Year
+                            var bestxhr = new XMLHttpRequest();
+                            (bestxhr.onreadystatechange = function() {
+                                if (bestxhr.readyState == 4) {
+                                    document.getElementById('bestjahr').innerText = "Bestellungen/Jahr: " + bestxhr.responseText;
+                                }
+                            })
+                            bestxhr.open('GET','/api/getOrdersPerYear?tel='+ number,true);
+                            bestxhr.send();
+
+                            var letztexhr = new XMLHttpRequest();
+                            (letztexhr.onreadystatechange = function() {
+                                if (letztexhr.readyState == 4) {
+                                    document.getElementById('letztebest').innerText = "Letzte Bestellung: " + letztexhr.responseText;
+                                }
+                            })
+                            letztexhr.open('GET','/api/getLastOrder?tel=' + number, true);
+                            letztexhr.send();
+                        }
+                    }
+                })
+                xhr.open('GET', '/api/searchNumber?number=' + number, true);
+                xhr.send();
+            }
+            function telKeyPress()
+            {
+                if (event.keyCode == 40)
+                {
+                    if(check == 0) {
+                        changeSelectedTel(selectedTel);
+                        check = 1;
+                }
+                else
+                    changeSelectedTel(selectedTel+1);
+                }
+                else if (event.keyCode == 38)
+                {
+                    changeSelectedTel(selectedTel-1);
+                }
+                var number = document.getElementById('tel').value;
+
+                if (event.keyCode == 13)
+                {
+                    var xhr = new XMLHttpRequest();
+                    (xhr.onreadystatechange = function() {
+                       if (xhr.readyState == 4) {
+                            var numbers = JSON.parse(xhr.responseText);
+                            if (numbers.length == 0)
+                            {
+                                document.getElementById('vname').focus();
+                            }
+                            else if (numbers.length == 1)
+                            {
+                                $oldTel = numbers[0]['TEL'];
+                                document.getElementById('vname').value = numbers[0]['NA1'];
+                                document.getElementById('nname').value = numbers[0]['NA2'];
+                                document.getElementById('tel').value = numbers[0]['TEL'];
+                                document.getElementById('add').value = numbers[0]['STR'];
+                                document.getElementById('ort').value = numbers[0]['ORT'];
+                                document.getElementById('if1').value = numbers[0]['IF1'];
+                                document.getElementById('if2').value = numbers[0]['IF2'];
+                                document.getElementById('rabbat').value = numbers[0]['KRAB'];
+                                document.getElementById("tel2").value = document.getElementById("tel").value;
+                            }
+                        }
+                   })
+                       xhr.open('GET', '/api/searchNumber?number=' + number, true);
+                       xhr.send(null);
+                }
+            }
+
 
             function if2KeyPress()
             {
@@ -214,90 +380,7 @@
                 }
             }
 
-            var selectedTel = 1;
-            function changeSelectedTel(cselectedTel)
-            {
-                var oldSelectedTel = selectedTel;
-                selectedTel = cselectedTel;
-                var table = document.getElementById('table1');
-                var rows = table.rows;
-                if (selectedTel > rows.length-1)
-                    selectedTel--;
-                if (selectedTel < 1)
-                    selectedTel++;
-                rows[oldSelectedTel].style.backgroundColor = "";
-                rows[selectedTel].style.backgroundColor = "#D8D8D8";
-                rows[selectedTel].style.color = "#333332";
-                var number = rows[selectedTel].cells[0].innerText;
-                document.getElementById('tels').value = number;
-                var xhr = new XMLHttpRequest();
-                (xhr.onreadystatechange = function() {
-                    if (xhr.readyState == 4) {
-                        var numbers = JSON.parse(xhr.responseText);
-                        if (numbers.length == 1)
-                        {
-                            document.getElementById('tel').value = numbers[0]['TEL'];
-                            document.getElementById('vname').value = numbers[0]['NA1'];
-                            document.getElementById('nname').value = numbers[0]['NA2'];
-                            document.getElementById('tel').value = numbers[0]['TEL'];
-                            document.getElementById('add').value = numbers[0]['STR'];
-                            document.getElementById('ort').value = numbers[0]['ORT'];
-                            if (numbers[0]['IF1'] == null)
-                                numbers[0]['IF1'] = "";
-                            if (numbers[0]['IF2'] == null)
-                                numbers[0]['IF2'] = "";
-                            document.getElementById('msg').value = numbers[0]['IF1'] + "\n" + numbers[0]['IF2'];
-                            rabbat = numbers[0]['KRAB'];
-                        }
-                    }
-                })
-            }
-            function telKeyPress()
-            {
-                if (event.keyCode == 40)
-                {
-                    if(check == 0) {
-                        changeSelectedTel(selectedTel);
-                        check = 1;
-                }
-                else
-                    changeSelectedTel(selectedTel+1);
-                }
-                else if (event.keyCode == 38)
-                {
-                    changeSelectedTel(selectedTel-1);
-                }
-                var number = document.getElementById('tel').value;
 
-                if (event.keyCode == 13)
-                {
-                    var xhr = new XMLHttpRequest();
-                    (xhr.onreadystatechange = function() {
-                       if (xhr.readyState == 4) {
-                            var numbers = JSON.parse(xhr.responseText);
-                            if (numbers.length == 0)
-                            {
-                                document.getElementById('vname').focus();
-                            }
-                            else if (numbers.length == 1)
-                            {
-                                $oldTel = numbers[0]['TEL'];
-                                document.getElementById('vname').value = numbers[0]['NA1'];
-                                document.getElementById('nname').value = numbers[0]['NA2'];
-                                document.getElementById('tel').value = numbers[0]['TEL'];
-                                document.getElementById('add').value = numbers[0]['STR'];
-                                document.getElementById('ort').value = numbers[0]['ORT'];
-                                document.getElementById('if1').value = numbers[0]['IF1'];
-                                document.getElementById('if2').value = numbers[0]['IF2'];
-                                document.getElementById('rabbat').value = numbers[0]['KRAB'];
-                                document.getElementById("tel2").value = document.getElementById("tel").value;
-                            }
-                        }
-                   })
-                       xhr.open('GET', '/api/searchNumber?number=' + number, true);
-                       xhr.send(null);
-                }
-            }
 
 
 
