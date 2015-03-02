@@ -42,6 +42,9 @@ Route::get('/Login',function(){return View::make('login');});
 //Lieferanten
 Route::resource('/Lieferanten','LieferantenController');
 
+//Fahrer
+Route::resource('/Fahrer','FahrerController');
+
 //API
 Route::group(['prefix' => '/api'], function() {
     Route::get('searchNumber','APIController@searchNumber');
