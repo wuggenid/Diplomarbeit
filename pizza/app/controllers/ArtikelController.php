@@ -9,19 +9,33 @@ class ArtikelController extends \BaseController {
 	 */
 	public function index()
 	{
-        $data['articles']= DB::table('xartikel')->get();
-        return View::make('artikel',$data);
+        return View::make('Artikel.artikelauswahl');
 	}
 
+
+    public function getArtikel()
+    {
+        $data['articles']= DB::table('xartikel')->get();
+        return View::make('Artikel.artikel',$data);
+    }
+
+
+    public function getArtikelgruppen()
+    {
+        $data['articles']= DB::table('xartikel')->get();
+        return View::make('Artikel.artikel',$data);
+    }
 
 	/**
 	 * Show the form for creating a new resource.
 	 *
 	 * @return Response
 	 */
+
+
 	public function create()
 	{
-		//
+
 	}
 
 

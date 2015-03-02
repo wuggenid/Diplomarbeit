@@ -9,7 +9,7 @@ class BestellungenController extends \BaseController {
 	 */
 	public function index()
 	{
-        return View::make('bestellungauswahl');
+        return View::make('Bestellungen.bestellungauswahl');
 	}
 
 
@@ -22,7 +22,7 @@ class BestellungenController extends \BaseController {
 	{
         $data['title'] = "Neue Bestellung";
         $date['mode'] = 'new';
-		return View::make("bestellung",$data);
+		return View::make("Bestellungen.bestellung",$data);
 	}
 
 
@@ -121,7 +121,7 @@ class BestellungenController extends \BaseController {
     }
     public function letzteAnrufe()
     {
-        return View::make('letzteAnrufe');
+        return View::make('Bestellungen.letzteAnrufe');
     }
 
 }
