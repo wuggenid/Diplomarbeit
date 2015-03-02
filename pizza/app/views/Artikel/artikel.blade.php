@@ -159,15 +159,17 @@
         if(newart == false && selectart == true)
         {
             if($id == artnr.value)
-                alert("Delete it: " + $id + " = " + artnr.value);
+            {
+                window.location.href = "/Artikel/Artikelstamm/delete/" + $id;
+            }
 
             // Wenn die ID zwischenzeitig verändert wurde, darf er nichts löschen!
             else
-                alert($id + " /= " + artnr.value);
+                alert("Nicht möglich, weil die Artikelnummer zwischenzeit geändert wurde");
         }
 
         else
-            alert("no");
+            alert("Keinen Artikel ausgewählt");
 
         //alert(id);
         //**window.location.href = "{{-- url('/Artikel' . $article->id . 'destroy') --}}";

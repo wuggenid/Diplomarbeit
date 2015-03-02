@@ -31,6 +31,7 @@ Route::resource('/Kunden','KundenController');
 
 //Artikel
 Route::get('/Artikel/Artikelstamm', 'ArtikelController@getartikel');
+Route::get('/Artikel/Artikelstamm/delete/{id}','ArtikelController@deleteArtikel');
 Route::get('/Artikel/Artikelgruppe', 'ArtikelController@getartikelgruppen');
 Route::resource('/Artikel', 'ArtikelController');
 
