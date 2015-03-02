@@ -30,8 +30,8 @@ Route::get('/Kunden/store','KundenController@store');
 Route::resource('/Kunden','KundenController');
 
 //Artikel
-Route::get('/Artikelauswahl', function(){return View::make('artikelauswahl');});
-Route::get('/Artikelgruppe', function(){return View::make('artikelgruppe');});
+Route::get('/Artikel/Artikelstamm', 'ArtikelController@getartikel');
+Route::get('/Artikel/Artikelgruppe', 'ArtikelController@getartikelgruppen');
 Route::resource('/Artikel', 'ArtikelController');
 
 //Personal

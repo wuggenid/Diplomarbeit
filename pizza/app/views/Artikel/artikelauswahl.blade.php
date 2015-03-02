@@ -7,12 +7,12 @@
     <div style="padding: 5px;">
     <br />
     <br />
-        <form action="/Artikel" method="get">
+        <form action="/Artikel/Artikelstamm" method="get">
             <button type="submit" class="btn btn-lg btn-success">Artikelstamm</button>
         </form>
         <br /><br />
 
-        <a href="/Artikelgruppe"><button type="button" class="btn btn-lg btn-primary">Artikel-Gruppe</button></a><br /><br />
+        <a href="/Artikel/Artikelgruppe"><button type="button" class="btn btn-lg btn-primary">Artikel-Gruppe</button></a><br /><br />
 
         <button type="button" class="btn btn-lg btn-warning">Artikeleinkauf</button><br /><br />
 

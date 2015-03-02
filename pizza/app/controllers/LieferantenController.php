@@ -9,7 +9,7 @@ class LieferantenController extends \BaseController {
 	 */
 	public function index()
 	{
-        return View::make('lieferanten');
+        return View::make('Lieferanten.lieferanten');
 	}
 
 

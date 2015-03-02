@@ -9,7 +9,7 @@ class FahrerController extends \BaseController {
 	 */
 	public function index()
 	{
-		return View::make('fahreruebersicht');
+		return View::make('Fahrer.fahreruebersicht');
 	}
 
 

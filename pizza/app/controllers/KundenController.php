@@ -23,7 +23,7 @@ class KundenController extends \BaseController {
         $data['tel'] = "";
         if (Input::has('tel'))
             $data['tel'] = Input::get('tel');
-		return View::make("Kunden",$data);
+		return View::make("Kunden.Kunden",$data);
 	}
 
 
