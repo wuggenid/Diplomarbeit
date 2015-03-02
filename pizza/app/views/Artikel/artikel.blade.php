@@ -49,15 +49,7 @@
         <table id="artikel" style="height: 300px; width: 100%; overflow-y: auto; display: block;">
             <tbody>
                 @foreach($articles as $key => $article)
-                     <tr class="tablerow" id="{{$article->ANR}}"
-                     onClick="artnr.value = '{{$article->ANR}}';
-                              artbez.value = '{{$article->A0}}';
-                              artgru.value = '{{$article->AG}}';
-                              epreis.value = '{{$article->CB}}';
-                              mwst.value = '{{$article->ASS}}';
-                              vmenge.value = '{{$article->VGS}}';
-                              newarticle = 0;">
-
+                     <tr class="tablerow" onClick="javascript:selectarticle('{{$article->ANR}}','{{$article->A0}}','{{$article->AG}}', '{{$article->CB}}','{{$article->ASS}}', '{{$article->VGS}}')">
                          <td style="text-align: left; padding-left: 5%;">{{$article->ANR}}</td>
                          <td style="width: 1000px; padding-left: 5%;">{{$article->A0}}</td>
                      </tr>
@@ -98,14 +90,14 @@
 <div style="clear: both;">
     <br/><br/>
     {{-- Form::open(array('url' => "/Artikel/$article->(artnr.value)" , 'method' => 'delete')) --}}
-            <button style="width: 12em;" class="btn btn-lg btn-danger"><span class="glyphicon glyphicon-trash"></span> Artikel löschen </button>
+            <button onclick="javascript:deletearticle()" style="width: 12em;" class="btn btn-lg btn-danger"><span class="glyphicon glyphicon-trash"></span> Artikel löschen </button>
         {{-- Form::close() --}}
 
-    <button style="width: 12em;" onClick="javascript:newarticle()" class="btn btn-lg btn-success"><span class="glyphicon glyphicon-plus"></span> Neuer Artikel </button>
+    <button onclick="javascript:newarticle()" style="width: 12em;" class="btn btn-lg btn-success"><span class="glyphicon glyphicon-plus"></span> Neuer Artikel </button>
     <button style="width: 12em;" class="btn btn-lg btn-warning"><span class="glyphicon glyphicon-stats"></span> Artikelmonatsstatistik</button>
     <br/><br/>
     <a href="/"><button style="width: 12em;" class="btn btn-lg btn-danger"><span class="glyphicon glyphicon-chevron-left"></span> Zurück</button></a>
-    <button style="width: 12em;" class="btn btn-lg btn-success"><span class="glyphicon glyphicon-floppy-save"></span> Artikel speichern</button>
+    <button onclick="javascript:savearticle()" style="width: 12em;" class="btn btn-lg btn-success"><span class="glyphicon glyphicon-floppy-save"></span> Artikel speichern</button>
     <button style="width: 12em;" class="btn btn-lg btn-warning"><span class="glyphicon glyphicon-print"></span> Artikelliste drucken </button>
     <br/><br/>
 </div>
@@ -113,7 +105,8 @@
 
 <script language="javascript">
 
-    var newarticle = 0;
+    var newart = false;
+    var selectart = false;
 
     function sgroup()
     {
@@ -140,21 +133,54 @@
         document.getElementById('abez').innerText = "Art";
     }
 
+    function selectarticle(anr ,a0, ag, cb, ass, vgs)
+    {
+        artnr.value = anr;
+        $id = anr;
+        artbez.value = a0;
+        artgru.value = ag;
+        epreis.value = cb;
+        mwst.value = ass;
+        vmenge.value = vgs;
+
+        newart = false;
+        selectart = true;
+    }
+
     function newarticle()
     {
         artnr.value = artbez.value = artgru.value = mwst.value = ''; epreis.value = vmenge.value = '0';
-        newarticle = 1;
+        newart = true;
+        selectart = false;
     }
 
-    function deletearticle(id)
+    function deletearticle()
     {
-        alert(id);
+        if(newart == false && selectart == true)
+        {
+            if($id == artnr.value)
+                alert("Delete it: " + $id + " = " + artnr.value);
+
+            // Wenn die ID zwischenzeitig verändert wurde, darf er nichts löschen!
+            else
+                alert($id + " /= " + artnr.value);
+        }
+
+        else
+            alert("no");
+
+        //alert(id);
         //**window.location.href = "{{-- url('/Artikel' . $article->id . 'destroy') --}}";
     }
 
     function savearticle()
     {
-
+        //auch ID kann geändert werden
+        //kann keine andere ID überspeichern
+        if(newart == false && selectart == true)
+            alert("yes");
+        else
+            alert("no");
     }
 
 </script>

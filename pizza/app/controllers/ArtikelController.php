@@ -23,7 +23,7 @@ class ArtikelController extends \BaseController {
     public function getArtikelgruppen()
     {
         $data['articles']= DB::table('xartikel')->get();
-        return View::make('Artikel.artikel',$data);
+        return View::make('Artikel.artikelgruppe',$data);
     }
 
 	/**
