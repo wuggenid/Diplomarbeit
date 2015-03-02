@@ -84,7 +84,7 @@
                 </li>
                 <li>
                     <label for="contact"> Kundenrabbat(10% = 0,1):</label><br/>
-                    <span class="fieldbox"><input type="text" name="rabbat" id="rabbat" /></span>
+                    <span class="fieldbox"><input type="text" name="rabbat" id="rabbat" onkeypress="javascript:rabbatKeyPress()" /></span>
                 </li>
             </ul>
         </div>
@@ -99,7 +99,7 @@
                     </tr>
                     <tr style="background-color: #ffffff;">
                         <td><a href=""><a href="/"><button style="width: 12em;" class="btn btn-lg btn-danger"><span class="glyphicon glyphicon-chevron-left"></span> Zurück</button></a></td>
-                        <td><button style="width: 12em;" onclick="javascript:updateClick()" class="btn btn-lg btn-success" /><span class="glyphicon glyphicon-floppy-save"></span> Kunden speichern</td>
+                        <td><button id="speichernButton" style="width: 12em;" onclick="javascript:updateClick()" class="btn btn-lg btn-success" /><span class="glyphicon glyphicon-floppy-save"></span> Kunden speichern</td>
                         <td><a href=""><button class="btn btn-lg btn-warning" ><span class="glyphicon glyphicon-print"></span> Kundenliste drucken</button></a></td>
                     </tr>
                 </tbody>
@@ -225,6 +225,7 @@
                 xhr.open('GET', '/api/searchNumber?number=' + number, true);
                 xhr.send();
             }
+
             function telKeyPress()
             {
                 if (event.keyCode == 40)
@@ -267,12 +268,17 @@
                             }
                         }
                    })
-                       xhr.open('GET', '/api/searchNumber?number=' + number, true);
-                       xhr.send(null);
+                   xhr.open('GET', '/api/searchNumber?number=' + number, true);
+                   xhr.send(null);
+                   document.getElementById('vname').focus();
                 }
             }
 
-
+            function rabbatKeyPress()
+            {
+                if (event.keyCode == 13)
+                    document.getElementById('speichernButton').focus();
+            }
             function if2KeyPress()
             {
                 if (event.keyCode == 13)
