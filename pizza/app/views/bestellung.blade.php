@@ -47,7 +47,7 @@
             <label>Telefon/Name:</label>
             <ul class="chosen-choices">
                 <li class="search-field">
-                    <input type="text" id="tels" class="default" oninput="javascript:telInput(this)" onkeydown="javascript:telKeyPress(this)" /><input type="button" id="aufk" onclick="toggle(this);" value="Aufklappen"/>
+                    <input type="text" id="tels" class="default" oninput="javascript:telInput(this)" onkeydown="javascript:telKeyPress(this)" /><button type="button" id="aufk" onclick="toggle(this);"/><span id="aufks" class="glyphicon glyphicon-chevron-down"></span>
                 </li>
             </ul>
         </div>
@@ -64,11 +64,11 @@
 
                       if(document.getElementById('table1').style.display == "none") {
                         document.getElementById('table1').style.display="table";
-                        document.getElementById('aufk').value = "Zuklappen";
+                        document.getElementById('aufks').className = "glyphicon glyphicon-chevron-up";
                         }
                       else {
                         document.getElementById('table1').style.display="none";
-                        document.getElementById('aufk').value = "Aufklappen";
+                        document.getElementById('aufks').className = "glyphicon glyphicon-chevron-down";
                         }
 
                       var table = cell.parentNode;
@@ -325,7 +325,7 @@
                             header.innerHTML = "<tr><th id=\"toggA\" onclick=\"toggle(this);\" style=\" display: none;\"><b>Aufklappen</b></th><th id=\"toggT\" >Telefon</th><th id=\"toggN\" >Name</th><th id=\"toggS\">Straße</th></tr>";
                             if(document.getElementById('table1').style.display == "none") {
                                 document.getElementById('table1').style.display="table";
-                                document.getElementById('aufk').value = "Zuklappen";
+                                document.getElementById('aufks').className = "glyphicon glyphicon-chevron-up";
                             }
                         }
                     }

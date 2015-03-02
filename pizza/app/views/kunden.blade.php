@@ -11,18 +11,18 @@
 
     <div style="padding: 5px;">
         <h3>Kunde</h3>
-        <div style="width:58%; float: right; padding-top: 20px; ">
+        <div id="right" style="float: right; width: 58%; padding-top: 20px">
+
             <div class="chosen-container chosen-container-multi">
                 <label>Telefon/Name:</label>
                 <ul class="chosen-choices">
                     <li class="search-field">
-                      <input type="text" id="tel" class="default" oninput="javascript:telInput(this)" onkeydown="javascript:telKeyPress(this)" /><input type="button" id="aufk" onclick="toggle(this);" value="Aufklappen"/>
+                      <input type="text" id="tel" class="default" oninput="javascript:telInput(this)" onkeydown="javascript:telKeyPress(this)" /><button type="button" id="aufk" onclick="toggle(this);"/><span id="aufks" class="glyphicon glyphicon-chevron-down"></span>
                     </li>
                 </ul>
             </div>
-        </div>
-        <div id="right" style="float: right; width: 50%;">
-            <div class="contacts" style="float:right; height: 200px; width: 100%;">
+
+            <div class="contacts" style="float:right; height: 300px; width: 100%;">
                 <div style="height: 200px;">
                     <div>
                         <table  width="100%" class="table1" id="table1" style="display: none;">
@@ -46,13 +46,14 @@
                 </div>
             </div>
 
-            <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-            <label style="float: left;" id="bestjahr" >Bestellungen/Jahr: </label><br /><br />
-            <label style="float: left;" id="letztebest" >Letzte Bestellung: </label><br /><br />
-            <label style="float: left;" id="umsatzjahr">Umsatz/Jahr: </label>
+            <div style="float:left;">
+                <p><label id="bestjahr" >Bestellungen/Jahr: </label></p>
+                <p><label id="letztebest" >Letzte Bestellung: </label></p>
+                <p><label id="umsatzjahr">Umsatz/Jahr: </label></p>
+            </div>
         </div>
 
-        <div style="width:40%; float: left;">
+        <div style="width:35%; float: left;">
             <ul id="contactform">
                 <li>
                     <label for="name"> Vorname</label><br/>
@@ -161,7 +162,7 @@
                                 header.innerHTML = "<tr><th id=\"toggA\" onclick=\"toggle(this);\" style=\" display: none;\"><b>Aufklappen</b></th><th id=\"toggT\" >Telefon</th><th id=\"toggN\" >Name</th><th id=\"toggS\">Straße</th></tr>";
                                 if(document.getElementById('table1').style.display == "none") {
                                     document.getElementById('table1').style.display="table";
-                                    document.getElementById('aufk').value = "Zuklappen";
+                                    document.getElementById('aufks').className = "glyphicon glyphicon-chevron-up";
                                 }
                             }
                         }
@@ -393,11 +394,11 @@
 
               if(document.getElementById('table1').style.display == "none") {
                 document.getElementById('table1').style.display="table";
-                document.getElementById('aufk').value = "Zuklappen";
+                document.getElementById('aufks').className = "glyphicon glyphicon-chevron-up";
                 }
               else {
                 document.getElementById('table1').style.display="none";
-                document.getElementById('aufk').value = "Aufklappen";
+                document.getElementById('aufks').className = "glyphicon glyphicon-chevron-down";
                 }
 
               var table = cell.parentNode;

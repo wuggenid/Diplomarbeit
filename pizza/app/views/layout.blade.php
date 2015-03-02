@@ -22,7 +22,7 @@
         <div class="head" >
             <div style="padding-left: 150px;" class="navbar navbar-static-top">
                 <div class="container">
-                    <a href="/" style="margin-left: 3em;" class="navbar-brand">Eduardos Pizza Service GmbH</a>
+                    <a href="/" style="margin-left: 3em; padding-top: 0; margin-top: 0; padding-bottom: 70px;" class="navbar-brand"><h2>Eduardos Pizza Service GmbH</h2></a>
                 </div>
             </div>
         </div>

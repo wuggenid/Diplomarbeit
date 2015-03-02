@@ -58,7 +58,7 @@
                               vmenge.value = '{{$article->VGS}}';
                               newarticle = 0;">
 
-                         <td style="padding-left: 5%;">{{$article->ANR}}</td>
+                         <td style="text-align: left; padding-left: 5%;">{{$article->ANR}}</td>
                          <td style="width: 1000px; padding-left: 5%;">{{$article->A0}}</td>
                      </tr>
                 @endforeach
@@ -71,7 +71,7 @@
 
                 @foreach($xag as $key => $ag)
                      <tr class="tablerow" id="{{$ag->AGNR}}" onclick="artgru.value = '{{$ag->AGNR}}';">
-                         <td style="padding-left: 5%;">{{$ag->AGNR}}</td>
+                         <td style="text-align: left; padding-left: 5%;">{{$ag->AGNR}}</td>
                          <td style="width: 1000px; padding-left: 5%;">{{$ag->AGBEZ}}</td>
                      </tr>
                 @endforeach
