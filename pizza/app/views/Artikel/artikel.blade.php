@@ -137,6 +137,7 @@
     {
         artnr.value = anr;
         $id = anr;
+
         artbez.value = a0;
         artgru.value = ag;
         epreis.value = cb;
@@ -177,10 +178,28 @@
 
     function savearticle()
     {
+
         //auch ID kann geändert werden
         //kann keine andere ID überspeichern
         if(newart == false && selectart == true)
-            alert("yes");
+        {
+            $nid = artnr.value;
+
+            $a0 = artbez.value;
+            $ag = artgru.value;
+            $cb = epreis.value;
+            $ass = mwst.value;
+            $vgs = vmenge.value;
+
+            window.location.href = "/Artikel/Artikelstamm/update?oldID=" + $id
+                    + "&nid=" + $nid
+                    + "&a0=" + $a0
+                    + "&ag=" + $ag
+                    + "&cb=" + $cb
+                    + "&ass=" + $ass
+                    + "&vgs=" + $vgs;
+        }
+
         else
             alert("no");
     }

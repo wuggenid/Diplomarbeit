@@ -80,9 +80,28 @@ class ArtikelController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update()
 	{
-		//
+        $id = Input::get('oldID');
+        $nid = Input::get('nid');
+
+        $a0 = Input::get('a0');
+        $ag = Input::get('ag');
+        $cb = Input::get('cb');
+        $ass = Input::get('ass');
+        $vgs = Input::get('vgs');
+
+
+        DB::table('xartikel')->where('ANR',$id)->update(array(
+            'ANR' => $nid,
+            'A0' => $a0,
+            'AG' => $ag,
+            'CB' => $cb,
+            'ASS' => $ass,
+            'VGS' => $vgs
+        ));
+
+        return Redirect::to('/Artikel/Artikelstamm');
 	}
 
 
