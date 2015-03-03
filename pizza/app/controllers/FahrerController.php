@@ -82,5 +82,9 @@ class FahrerController extends \BaseController {
 		//
 	}
 
-
+    public function rechnungenZuordnen()
+    {
+        $personal = xpersonal::all();
+        return View::make('Fahrer.rechnungenZuordnen')->with('fahrer',$personal);
+    }
 }
