@@ -93,12 +93,13 @@ class BestellungenController extends \BaseController {
         $SU = Input::get('SU');
         $RNR = Input::get('RNR');
         $PNR = Input::get('PNR');
+        $TEL = Input::get('TEL');
 
         if ($PNR == 0)
         {
             $xstamm = new xstamm();
             $xstamm->RNR = $RNR;
-            $xstamm->TEL = $ANR;
+            $xstamm->TEL = $TEL;
             $xstamm->RDT = date("Y-m-d"). " 00:00:00";
             $xstamm->RZT = "1899-12-30 ".date("H-i-s");
             $xstamm->RSU = $SU;

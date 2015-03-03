@@ -152,7 +152,7 @@
 
     <a href="/Bestellungen"> <button style="width: 7em;" class="btn btn-lg btn-danger"><span class="glyphicon glyphicon-chevron-left"></span> Zurück</button></a>
     <!--<button class="bbutton"> Rückgängig </button>-->
-    <button class="btn btn-lg btn-primary"><span class="glyphicon glyphicon-pencil"></span> Bestellung ändern...</button>
+    <!--<button class="btn btn-lg btn-primary"><span class="glyphicon glyphicon-pencil"></span> Bestellung ändern...</button>-->
     <button onclick="javascript:saveOrder()" id="btn_drucken" class="btn btn-lg btn-success"><span class="glyphicon glyphicon-print"></span> Drucken</button>
     <!--<button class="bbutton"> Speichern </button>-->
     <br/><br/>
@@ -190,10 +190,10 @@
                 var A0 =  artikelbezeichnungen[i].innerText;
                 var CB = einzelpreisBoxes[i].innerText.split('€')[0];
                 var SU = summeBoxes[i].innerText.split('€')[0];
-
+                var TEL = document.getElementById('tels').value;
                 if (ANR != "" && GM != "")
                 {
-                    $href = 'storeSingleValue?GM='+GM+'&ANR='+ANR+'&A0='+A0+'&CB='+CB+'&SU='+SU+'&RNR='+rechnungsnummer+'&PNR='+i;
+                    $href = 'storeSingleValue?GM='+GM+'&ANR='+ANR+'&A0='+A0+'&CB='+CB+'&SU='+SU+'&RNR='+rechnungsnummer+'&PNR='+i+'&TEL='+TEL;
                     xhr.open('GET', $href, false);
                     xhr.send();
                 }
