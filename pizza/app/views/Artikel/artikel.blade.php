@@ -53,7 +53,7 @@
         <table class="scroll" style="width: 100%;">
             <thead>
                 <tr>
-                    <th id="aid" style="text-align: left;">Art-Nr</th>
+                    <th width="25%" id="aid" style="text-align: left; padding-left: 5%;">Art-Nr</th>
                     <th id="abez" style="text-align: left;">Bezeichnung</th>
                 </tr>
             </thead>
@@ -63,7 +63,7 @@
                 @foreach($articles as $key => $article)
                      <tr class="tablerow" onClick="javascript:selectarticle('{{$article->ANR}}','{{$article->A0}}','{{$article->AG}}', '{{$article->CB}}','{{$article->ASS}}', '{{$article->VGS}}')">
                          <td style="text-align: left; padding-left: 5%;">{{$article->ANR}}</td>
-                         <td style="width: 1000px; padding-left: 5%;">{{$article->A0}}</td>
+                         <td style="text-align: left; width: 100%; padding-left: 20%;">{{$article->A0}}</td>
                      </tr>
                 @endforeach
             </tbody>
@@ -76,7 +76,7 @@
                 @foreach($xag as $key => $ag)
                      <tr class="tablerow" id="{{$ag->AGNR}}" onclick="artgru.value = '{{$ag->AGNR}}';">
                          <td style="text-align: left; padding-left: 5%;">{{$ag->AGNR}}</td>
-                         <td style="width: 1000px; padding-left: 5%;">{{$ag->AGBEZ}}</td>
+                         <td style="text-align: left; width: 100%; padding-left: 23%;">{{$ag->AGBEZ}}</td>
                      </tr>
                 @endforeach
             </tbody>
@@ -84,13 +84,13 @@
 
         <table id="artikelmwst" style="height: 300px; width: 100%; overflow-y: auto; display: none;">
             <tbody >
-                 <tr style="text-align: left;" class="tablerow" onclick="mwst.value = '1';">
-                     <td style="text-align: left; padding-left: 5%;" width="100%;"> 1 </td>
-                     <td style="text-align: left; "> 10% </td>
+                 <tr class="tablerow" onclick="mwst.value = '1';">
+                     <td style="text-align: left; padding-left: 5%;"> 1 </td>
+                     <td style="text-align: left; width: 100%; padding-left: 24%;"> 10% </td>
                  </tr>
                  <tr class="tablerow"  onclick="mwst.value = '2';" >
                      <td style="text-align: left; padding-left: 5%;"> 2 </td>
-                     <td style="text-align: left;"> 20% </td>
+                     <td style="text-align: left; width: 100%; padding-left: 24%;"> 20% </td>
                  </tr>
             </tbody>
         </table>
