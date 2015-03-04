@@ -2,6 +2,18 @@
 
 @section('content')
 
+
+@if ($alert = Session::get('alert-danger'))
+  <div class="alert alert-danger">
+      {{ $alert }}
+  </div>
+@endif
+@if ($alert = Session::get('alert-success'))
+  <div class="alert alert-success">
+      {{ $alert }}
+  </div>
+@endif
+
 <h2>Artikel</h2>
 <div style="padding: 5px 30px;">
 
@@ -178,7 +190,7 @@
 
     function savearticle()
     {
-
+        //Artikeländerung
         //auch ID kann geändert werden
         //kann keine andere ID überspeichern
         if(newart == false && selectart == true)
@@ -193,6 +205,26 @@
 
             window.location.href = "/Artikel/Artikelstamm/update?oldID=" + $id
                     + "&nid=" + $nid
+                    + "&a0=" + $a0
+                    + "&ag=" + $ag
+                    + "&cb=" + $cb
+                    + "&ass=" + $ass
+                    + "&vgs=" + $vgs;
+        }
+
+        //Neuer Artikel
+        if(newart == true && selectart == false)
+        {
+            $id = artnr.value;
+
+            $a0 = artbez.value;
+            $ag = artgru.value;
+            $cb = epreis.value;
+            $ass = mwst.value;
+            $vgs = vmenge.value;
+
+            window.location.href = "/Artikel/Artikelstamm/store"
+                    + "?id=" + $id
                     + "&a0=" + $a0
                     + "&ag=" + $ag
                     + "&cb=" + $cb

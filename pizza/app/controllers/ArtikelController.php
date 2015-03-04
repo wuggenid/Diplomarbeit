@@ -46,7 +46,31 @@ class ArtikelController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
+        $id = Input::get('id');
+
+        if( DB::table('xartikel')->where('ANR',$id)->pluck('ANR') == "") {
+
+            $a0 = Input::get('a0');
+            $ag = Input::get('ag');
+            $cb = Input::get('cb');
+            $ass = Input::get('ass');
+            $vgs = Input::get('vgs');
+
+            $artikel = new xartikel();
+            $artikel->ANR = $id;
+            $artikel->A0 = $a0;
+            $artikel->AG = $ag;
+            $artikel->CB = $cb;
+            $artikel->ASS = $ass;
+            $artikel->VGS = $vgs;
+            $artikel->save();
+
+            return Redirect::to('/Artikel/Artikelstamm')->with('alert-success', 'Artikel wurde gespeichert!');
+        }
+
+        else {
+            return Redirect::to('/Artikel/Artikelstamm')->with('alert-danger', 'Artikel konnte nicht gespeichert werden, da die Artikelnummer bereits vergeben ist!');
+        }
 	}
 
 
