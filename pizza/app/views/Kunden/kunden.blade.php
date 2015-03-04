@@ -132,8 +132,8 @@
                                 document.getElementById('tel2').value = numbers[0]['TEL'];
                                 document.getElementById('add').value = numbers[0]['STR'];
                                 document.getElementById('ort').value = numbers[0]['ORT'];
-                                document.getElementById('if1').value = numbers[0]['if1'];
-                                document.getElementById('if2').value = numbers[0]['if2'];
+                                document.getElementById('if1').value = numbers[0]['IF1'];
+                                document.getElementById('if2').value = numbers[0]['IF2'];
                             }
                             if (numbers.length<10)
                             {
@@ -266,6 +266,7 @@
                                 document.getElementById('if2').value = numbers[0]['IF2'];
                                 document.getElementById('rabbat').value = numbers[0]['KRAB'];
                                 document.getElementById("tel2").value = document.getElementById("tel").value;
+                                document.getElementById('tel2').style.backgroundColor = "#3F3";
                             }
                         }
                    })

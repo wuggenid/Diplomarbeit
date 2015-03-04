@@ -54,7 +54,7 @@ class KundenController extends \BaseController {
         $kunde->KRAB = $rab;
         $kunde->save();
 
-        return Redirect::to('/');
+        return Redirect::to('/Kunden/create');
 	}
 
 
@@ -111,7 +111,7 @@ class KundenController extends \BaseController {
             'IF2' => $if2,
             'KRAB' => $rab
         ));
-        return Redirect::to('/');
+        return Redirect::to('/Kunden/create');
 	}
 
 
