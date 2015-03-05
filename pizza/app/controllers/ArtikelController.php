@@ -19,7 +19,6 @@ class ArtikelController extends \BaseController {
         return View::make('Artikel.artikel',$data);
     }
 
-
     public function getArtikelgruppen()
     {
         $data['articles']= DB::table('xag')->orderBy('AGNR')->get();
@@ -30,6 +29,12 @@ class ArtikelController extends \BaseController {
     {
         $data['artstats']= DB::table('xview')->get();
         return View::make('Artikel.artikelmonatsstatistik',$data);
+    }
+
+    public function getArtikeleinkauf()
+    {
+        $data['articles']= DB::table('xartikel')->orderBy('ANR')->get();
+        return View::make('Artikel.artikeleinkauf',$data);
     }
 
 	/**

@@ -203,8 +203,7 @@
             $ass = mwst.value;
             $vgs = vmenge.value;
 
-            window.location.href = "/Artikel/Artikelstamm/update" +
-                    + "?oldID=" + $id
+            window.location.href = "/Artikel/Artikelstamm/update?oldID=" + $id
                     + "&nid=" + $nid
                     + "&a0=" + $a0
                     + "&ag=" + $ag
