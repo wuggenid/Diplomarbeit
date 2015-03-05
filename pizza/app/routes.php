@@ -35,6 +35,7 @@ Route::get('/Artikel/Artikelstamm/delete/{id}','ArtikelController@destroy');
 Route::get('/Artikel/Artikelstamm/update','ArtikelController@update');
 Route::get('/Artikel/Artikelstamm/store','ArtikelController@store');
 Route::get('/Artikel/Artikelgruppe', 'ArtikelController@getartikelgruppen');
+Route::get('/Artikel/Artikelmonatsstatistik', 'ArtikelController@getartikelmonatsstatistik');
 Route::resource('/Artikel', 'ArtikelController');
 
 //Personal

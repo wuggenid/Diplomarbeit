@@ -12,6 +12,11 @@ class ApiController extends BaseController {
         $artikel = Input::get('artikel');
         return Response::json(xartikel::where('ANR',$artikel)->get());
     }
+    function searchYear()
+    {
+        $year = '%'.Input::get('year').'%';
+        return DB::table('xview')->where('JJJJ',$year)->get();
+    }
     function getLastBillNumber()
     {
         $rechnungsnummer =  DB::table('xpos')->where('RNR', DB::raw("(select max(`RNR`) from xpos)"))->get()[0]->RNR;

@@ -22,8 +22,14 @@ class ArtikelController extends \BaseController {
 
     public function getArtikelgruppen()
     {
-        $data['articles']= DB::table('xartikel')->orderBy('AGNR')->get();
+        $data['articles']= DB::table('xag')->orderBy('AGNR')->get();
         return View::make('Artikel.artikelgruppe',$data);
+    }
+
+    public function getArtikelmonatsstatistik()
+    {
+        $data['artstats']= DB::table('xview')->get();
+        return View::make('Artikel.artikelmonatsstatistik',$data);
     }
 
 	/**
