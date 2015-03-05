@@ -2,7 +2,6 @@
 
 @section('content')
 
-
 @if ($alert = Session::get('alert'))
   <div class="alert alert-warning">
       {{ $alert }}
@@ -97,15 +96,15 @@
 <div style="clear: both;">
     <br/><br/>
     {{-- Form::open(array('url' => "/Artikel/$article->(artnr.value)" , 'method' => 'delete')) --}}
-            <button onclick="javascript:deletearticle()" style="width: 12em;" class="btn btn-lg btn-danger"><span class="glyphicon glyphicon-trash"></span> Artikel löschen </button>
+            <button onclick="javascript:deletearticle()" style="width: 15em;" class="btn btn-lg btn-danger"><span class="glyphicon glyphicon-trash"></span> Artikel löschen </button>
         {{-- Form::close() --}}
 
-    <button onclick="javascript:newarticle()" style="width: 12em;" class="btn btn-lg btn-success"><span class="glyphicon glyphicon-plus"></span> Neuer Artikel </button>
-    <a href="/Artikel/Artikelmonatsstatistik"><button style="width: 12em;" class="btn btn-lg btn-warning"><span class="glyphicon glyphicon-stats"></span> Artikelmonatsstatistik</button></a>
+    <button onclick="javascript:newarticle()" style="width: 15em;" class="btn btn-lg btn-success"><span class="glyphicon glyphicon-plus"></span> Neuer Artikel </button>
+    <a href="/Artikel/Artikelmonatsstatistik"><button style="width: 15em;" class="btn btn-lg btn-warning"><span class="glyphicon glyphicon-stats"></span> Artikelmonatsstatistik</button></a>
     <br/><br/>
-    <a href="/"><button style="width: 12em;" class="btn btn-lg btn-danger"><span class="glyphicon glyphicon-chevron-left"></span> Zurück</button></a>
-    <button onclick="javascript:savearticle()" style="width: 12em;" class="btn btn-lg btn-success"><span class="glyphicon glyphicon-floppy-save"></span> Artikel speichern</button>
-    <button style="width: 12em;" class="btn btn-lg btn-warning"><span class="glyphicon glyphicon-print"></span> Artikelliste drucken </button>
+    <a href="/"><button style="width: 15em;" class="btn btn-lg btn-danger"><span class="glyphicon glyphicon-chevron-left"></span> Zurück</button></a>
+    <button onclick="javascript:savearticle()" style="width: 15em;" class="btn btn-lg btn-success"><span class="glyphicon glyphicon-floppy-save"></span> Artikel speichern</button>
+    <button style="width: 15em;" class="btn btn-lg btn-warning"><span class="glyphicon glyphicon-print"></span> Artikelliste drucken </button>
     <br/><br/>
 </div>
 
@@ -165,6 +164,7 @@
         artnr.value = artbez.value = artgru.value = mwst.value = ''; epreis.value = vmenge.value = '0';
         newart = true;
         selectart = false;
+        document.getElementById('artnr').focus();
     }
 
     function deletearticle()
@@ -203,7 +203,8 @@
             $ass = mwst.value;
             $vgs = vmenge.value;
 
-            window.location.href = "/Artikel/Artikelstamm/update?oldID=" + $id
+            window.location.href = "/Artikel/Artikelstamm/update" +
+                    + "?oldID=" + $id
                     + "&nid=" + $nid
                     + "&a0=" + $a0
                     + "&ag=" + $ag

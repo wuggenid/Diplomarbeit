@@ -2,6 +2,12 @@
 
 @section('content')
 
+@if ($alert = Session::get('alert'))
+  <div class="alert alert-warning">
+      {{ $alert }}
+  </div>
+@endif
+
 <h2>Artikelgruppenverwaltung</h2>
 <div style="padding: 5px 30px;">
 
@@ -22,23 +28,22 @@
     <div style="width:65%; float: right; padding-top: 20px; padding-left: 5%; ">
         <h3>Suchkriterium</h3>
 
-        <table class="scroll" style="width: 63%;">
+        <table class="scroll" style="width: 100%;">
             <thead>
                 <tr>
-                    <th id="aid" style="text-align: left;">Gruppen-Nr</th>
+                    <th width="25%" id="aid" style="text-align: left; padding-left: 5%;">Gruppen-Nr</th>
                     <th id="abez" style="text-align: left;">Gruppenbezeichnung</th>
                 </tr>
             </thead>
         </table>
-
-        <table id="artikelgruppe" style="height: 300px; width: 63%; overflow-y: auto;">
+        <table id="artikelgruppe" style="height: 300px; width: 100%; overflow-y: auto;">
             <tbody>
                 <?php $xag = xag::orderby('AGNR')->get(); ?>
 
                 @foreach($xag as $key => $ag)
-                     <tr class="tablerow" id="{{$ag->AGNR}}" onclick="artgnr.value = '{{$ag->AGNR}}'; artgrubez.value = '{{$ag->AGBEZ}}'; newgarticle=1;">
-                         <td style="padding-left: 10%;">{{$ag->AGNR}}</td>
-                         <td style="width: 500px;">{{$ag->AGBEZ}}</td>
+                     <tr class="tablerow" id="{{$ag->AGNR}}" onclick="javascript:selectarticle('{{$ag->AGNR}}','{{$ag->AGBEZ}}')">
+                         <td style="text-align: left; padding-left: 5%;">{{$ag->AGNR}}</td>
+                         <td style="text-align: left; width: 100%; padding-left: 23%;">{{$ag->AGBEZ}}</td>
                      </tr>
                 @endforeach
             </tbody>
@@ -51,40 +56,98 @@
 
 <div style="clear: both;">
     <br/><br/>
-    <button style="width: 12em;" onClick="javascript:newarticle()" class="btn btn-lg btn-success"><span class="glyphicon glyphicon-plus"></span> Neue Artikelgruppe </button>
+    <button style="width: 15em;" onclick="javascript:deletearticle()" class="btn btn-lg btn-danger"><span class="glyphicon glyphicon-trash"></span> Artikelgruppe löschen </button>
+    <button style="width: 15em;" onclick="javascript:newarticle()" class="btn btn-lg btn-success"><span class="glyphicon glyphicon-plus"></span> Neue Artikelgruppe </button>
 
-    {{-- Form::open(array('url' => "/Artikel/$article->(artnr.value)" , 'method' => 'delete')) --}}
-        <button style="width: 15em;" class="btn btn-lg btn-danger"><span class="glyphicon glyphicon-trash"></span> Artikelgruppe löschen </button>
-    {{-- Form::close() --}}
-
-    <button style="width: 15em;" class="btn btn-lg btn-warning"><span class="glyphicon glyphicon-stats"></span> Artikelgruppenliste drucken</button>
+    <button style="width: 15em;" class="btn btn-lg btn-warning"><span class="glyphicon glyphicon-print"></span> Artikelgruppenliste drucken</button>
     <br/><br/>
-    <a href="/"><button style="width: 12em;" class="btn btn-lg btn-danger"><span class="glyphicon glyphicon-chevron-left"></span> Zurück</button></a>
-    <button style="width: 15em;" class="btn btn-lg btn-success"><span class="glyphicon glyphicon-floppy-save"></span> Artikelgruppe speichern</button>
-    <button style="width: 15em;" class="btn btn-lg btn-warning"><span class="glyphicon glyphicon-print"></span> Rückgängig Änderung </button>
+    <a href="/"><button style="width: 15em;" class="btn btn-lg btn-danger"><span class="glyphicon glyphicon-chevron-left"></span> Zurück</button></a>
+    <button onclick="javascript:savearticle()" style="width: 15em;" class="btn btn-lg btn-success"><span class="glyphicon glyphicon-floppy-save"></span> Artikelgruppe speichern</button>
+    <button style="width: 15em;" class="btn btn-lg btn-warning"><span class="glyphicon glyphicon-menu-left"></span> Rückgängig Änderung </button>
     <br/><br/>
 </div>
 
 
 <script language="javascript">
 
-    var newgarticle = 0;
+    var newart = false;
+    var selectart = false;
 
-    function newgarticle()
+    artgnr.value = artgrubez.value = '';
+    newart = true;
+    selectart = false;
+    document.getElementById('artgnr').focus();
+
+
+    function selectarticle(agnr ,agbez)
     {
-        artnr.value = artbez.value = artgru.value = mwst.value = ''; epreis.value = vmenge.value = '0';
-        newgarticle = 1;
+        artgnr.value = agnr;
+        $id = agnr;
+
+        artgrubez.value = agbez;
+
+        newart = false;
+        selectart = true;
     }
 
-    function deletearticle(id)
+    function newarticle()
     {
-        alert(id);
+        artgnr.value = artgrubez.value = '';
+        newart = true;
+        selectart = false;
+        document.getElementById('artgnr').focus();
+    }
+
+    function deletearticle()
+    {
+        if(newart == false && selectart == true)
+        {
+            if($id == artgnr.value)
+            {
+                window.location.href = "/Artikel/Artikelgruppe/delete/" + $id;
+            }
+
+            // Wenn die ID zwischenzeitig verändert wurde, darf er nichts löschen!
+            else
+                alert("Nicht möglich, weil die Artikelgruppennummer zwischenzeit geändert wurde");
+        }
+
+        else
+            alert("Keine Artikelgruppe ausgewählt");
+
+        //alert(id);
         //**window.location.href = "{{-- url('/Artikel' . $article->id . 'destroy') --}}";
     }
 
     function savearticle()
     {
+        //Artikeländerung
+        //auch ID kann geändert werden
+        //kann keine andere ID überspeichern
+        if(newart == false && selectart == true)
+        {
+            $nid = artgnr.value;
+            $agb = artgrubez.value;
 
+            window.location.href = "/Artikel/Artikelgruppe/update"
+                    + "?oldID=" + $id
+                    + "&nid=" + $nid
+                    + "&agb=" + $agb;
+        }
+
+        //Neuer Artikel
+        else if(newart == true && selectart == false)
+        {
+            $id = artgnr.value;
+            $agb = artgrubez.value;
+
+            window.location.href = "/Artikel/Artikelgruppe/store"
+                    + "?id=" + $id
+                    + "&agb=" + $agb;
+        }
+
+        else
+            alert("Artikelgruppe konnte nicht gespeichert werden!");
     }
 
 </script>

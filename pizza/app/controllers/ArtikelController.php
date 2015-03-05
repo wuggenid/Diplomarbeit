@@ -79,6 +79,27 @@ class ArtikelController extends \BaseController {
         }
 	}
 
+    public function storegruppe()
+    {
+        $id = Input::get('id');
+
+        if( $id != "" && DB::table('xag')->where('AGNR',$id)->pluck('AGNR') == "") {
+
+            $agb = Input::get('agb');
+
+            $artikel = new xag();
+            $artikel->AGNR = $id;
+            $artikel->AGBEZ = $agb;
+            $artikel->save();
+
+            return Redirect::to('/Artikel/Artikelgruppe')->with('alert', 'Artikelgruppe wurde gespeichert!');
+        }
+
+        else {
+            return Redirect::to('/Artikel/Artikelgruppe')->with('alert', 'Artikelgruppe konnte nicht gespeichert werden, da die Artikelgruppennummer bereits vergeben bzw. nicht korrekt ist!');
+        }
+    }
+
 
 	/**
 	 * Display the specified resource.
@@ -115,7 +136,7 @@ class ArtikelController extends \BaseController {
         $id = Input::get('oldID');
         $nid = Input::get('nid');
 
-        if( $nid != "" && DB::table('xartikel')->where('ANR',$nid)->pluck('ANR') == "") {
+        if( $nid != "" && (DB::table('xartikel')->where('ANR',$nid)->pluck('ANR') == "" || $id == $nid)) {
 
             $a0 = Input::get('a0');
             $ag = Input::get('ag');
@@ -139,6 +160,26 @@ class ArtikelController extends \BaseController {
             return Redirect::to('/Artikel/Artikelstamm')->with('alert', 'Artikel konnte nicht gespeichert werden, da die Artikelnummer bereits vergeben bzw. nicht korrekt ist!');
 	}
 
+    public function updategruppe()
+    {
+        $id = Input::get('oldID');
+        $nid = Input::get('nid');
+
+        if( $nid != "" && (DB::table('xag')->where('AGNR',$nid)->pluck('AGNR') == "" || $id == $nid)) {
+
+            $agb = Input::get('agb');
+
+            DB::table('xag')->where('AGNR', $id)->update(array(
+                'AGNR' => $nid,
+                'AGBEZ' => $agb
+            ));
+
+            return Redirect::to('/Artikel/Artikelgruppe')->with('alert', 'Artikelgruppe wurde gespeichert!');
+        }
+        else
+            return Redirect::to('/Artikel/Artikelgruppe')->with('alert', 'Artikelgruppe konnte nicht gespeichert werden, da die Artikelgruppennummer bereits vergeben bzw. nicht korrekt ist!');
+    }
+
 
 	/**
 	 * Remove the specified resource from storage.
@@ -153,6 +194,14 @@ class ArtikelController extends \BaseController {
 
         return Redirect::to('/Artikel/Artikelstamm')->with('alert', 'Artikel wurde gelöscht!');
 	}
+
+    public function destroygruppe($id)
+    {
+        $artikel = DB::table('xag')->where('AGNR',$id);
+        $artikel->delete();
+
+        return Redirect::to('/Artikel/Artikelgruppe')->with('alert', 'Artikelgruppe wurde gelöscht!');
+    }
 
 
 }

@@ -31,10 +31,16 @@ Route::resource('/Kunden','KundenController');
 
 //Artikel
 Route::get('/Artikel/Artikelstamm', 'ArtikelController@getartikel');
+Route::get('/Artikel/Artikelgruppe', 'ArtikelController@getartikelgruppen');
+
 Route::get('/Artikel/Artikelstamm/delete/{id}','ArtikelController@destroy');
 Route::get('/Artikel/Artikelstamm/update','ArtikelController@update');
 Route::get('/Artikel/Artikelstamm/store','ArtikelController@store');
-Route::get('/Artikel/Artikelgruppe', 'ArtikelController@getartikelgruppen');
+
+Route::get('/Artikel/Artikelgruppe/delete/{id}','ArtikelController@destroygruppe');
+Route::get('/Artikel/Artikelgruppe/update','ArtikelController@updategruppe');
+Route::get('/Artikel/Artikelgruppe/store','ArtikelController@storegruppe');
+
 Route::get('/Artikel/Artikelmonatsstatistik', 'ArtikelController@getartikelmonatsstatistik');
 Route::resource('/Artikel', 'ArtikelController');
 
