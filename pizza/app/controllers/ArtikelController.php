@@ -15,14 +15,14 @@ class ArtikelController extends \BaseController {
 
     public function getArtikel()
     {
-        $data['articles']= DB::table('xartikel')->get();
+        $data['articles']= DB::table('xartikel')->orderBy('ANR')->get();
         return View::make('Artikel.artikel',$data);
     }
 
 
     public function getArtikelgruppen()
     {
-        $data['articles']= DB::table('xartikel')->get();
+        $data['articles']= DB::table('xartikel')->orderBy('AGNR')->get();
         return View::make('Artikel.artikelgruppe',$data);
     }
 
@@ -48,7 +48,7 @@ class ArtikelController extends \BaseController {
 	{
         $id = Input::get('id');
 
-        if( DB::table('xartikel')->where('ANR',$id)->pluck('ANR') == "") {
+        if( $id != "" && DB::table('xartikel')->where('ANR',$id)->pluck('ANR') == "") {
 
             $a0 = Input::get('a0');
             $ag = Input::get('ag');
@@ -65,11 +65,11 @@ class ArtikelController extends \BaseController {
             $artikel->VGS = $vgs;
             $artikel->save();
 
-            return Redirect::to('/Artikel/Artikelstamm')->with('alert-success', 'Artikel wurde gespeichert!');
+            return Redirect::to('/Artikel/Artikelstamm')->with('alert', 'Artikel wurde gespeichert!');
         }
 
         else {
-            return Redirect::to('/Artikel/Artikelstamm')->with('alert-danger', 'Artikel konnte nicht gespeichert werden, da die Artikelnummer bereits vergeben ist!');
+            return Redirect::to('/Artikel/Artikelstamm')->with('alert', 'Artikel konnte nicht gespeichert werden, da die Artikelnummer bereits vergeben bzw. nicht korrekt ist!');
         }
 	}
 
@@ -109,23 +109,28 @@ class ArtikelController extends \BaseController {
         $id = Input::get('oldID');
         $nid = Input::get('nid');
 
-        $a0 = Input::get('a0');
-        $ag = Input::get('ag');
-        $cb = Input::get('cb');
-        $ass = Input::get('ass');
-        $vgs = Input::get('vgs');
+        if( $nid != "" && DB::table('xartikel')->where('ANR',$nid)->pluck('ANR') == "") {
+
+            $a0 = Input::get('a0');
+            $ag = Input::get('ag');
+            $cb = Input::get('cb');
+            $ass = Input::get('ass');
+            $vgs = Input::get('vgs');
 
 
-        DB::table('xartikel')->where('ANR',$id)->update(array(
-            'ANR' => $nid,
-            'A0' => $a0,
-            'AG' => $ag,
-            'CB' => $cb,
-            'ASS' => $ass,
-            'VGS' => $vgs
-        ));
+            DB::table('xartikel')->where('ANR', $id)->update(array(
+                'ANR' => $nid,
+                'A0' => $a0,
+                'AG' => $ag,
+                'CB' => $cb,
+                'ASS' => $ass,
+                'VGS' => $vgs
+            ));
 
-        return Redirect::to('/Artikel/Artikelstamm');
+            return Redirect::to('/Artikel/Artikelstamm')->with('alert', 'Artikel wurde gespeichert!');
+        }
+        else
+            return Redirect::to('/Artikel/Artikelstamm')->with('alert', 'Artikel konnte nicht gespeichert werden, da die Artikelnummer bereits vergeben bzw. nicht korrekt ist!');
 	}
 
 
@@ -140,16 +145,8 @@ class ArtikelController extends \BaseController {
         $artikel = DB::table('xartikel')->where('ANR',$id);
         $artikel->delete();
 
-        return Redirect::to(url('/Artikel/Artikelstamm'));
+        return Redirect::to('/Artikel/Artikelstamm')->with('alert', 'Artikel wurde gelöscht!');
 	}
-
-    public function deleteArtikel($id)
-    {
-        $artikel = DB::table('xartikel')->where('ANR',$id);
-        $artikel->delete();
-
-        return Redirect::to(url('/Artikel/Artikelstamm'));
-    }
 
 
 }

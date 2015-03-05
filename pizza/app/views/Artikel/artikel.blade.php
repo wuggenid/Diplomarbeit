@@ -3,13 +3,8 @@
 @section('content')
 
 
-@if ($alert = Session::get('alert-danger'))
-  <div class="alert alert-danger">
-      {{ $alert }}
-  </div>
-@endif
-@if ($alert = Session::get('alert-success'))
-  <div class="alert alert-success">
+@if ($alert = Session::get('alert'))
+  <div class="alert alert-warning">
       {{ $alert }}
   </div>
 @endif
@@ -120,6 +115,11 @@
     var newart = false;
     var selectart = false;
 
+    artnr.value = artbez.value = artgru.value = mwst.value = ''; epreis.value = vmenge.value = '0';
+    newart = true;
+    selectart = false;
+    document.getElementById('artnr').focus();
+
     function sgroup()
     {
         document.getElementById('artikel').style.display = "none";
@@ -213,7 +213,7 @@
         }
 
         //Neuer Artikel
-        if(newart == true && selectart == false)
+        else if(newart == true && selectart == false)
         {
             $id = artnr.value;
 
@@ -233,7 +233,7 @@
         }
 
         else
-            alert("no");
+            alert("Artikel konnte nicht gespeichert werden!");
     }
 
 </script>
