@@ -9,7 +9,7 @@ class PersonalController extends \BaseController {
 	 */
 	public function index()
 	{
-		return Hash::make('pizza');
+        return View::make('Personal.personal');
 	}
 
 

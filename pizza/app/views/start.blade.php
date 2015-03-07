@@ -15,7 +15,7 @@
 
 <div style="float: right;" class="startbuttons">
     <ul>
-        <li><button class="btn btn-lg btn-primary vaguePrimaryButton"> Personal </button></li>
+        <li><a href="/Personal"><button class="btn btn-lg btn-primary vaguePrimaryButton"> Personal </button></a></li>
         <li><a href="/Fahrer"><button class="btn btn-lg btn-primary vaguePrimaryButton"> Fahrer </button></a></li>
         <li><button class="btn btn-lg btn-warning vagueWarningButton"> Buchen </button></li>
         <li><button class="btn btn-lg btn-warning vagueWarningButton"> Statistik </button></li>

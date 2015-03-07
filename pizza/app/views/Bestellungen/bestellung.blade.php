@@ -86,7 +86,7 @@
                     }
                 </script>
 
-                <div>
+                <div style="z-index: 99; position: relative;">
                     <table  width="100%" class="table1" id="table1" style="display: none;">
                         <thead style="display: table-header-group;">
                             <tr>
