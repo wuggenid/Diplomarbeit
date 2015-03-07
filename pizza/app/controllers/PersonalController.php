@@ -9,7 +9,8 @@ class PersonalController extends \BaseController {
 	 */
 	public function index()
 	{
-        return View::make('Personal.personal');
+        $data['personal']= DB::table('xpersonal')->get();
+        return View::make('Personal.personal',$data);
 	}
 
 

@@ -2,37 +2,41 @@
 
 @section('head')
 
-{{ HTML::style('css/chosen.css') }}
-
 @section('content')
 
 <h2>Personalverwaltung</h2>
-<div style="padding: 40px 30px;">
+<div style="padding: 10px 30px;">
 
-    <div class="chosen-container chosen-container-multi">
-        <label>Personal - Name:</label>
-        <ul class="chosen-choices">
-            <li class="search-field">
-                <input type="text" id="tels" class="default" oninput="javascript:telInput(this)" onkeydown="javascript:telKeyPress(this)" /><button type="button" id="aufk" onclick="toggle(this);"/><span id="aufks" class="glyphicon glyphicon-chevron-down"></span>
-            </li>
-        </ul>
-    </div>
-
-    <div class="contacts" style="float:right; height: 100px; width: 100%;">
-        <div style="height: 200px; z-index:99; position: relative;">
-            <table  width="100%" class="table1" id="table1" style="display: none;">
-                <thead style="display: table-header-group;">
-                    <tr>
-                        <th id="toggA" onclick="toggle(this);" style="display: none;"><b>Aufklappen</b></th>
-                        <th id="toggT">Telefon</th>
-                        <th id="toggN">Name</th>
-                        <th id="toggS">Straße</th>
-                    </tr>
-                </thead>
-                <tbody style="overflow-y: auto; max-height: 200px; display: inline-block; width: 300%;">
-                </tbody>
-             </table>
+    <div style="width:65%; float: left; padding: 50px 5%; ">
+        <div class="chosen-container chosen-container-multi">
+            <label>Personal - Name:</label>
+            <ul style="list-style: none;" class="chosen-choices">
+                <li class="search-field">
+                    <input type="text" id="tels" class="default" oninput="javascript:telInput(this)" onkeydown="javascript:telKeyPress(this)" /><button type="button" id="aufk" onclick="toggle(this);"/><span id="aufks" class="glyphicon glyphicon-chevron-down"></span>
+                </li>
+            </ul>
         </div>
+
+        <table class="scroll" style="width: 100%;">
+            <thead>
+                <tr>
+                    <th width="25%" id="aid" style="text-align: left; padding-left: 5%;">Art-Nr</th>
+                    <th id="abez" style="text-align: left;">Bezeichnung</th>
+                    <th style="text-align: left;">Straße</th>
+                </tr>
+            </thead>
+        </table>
+        <table id="artikel" style="height: 300px; width: 100%; overflow-y: auto; display: block;">
+            <tbody>
+                @foreach($personal as $key => $person)
+                     <tr class="tablerow">
+                         <td style="text-align: left; padding-left: 5%;">{{$person->PKZ}}</td>
+                         <td style="text-align: left; width: 62%; padding-left: 20%;">{{$person->VNAM}} {{$person->NNAM}}</td>
+                         <th style="text-align: left; width: 38%;">{{$person->PSTR}}</th>
+                     </tr>
+                @endforeach
+            </tbody>
+        </table>
     </div>
 
 
