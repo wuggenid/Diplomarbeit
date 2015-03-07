@@ -9,4 +9,5 @@
     <button type="button" style="width: 15em;" class="btn btn-lg btn-warning">Zeiterfassung</button><br /><br />
     <button type="button" style="width: 15em; margin: 0 auto; display: table;" class="btn btn-lg btn-info">Tagessumme</button><br /><br />
 </div>
+<a href="/"><button type="button" class="btn btn-lg btn-danger"><span class="glyphicon glyphicon-chevron-left"></span> Zurück</button></a>
 @stop

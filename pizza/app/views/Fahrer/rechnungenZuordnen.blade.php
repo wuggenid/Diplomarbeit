@@ -4,8 +4,10 @@
 
 <h2>Rechnungen zuordnen</h2>
 
-<select id="fahrer" size="2" style="float: right; width: 10em;">
-    <option>Edi CHEF</option>
+<select id="fahrer" size="10" style="float: right; width: 10em;">
+    @foreach($personal as $person)
+        <option>{{$person['VNAM']." ".$person['NNAM']}}</option>
+    @endforeach
 </select>
 <table class="table table-striped table-bordered">
     <thead>
@@ -31,7 +33,8 @@
         </tr>
     </tbody>
 </table>
-
+<br /><br /><br /><br /><br />
+<a href="/"><button type="button" class="btn btn-lg btn-danger"><span class="glyphicon glyphicon-chevron-left"></span> Zurück</button></a>
 <style type="text/css">
     tbody tr th input
     {
@@ -39,7 +42,6 @@
     }
 </style>
 <script language="javascript">
-    var fahrerOptions = document.getElementById('fahrer');
 
 </script>
 
