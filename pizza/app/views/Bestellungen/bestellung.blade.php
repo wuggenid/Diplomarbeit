@@ -298,7 +298,7 @@
                             document.getElementById('msg').value = numbers[0]['IF1'] + "\n" + numbers[0]['IF2'];
                             rabbat = numbers[0]['KRAB'];
                         }
-                        if (numbers.length<10)
+                        if (numbers.length<15)
                         {
                             var table = document.getElementById('table1');
                             while(table.hasChildNodes())
@@ -395,7 +395,6 @@
             var number = document.getElementById('tels').value;
             if (event.keyCode == 13)
             {
-
                 var xhr = new XMLHttpRequest();
                     (xhr.onreadystatechange = function() {
                         if (xhr.readyState == 4) {
@@ -410,6 +409,8 @@
                             else if (numbers.length == 1)
                             {
                                 window.location.href = "#gesamtpreis";
+                                document.getElementById('table1').style.display="none";
+                                document.getElementById('aufks').className = "glyphicon glyphicon-chevron-down";
                                 document.getElementById('textbox').removeAttribute("disabled");
                                 document.getElementById('textbox').focus();
                             }
