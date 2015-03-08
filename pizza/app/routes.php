@@ -43,6 +43,9 @@ Route::get('/Artikel/Artikelmonatsstatistik', 'ArtikelController@getartikelmonat
 Route::resource('/Artikel', 'ArtikelController');
 
 //Personal
+Route::get('/Personal/delete/{id}','PersonalController@destroy');
+Route::get('/Personal/update','PersonalController@update');
+Route::get('/Personal/store','PersonalController@store');
 Route::resource('/Personal','PersonalController');
 
 Route::get('/Login',function(){return View::make('login');});
