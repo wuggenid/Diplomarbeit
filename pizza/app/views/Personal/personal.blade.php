@@ -34,7 +34,7 @@
             </thead>
         </table>
         <table id="table1" style="max-height: 300px; width: 100%; overflow-y: auto; display: none;">
-            <tbody>
+            <tbody class="tablerow">
                 <!--{{--
                 @foreach($personal as $key => $person)
                      <tr class="tablerow" onClick="javascript:selectpersonal('{{$person->PKZ}}','{{$person->VNAM}}','{{$person->NNAM}}', '{{$person->PSTR}}','{{$person->PORT}}', '{{$person->PTEL}}', '{{$person->SOZNR}}', '{{$person->GEBTAG}}', '{{$person->EIN}}', '{{$person->AUS}}', '{{$person->LOHN}}', '{{$person->KONTO}}', '{{$person->BANK}}', '{{$person->URLAUB}}', '{{$person->KRANK}}', '{{$person->MEMO}}')">
@@ -153,7 +153,7 @@
     soz.value = lohn.value = utag.value = ktag.value = '0';
     newpers = true;
     selectpers = false;
-    document.getElementById('vname').focus();
+    document.getElementById('names').focus();
 
     function selectpersonal(pkz ,vnam, nnam, pstr, port, ptel, soznr, gebtag, ein, aus, lo, ko, ba, urlaub, krank, mem)
     {
@@ -352,14 +352,13 @@
                     {
                        table.removeChild(table.firstChild);
                     }
-                    var header = table.createTHead();
 
                     for (var i = 0;i<names.length;i++)
                     {
                         var row = table.insertRow(0);
                         var pkzCell = row.insertCell(0);
                         pkzCell.innerText = names[i]['PKZ'];
-                        var nameCell = row.insertCell(-1);
+                        var nameCell = row.insertCell(1);
                         var name = "";
                         if (names[i]['VNAM'] != null && names[i]['VNAM'] != "")
                             name += names[i]['VNAM'];
@@ -369,7 +368,6 @@
                         var streetCell = row.insertCell(-1);
                         streetCell.innerText = names[i]['PSTR'];
                     }
-                    header.innerHTML = "<tr><th id=\"aid\" >Kürzel</th><th id=\"abez\" >Name</th><th id=\"astr\">Straße</th></tr>";
                     if(document.getElementById('table1').style.display == "none") {
                         document.getElementById('table0').style.display="table";
                         document.getElementById('table1').style.display="table";
@@ -396,14 +394,13 @@
         rows[oldSelectedName].style.backgroundColor = "";
         rows[selectedName].style.backgroundColor = "#D8D8D8";
         rows[selectedName].style.color = "#333332";
-        var name = rows[selectedName].cells[0].innerText;
-        document.getElementById('names').value = name;
+        var kname = rows[selectedName].cells[0].innerText;
+        document.getElementById('names').value = kname;
         var xhr = new XMLHttpRequest();
         (xhr.onreadystatechange = function() {
             if (xhr.readyState == 4) {
                 var names = JSON.parse(xhr.responseText);
-                if (names.length == 1)
-                {
+                    if (names.length == 1) {
                     document.getElementById('kz').value = $id = names[0]['PKZ'];
                     document.getElementById('kz').style.backgroundColor = "#3F3";
 
@@ -422,11 +419,11 @@
                     document.getElementById('utag').value = names[0]['URLAUB'];
                     document.getElementById('ktag').value = names[0]['KRANK'];
                     document.getElementById('memo').value = names[0]['MEMO'];
-                }
+                    }
             }
         })
-        xhr.open('GET', '/api/searchName?name=' + name, true);
-        xhr.send();
+        xhr.open('GET', '/api/searchKName?kname=' + kname, true);
+        xhr.send(null);
     }
 
     var check = 0;

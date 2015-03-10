@@ -61,7 +61,9 @@ Route::resource('/Fahrer','FahrerController');
 Route::group(['prefix' => '/api'], function() {
     Route::get('searchNumber','APIController@searchNumber');
     Route::get('searchName','APIController@searchName');
+    Route::get('searchKName','APIController@searchKName');
     Route::get('getArtikel','APIController@getArtikel');
+    Route::get('searchyear','APIController@searchYear');
     Route::get('getLastBillNumber','APIController@getLastBillnumber');
     Route::get('getOrdersPerYear','APIController@getOrdersPerYear');
     Route::get('getLastOrder','APIController@getLastOrder');

@@ -12,6 +12,12 @@ class ApiController extends BaseController {
         $name = '%'.Input::get('name').'%';
         return Response::json(xpersonal::where('VNAM','like',$name)->get());
     }
+    function searchKName()
+    {
+        $kname = '%'.Input::get('kname').'%';
+        return Response::json(xpersonal::where('PKZ','like',$kname)->get());
+    }
+
     function getArtikel()
     {
         $artikel = Input::get('artikel');
@@ -20,7 +26,7 @@ class ApiController extends BaseController {
     function searchYear()
     {
         $year = '%'.Input::get('year').'%';
-        return DB::table('xview')->where('JJJJ',$year)->get();
+        return Response::json(xview::where('JJJJ',$year)->get());
     }
     function getLastBillNumber()
     {

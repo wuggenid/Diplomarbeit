@@ -70,19 +70,6 @@
                         document.getElementById('table1').style.display="none";
                         document.getElementById('aufks').className = "glyphicon glyphicon-chevron-down";
                         }
-
-                      var table = cell.parentNode;
-                      while (table && (table.nodeName != 'TABLE')) {
-                        table = table.parentNode;
-                      }
-
-                      if (table) {
-                        var tbody = table.getElementsByTagName('tbody')[0];
-
-                        if (tbody) {
-                          tbody.style.display = (tbody.style.display == 'none') ? 'table-row-group' : 'none'
-                        }
-                      }
                     }
                 </script>
 
@@ -90,7 +77,6 @@
                     <table  width="100%" class="table1" id="table1" style="display: none;">
                         <thead style="display: table-header-group;">
                             <tr>
-                                <th id="toggA" onclick="toggle(this);" style="display: none;"><b>Aufklappen</b></th>
                                 <th id="toggT">Telefon</th>
                                 <th id="toggN">Name</th>
                                 <th id="toggS">Straße</th>
@@ -322,7 +308,7 @@
                                 var streetCell = row.insertCell(-1);
                                 streetCell.innerText = numbers[i]['STR'];
                             }
-                            header.innerHTML = "<tr><th id=\"toggA\" onclick=\"toggle(this);\" style=\" display: none;\"><b>Aufklappen</b></th><th id=\"toggT\" >Telefon</th><th id=\"toggN\" >Name</th><th id=\"toggS\">Straße</th></tr>";
+                            header.innerHTML = "<tr></th><th id=\"toggT\" >Telefon</th><th id=\"toggN\" >Name</th><th id=\"toggS\">Straße</th></tr>";
                             if(document.getElementById('table1').style.display == "none") {
                                 document.getElementById('table1').style.display="table";
                                 document.getElementById('aufks').className = "glyphicon glyphicon-chevron-up";
