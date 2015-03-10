@@ -7,6 +7,11 @@ class ApiController extends BaseController {
         $number = '%'.Input::get('number').'%';
         return Response::json(xadress::where('TEL','like',$number)->get());
     }
+    function searchName()
+    {
+        $name = '%'.Input::get('name').'%';
+        return Response::json(xpersonal::where('VNAM','like',$name)->get());
+    }
     function getArtikel()
     {
         $artikel = Input::get('artikel');
