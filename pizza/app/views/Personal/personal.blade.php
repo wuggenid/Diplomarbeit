@@ -370,12 +370,17 @@
                                 nameCell.innerText = name;
                                 var streetCell = row.insertCell(-1);
                                 streetCell.innerText = names[i]['PSTR'];
-
                                 row.className = "tablerow";
-                                row.onclick = function select() {
-                                    selectpersonal();
-                                }
+
+                                var rows = document.getElementById('table1').getElementsByTagName('tbody')[0].getElementsByTagName('tr');
+                                for (i = 0; i < rows.length; i++) {
+                                        rows[i].onclick = function() {
+                                            changeSelectedName(this.rowIndex);
+                                        }
+                                    }
+
                             }
+
 
 
                             header.innerHTML = "<tr></th><th id=\"toggT\" >Kürzel</th><th id=\"toggN\" >Name</th><th id=\"toggS\">Straße</th></tr>";
