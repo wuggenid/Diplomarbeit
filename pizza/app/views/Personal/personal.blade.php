@@ -344,6 +344,8 @@
                             document.getElementById('utag').value = names[0]['URLAUB'];
                             document.getElementById('ktag').value = names[0]['KRANK'];
                             document.getElementById('memo').value = names[0]['MEMO'];
+                            newpers = false;
+                            selectpers = true;
                         }
                         if (names.length<15)
                         {
@@ -368,7 +370,14 @@
                                 nameCell.innerText = name;
                                 var streetCell = row.insertCell(-1);
                                 streetCell.innerText = names[i]['PSTR'];
+
+                                row.className = "tablerow";
+                                row.onclick = function select() {
+                                    selectpersonal();
+                                }
                             }
+
+
                             header.innerHTML = "<tr></th><th id=\"toggT\" >Kürzel</th><th id=\"toggN\" >Name</th><th id=\"toggS\">Straße</th></tr>";
                             if(document.getElementById('table1').style.display == "none") {
                                 document.getElementById('table1').style.display="table";
@@ -424,6 +433,8 @@
                         document.getElementById('utag').value = names[0]['URLAUB'];
                         document.getElementById('ktag').value = names[0]['KRANK'];
                         document.getElementById('memo').value = names[0]['MEMO'];
+                        newpers = false;
+                        selectpers = true;
                     }
                 }
             })
@@ -463,6 +474,8 @@
                                 //document.getElementById('table0').style.display="none";
                                 document.getElementById('table1').style.display="none";
                                 document.getElementById('aufks').className = "glyphicon glyphicon-chevron-down";
+                                newpers = false;
+                                selectpers = true;
                                 document.getElementById('vname').focus();
                             }
                         }

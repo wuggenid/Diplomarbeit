@@ -76,7 +76,7 @@ class PersonalController extends \BaseController {
         }
 
         else {
-            return Redirect::to('/Personal')->with('alert', 'Personal konnte nicht gespeichert werden, da die Personalnummer bereits vergeben bzw. nicht korrekt ist!');
+            return Redirect::to('/Personal')->with('alert', 'Personal konnte nicht gespeichert werden, da das Personalkürzel bereits vergeben bzw. nicht korrekt ist!');
         }
 	}
 
@@ -157,7 +157,7 @@ class PersonalController extends \BaseController {
             return Redirect::to('/Personal')->with('alert', 'Personal wurde gespeichert!');
         }
         else
-            return Redirect::to('/Personal')->with('alert', 'Personal konnte nicht gespeichert werden, da die Personalnummer bereits vergeben bzw. nicht korrekt ist!');
+            return Redirect::to('/Personal')->with('alert', 'Personal konnte nicht gespeichert werden, da das Personalkürzel bereits vergeben bzw. nicht korrekt ist!');
 	}
 
 
