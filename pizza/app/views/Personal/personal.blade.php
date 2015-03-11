@@ -183,10 +183,13 @@
 
     function newpersonal()
     {
-        kz.value = vname.value = nname.value = add.value = ort.value = tel.value = geb.value = edat.value = adat.value = konto.value = bank.value = memo.value = '';
+        names.value = kz.value = vname.value = nname.value = add.value = ort.value = tel.value = geb.value = edat.value = adat.value = konto.value = bank.value = memo.value = '';
         soz.value = lohn.value = utag.value = ktag.value = '0';
         newpers = true;
         selectpers = false;
+        document.getElementById('kz').style.backgroundColor = "#FFF";
+        document.getElementById('table1').style.display="none";
+        document.getElementById('aufks').className = "glyphicon glyphicon-chevron-down";
         document.getElementById('vname').focus();
     }
 
@@ -378,12 +381,9 @@
                                             changeSelectedName(this.rowIndex);
                                         }
                                     }
-
                             }
 
-
-
-                            header.innerHTML = "<tr></th><th id=\"toggT\" >Kürzel</th><th id=\"toggN\" >Name</th><th id=\"toggS\">Straße</th></tr>";
+                            header.innerHTML = "<tr><th id=\"toggT\" >Kürzel</th><th id=\"toggN\" >Name</th><th id=\"toggS\">Straße</th></tr>";
                             if(document.getElementById('table1').style.display == "none") {
                                 document.getElementById('table1').style.display="table";
                                 //document.getElementById('table0').style.display="table";
