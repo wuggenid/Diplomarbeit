@@ -53,4 +53,9 @@ class ApiController extends BaseController {
             return;
         }
     }
+    function getNumberCount()
+    {
+        $number = Input::get('number');
+        return Response::json(xadress::where('TEL','=',$number)->count());
+    }
 }

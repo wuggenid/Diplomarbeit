@@ -328,8 +328,8 @@
                     var xhr = new XMLHttpRequest();
                     (xhr.onreadystatechange = function() {
                         if (xhr.readyState == 4) {
-                            var numbers = JSON.parse(xhr.responseText);
-                            if (numbers.length>0)
+                            var numbers = xhr.responseText;
+                            if (numbers!=0)
                                 alert("Kunde bereits vorhanden!\nZum bearbeiten eines Kunden benutzen Sie bitte die \"Kunde speichern\" Funktion!");
                             else
                             {
@@ -354,7 +354,7 @@
                             }
                         }
                     })
-                    xhr.open('GET', '/api/searchNumber?number=' + number, true);
+                    xhr.open('GET', '/api/getNumberCount?number=' + number, true);
                     xhr.send(null);
                 }
             }

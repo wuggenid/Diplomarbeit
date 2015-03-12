@@ -67,4 +67,5 @@ Route::group(['prefix' => '/api'], function() {
     Route::get('getLastBillNumber','APIController@getLastBillnumber');
     Route::get('getOrdersPerYear','APIController@getOrdersPerYear');
     Route::get('getLastOrder','APIController@getLastOrder');
+    Route::get('getNumberCount','APIController@getNumberCount');
 });
