@@ -6,7 +6,7 @@
 
 <select id="fahrer" size="10" style="float: right; width: 10em;">
     @foreach($personal as $person)
-        <option>{{$person['VNAM']." ".$person['NNAM']}}</option>
+        <option>{{$person['VNAM']." ".$person['NNAM']." ".$person['PKZ']}}</option>
     @endforeach
 </select>
 <table class="table table-striped table-bordered">
@@ -22,15 +22,17 @@
         </tr>
     </thead>
     <tbody>
+    @foreach($ohneFahrer as $key => $of)
         <tr>
-            <th><input type="text" id="rnr"/></th>
-            <th><input type="text" id="rdate"/></th>
-            <th><input type="text" id="rtime"/></th>
-            <th><input type="text" id="tel"/></th>
-            <th><input type="text" id="rsum"/></th>
-            <th><input type="text" id="driverid"/></th>
-            <th><input type="text" id="driver"/></th>
+            <th><input type="text" class="rnr" value="{{$of->RNR}}" disabled/></th>
+            <th><input type="text" class="rdate" value="{{date('d.m.Y',strtotime($of->RDT))}}" disabled/></th>
+            <th><input type="text" class="rtime" value="{{explode(' ',$of->RZT)[1]}}" disabled/></th>
+            <th><input type="text" class="tel" value="{{$of->TEL}}" disabled/></th>
+            <th><input type="text" class="rsum" value="{{$of->RSU}}" disabled/></th>
+            <th><input type="text" class="driverid" value="{{$of->FAHR}}"/></th>
+            <th><input type="text" class="driver"/></th>
         </tr>
+    @endforeach
     </tbody>
 </table>
 <br /><br /><br /><br /><br />
@@ -39,10 +41,11 @@
     tbody tr th input
     {
         width: 100%;
+        font-weight: normal;
     }
 </style>
 <script language="javascript">
-
+    document.getElementsByClassName('driverid')[0].focus();
 </script>
 
 @stop

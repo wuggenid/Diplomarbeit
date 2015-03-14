@@ -85,6 +85,8 @@ class FahrerController extends \BaseController {
     public function rechnungenZuordnen()
     {
         $personal = xpersonal::all();
-        return View::make('Fahrer.rechnungenZuordnen')->with('personal',$personal);
+        $fahrer = xfahrer::all();
+        $ohneFahrer = DB::select(DB::raw('SELECT * FROM xstamm WHERE FAHR IS NULL'));
+        return View::make('Fahrer.rechnungenZuordnen')->with('personal',$personal)->with('ohneFahrer',$ohneFahrer)->with('fahrer',$fahrer);
     }
 }
