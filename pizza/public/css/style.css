@@ -57,6 +57,14 @@ table {
     cursor: pointer;
 }
 
+.artikeltabelle th, .tablerow td {
+    text-align: left;
+}
+
+.monatsstats tr th input {
+    width: 100%;
+}
+
 
 
 

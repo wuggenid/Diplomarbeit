@@ -9,7 +9,7 @@
 @endif
 
 <h2>Artikel</h2>
-<div style="padding: 5px 30px;">
+<div class="content">
 
     <div style="width:35%; float: left; padding-right: 5%;">
         <ul id="contactform">
@@ -43,48 +43,45 @@
 
     <div style="width:65%; float: right; padding-top: 20px; padding-left: 5%; ">
         <h3>Suchkriterium</h3>
-
-        <table class="scroll" style="width: 100%;">
+        <table class="artikeltabelle" style="width: 100%;">
             <thead>
                 <tr>
-                    <th width="25%" id="aid" style="text-align: left; padding-left: 5%;">Art-Nr</th>
-                    <th id="abez" style="text-align: left;">Bezeichnung</th>
+                    <th width="25%" id="aid" style="padding-left: 5%;">Art-Nr</th>
+                    <th id="abez">Bezeichnung</th>
                 </tr>
             </thead>
         </table>
+
         <table id="artikel" style="height: 300px; width: 100%; overflow-y: auto; display: block;">
             <tbody>
                 @foreach($articles as $key => $article)
                      <tr class="tablerow" onClick="javascript:selectarticle('{{$article->ANR}}','{{$article->A0}}','{{$article->AG}}', '{{$article->CB}}','{{$article->ASS}}', '{{$article->VGS}}')">
-                         <td style="text-align: left; padding-left: 5%;">{{$article->ANR}}</td>
-                         <td style="text-align: left; width: 100%; padding-left: 20%;">{{$article->A0}}</td>
+                         <td style="padding-left: 5%;">{{$article->ANR}}</td>
+                         <td style="width: 100%; padding-left: 20%;">{{$article->A0}}</td>
                      </tr>
                 @endforeach
             </tbody>
         </table>
-
         <table id="artikelgruppe" style="height: 300px; width: 100%; overflow-y: auto; display: none;">
             <tbody>
                 <?php $xag = xag::orderby('AGNR')->get(); ?>
-
                 @foreach($xag as $key => $ag)
                      <tr class="tablerow" id="{{$ag->AGNR}}" onclick="artgru.value = '{{$ag->AGNR}}';">
-                         <td style="text-align: left; padding-left: 5%;">{{$ag->AGNR}}</td>
-                         <td style="text-align: left; width: 100%; padding-left: 23%;">{{$ag->AGBEZ}}</td>
+                         <td style="padding-left: 5%;">{{$ag->AGNR}}</td>
+                         <td style="width: 100%; padding-left: 24%;">{{$ag->AGBEZ}}</td>
                      </tr>
                 @endforeach
             </tbody>
         </table>
-
         <table id="artikelmwst" style="height: 300px; width: 100%; overflow-y: auto; display: none;">
             <tbody >
                  <tr class="tablerow" onclick="mwst.value = '1';">
-                     <td style="text-align: left; padding-left: 5%;"> 1 </td>
-                     <td style="text-align: left; width: 100%; padding-left: 24%;"> 10% </td>
+                     <td style="padding-left: 5%;"> 1 </td>
+                     <td style="width: 100%; padding-left: 24%;"> 10% </td>
                  </tr>
                  <tr class="tablerow"  onclick="mwst.value = '2';" >
-                     <td style="text-align: left; padding-left: 5%;"> 2 </td>
-                     <td style="text-align: left; width: 100%; padding-left: 24%;"> 20% </td>
+                     <td style="padding-left: 5%;"> 2 </td>
+                     <td style="width: 100%; padding-left: 24%;"> 20% </td>
                  </tr>
             </tbody>
         </table>
@@ -95,10 +92,7 @@
 
 <div style="clear: both;">
     <br/><br/>
-    {{-- Form::open(array('url' => "/Artikel/$article->(artnr.value)" , 'method' => 'delete')) --}}
-            <button onclick="javascript:deletearticle()" style="width: 15em;" class="btn btn-lg btn-danger"><span class="glyphicon glyphicon-trash"></span> Artikel löschen </button>
-        {{-- Form::close() --}}
-
+    <button onclick="javascript:deletearticle()" style="width: 15em;" class="btn btn-lg btn-danger"><span class="glyphicon glyphicon-trash"></span> Artikel löschen </button>
     <button onclick="javascript:newarticle()" style="width: 15em;" class="btn btn-lg btn-success"><span class="glyphicon glyphicon-plus"></span> Neuer Artikel </button>
     <a href="/Artikel/Artikelmonatsstatistik"><button style="width: 15em;" class="btn btn-lg btn-warning"><span class="glyphicon glyphicon-stats"></span> Artikelmonatsstatistik</button></a>
     <br/><br/>
@@ -183,9 +177,6 @@
 
         else
             alert("Keinen Artikel ausgewählt");
-
-        //alert(id);
-        //**window.location.href = "{{-- url('/Artikel' . $article->id . 'destroy') --}}";
     }
 
     function savearticle()

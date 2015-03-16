@@ -25,8 +25,8 @@ class ApiController extends BaseController {
     }
     function searchYear()
     {
-        $year = '%'.Input::get('year').'%';
-        return Response::json(xview::where('JJJJ',$year)->get());
+        $year = Input::get('year');
+        return Response::json(xview::where('JJJJ','like',$year)->get());
     }
     function getLastBillNumber()
     {

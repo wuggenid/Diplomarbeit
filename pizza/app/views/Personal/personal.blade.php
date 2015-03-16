@@ -12,40 +12,21 @@
 @endif
 
 <h2>Personalverwaltung</h2>
-<div style="padding: 10px 30px;">
+<div class="content">
 
     <div style="width:65%; float: left; padding: 50px 5%; ">
         <div class="chosen-container chosen-container-multi">
             <label>Personalname:</label>
             <ul style="list-style: none;" class="chosen-choices">
                 <li class="search-field">
-                    <input type="text" id="names" class="default" oninput="javascript:nameInput(this)" onkeydown="javascript:nameKeyPress(this)" /><button type="button" id="aufk" onclick="toggle(this);"/><span id="aufks" class="glyphicon glyphicon-chevron-down"></span>
+                    <input type="text" id="names" class="default" oninput="javascript:nameInput(this)" onkeydown="javascript:nameKeyPress(this)" />
+                    <button type="button" id="aufk" onclick="toggle(this);"/><span id="aufks" class="glyphicon glyphicon-chevron-down"></span>
                 </li>
             </ul>
         </div>
 
-        <!-- <table id="table0" class="scroll" style="width: 100%; display:none;">
-            <thead>
-                <tr>
-                    <th width="25%" id="aid" style="text-align: left; padding-left: 5%;">Kürzel</th>
-                    <th id="abez" style="text-align: left;">Name</th>
-                    <th id="astr" style="text-align: left;">Straße</th>
-                </tr>
-            </thead>
-        </table>
-        -->
         <table id="table1" style="max-height: 300px; width: 100%; overflow-y: auto; display: none;">
             <tbody class="tablerow">
-                <!--{{--
-                @foreach($personal as $key => $person)
-                     <tr class="tablerow" onClick="javascript:selectpersonal('{{$person->PKZ}}','{{$person->VNAM}}','{{$person->NNAM}}', '{{$person->PSTR}}','{{$person->PORT}}', '{{$person->PTEL}}', '{{$person->SOZNR}}', '{{$person->GEBTAG}}', '{{$person->EIN}}', '{{$person->AUS}}', '{{$person->LOHN}}', '{{$person->KONTO}}', '{{$person->BANK}}', '{{$person->URLAUB}}', '{{$person->KRANK}}', '{{$person->MEMO}}')">
-                         <td style="text-align: left; padding-left: 5%;">{{$person->PKZ}}</td>
-                         <td style="text-align: left; width: 62%; padding-left: 20%;">{{$person->VNAM}} {{$person->NNAM}}</td>
-                         <th style="text-align: left; width: 38%;">{{$person->PSTR}}</th>
-                     </tr>
-                @endforeach
-                --}}
-                -->
             </tbody>
         </table>
     </div>
@@ -302,123 +283,29 @@
 
     //Tabelle aus- und einklappen
     function toggle(cell) {
-
-      if(document.getElementById('table1').style.display == "none") {
-        //document.getElementById('table0').style.display="table";
-        document.getElementById('table1').style.display="table";
-        document.getElementById('aufks').className = "glyphicon glyphicon-chevron-up";
-        }
-      else {
-        //document.getElementById('table0').style.display="none";
-        document.getElementById('table1').style.display="none";
-        document.getElementById('aufks').className = "glyphicon glyphicon-chevron-down";
+        if(document.getElementById('table1').style.display == "none") {
+            document.getElementById('table1').style.display="table";
+            document.getElementById('aufks').className = "glyphicon glyphicon-chevron-up";
         }
 
+        else {
+            document.getElementById('table1').style.display="none";
+            document.getElementById('aufks').className = "glyphicon glyphicon-chevron-down";
+        }
     }
 
 
-        function nameInput()
-        {
-            check = 0;
-            selectedName = 1;
-            document.getElementById('names').style.backgroundColor = "white";
-            var name = document.getElementById('names').value;
-                var xhr = new XMLHttpRequest();
-                (xhr.onreadystatechange = function() {
-                    if (xhr.readyState == 4) {
-                        var names = JSON.parse(xhr.responseText);
-                        if (names.length <= 1)
-                        {
-                            document.getElementById('kz').value = $id = names[0]['PKZ'];
-                            document.getElementById('kz').style.backgroundColor = "#3F3";
-
-                            document.getElementById('vname').value = names[0]['VNAM'];
-                            document.getElementById('nname').value = names[0]['NNAM'];
-                            document.getElementById('add').value = names[0]['PSTR'];
-                            document.getElementById('ort').value = names[0]['PORT'];
-                            document.getElementById('tel').value = names[0]['PTEL'];
-                            document.getElementById('soz').value = names[0]['SOZNR'];
-                            document.getElementById('geb').value = names[0]['GEBTAG'];
-                            document.getElementById('edat').value = names[0]['EIN'];
-                            document.getElementById('adat').value = names[0]['AUS'];
-                            document.getElementById('lohn').value = names[0]['LOHN'];
-                            document.getElementById('konto').value = names[0]['KONTO'];
-                            document.getElementById('bank').value = names[0]['BANK'];
-                            document.getElementById('utag').value = names[0]['URLAUB'];
-                            document.getElementById('ktag').value = names[0]['KRANK'];
-                            document.getElementById('memo').value = names[0]['MEMO'];
-                            newpers = false;
-                            selectpers = true;
-                        }
-                        if (names.length<15)
-                        {
-                            var table = document.getElementById('table1');
-                            while(table.hasChildNodes())
-                            {
-                               table.removeChild(table.firstChild);
-                            }
-                            var header = table.createTHead();
-
-                            for (var i = 0;i<names.length;i++)
-                            {
-                                var row = table.insertRow(0);
-                                var pkzCell = row.insertCell(0);
-                                pkzCell.innerText = names[i]['PKZ'];
-                                var nameCell = row.insertCell(-1);
-                                var name = "";
-                                if (names[i]['VNAM'] != null && names[i]['VNAM'] != "")
-                                    name += names[i]['VNAM'];
-                                if (names[i]['NNAM'] != null && names[i]['NNAM'] != "")
-                                    name += " " + names[i]['NNAM'];
-                                nameCell.innerText = name;
-                                var streetCell = row.insertCell(-1);
-                                streetCell.innerText = names[i]['PSTR'];
-                                row.className = "tablerow";
-
-                                var rows = document.getElementById('table1').getElementsByTagName('tbody')[0].getElementsByTagName('tr');
-                                for (i = 0; i < rows.length; i++) {
-                                        rows[i].onclick = function() {
-                                            changeSelectedName(this.rowIndex);
-                                        }
-                                    }
-                            }
-
-                            header.innerHTML = "<tr><th id=\"toggT\" >Kürzel</th><th id=\"toggN\" >Name</th><th id=\"toggS\">Straße</th></tr>";
-                            if(document.getElementById('table1').style.display == "none") {
-                                document.getElementById('table1').style.display="table";
-                                //document.getElementById('table0').style.display="table";
-                                document.getElementById('aufks').className = "glyphicon glyphicon-chevron-up";
-                            }
-                        }
-                    }
-                })
-                xhr.open('GET', '/api/searchName?name=' + name, true);
-                xhr.send(null);
-
-
-        }
-        var selectedName = 1;
-        function changeSelectedName(cselectedName)
-        {
-            var oldSelectedName = selectedName;
-            selectedName = cselectedName;
-            var table = document.getElementById('table1');
-            var rows = table.rows;
-            if (selectedName > rows.length-1)
-                selectedName--;
-            if (selectedName < 1)
-                selectedName++;
-            rows[oldSelectedName].style.backgroundColor = "";
-            rows[selectedName].style.backgroundColor = "#D8D8D8";
-            rows[selectedName].style.color = "#333332";
-            var kname = rows[selectedName].cells[0].innerText;
-            var name = rows[selectedName].cells[0].innerText;
-            document.getElementById('names').value = kname;
+    function nameInput()
+    {
+        check = 0;
+        selectedName = 1;
+        document.getElementById('names').style.backgroundColor = "white";
+        var name = document.getElementById('names').value;
             var xhr = new XMLHttpRequest();
             (xhr.onreadystatechange = function() {
                 if (xhr.readyState == 4) {
                     var names = JSON.parse(xhr.responseText);
-                    if (names.length == 1)
+                    if (names.length <= 1)
                     {
                         document.getElementById('kz').value = $id = names[0]['PKZ'];
                         document.getElementById('kz').style.backgroundColor = "#3F3";
@@ -441,54 +328,141 @@
                         newpers = false;
                         selectpers = true;
                     }
+                    if (names.length<15)
+                    {
+                        var table = document.getElementById('table1');
+                        while(table.hasChildNodes())
+                        {
+                           table.removeChild(table.firstChild);
+                        }
+                        var header = table.createTHead();
+
+                        for (var i = 0;i<names.length;i++)
+                        {
+                            var row = table.insertRow(0);
+                            var pkzCell = row.insertCell(0);
+                            pkzCell.innerText = names[i]['PKZ'];
+                            var nameCell = row.insertCell(-1);
+                            var name = "";
+                            if (names[i]['VNAM'] != null && names[i]['VNAM'] != "")
+                                name += names[i]['VNAM'];
+                            if (names[i]['NNAM'] != null && names[i]['NNAM'] != "")
+                                name += " " + names[i]['NNAM'];
+                            nameCell.innerText = name;
+                            var streetCell = row.insertCell(-1);
+                            streetCell.innerText = names[i]['PSTR'];
+                            row.className = "tablerow";
+
+                            var rows = document.getElementById('table1').getElementsByTagName('tbody')[0].getElementsByTagName('tr');
+                            for (i = 0; i < rows.length; i++) {
+                                    rows[i].onclick = function() {
+                                        changeSelectedName(this.rowIndex);
+                                    }
+                                }
+                        }
+
+                        header.innerHTML = "<tr><th id=\"toggT\" >Kürzel</th><th id=\"toggN\" >Name</th><th id=\"toggS\">Straße</th></tr>";
+                        if(document.getElementById('table1').style.display == "none") {
+                            document.getElementById('table1').style.display="table";
+                            document.getElementById('aufks').className = "glyphicon glyphicon-chevron-up";
+                        }
+                    }
                 }
             })
-            xhr.open('GET', '/api/searchKName?kname=' + kname, true);
-            xhr.send();
-        }
+            xhr.open('GET', '/api/searchName?name=' + name, true);
+            xhr.send(null);
+    }
 
-        var check = 0;
-        function nameKeyPress(e)
-        {
-            if (event.keyCode == 40)
-            {
-                if(check == 0) {
-                    changeSelectedName(selectedName);
-                    check = 1;
+    var selectedName = 1;
+    function changeSelectedName(cselectedName)
+    {
+        var oldSelectedName = selectedName;
+        selectedName = cselectedName;
+        var table = document.getElementById('table1');
+        var rows = table.rows;
+        if (selectedName > rows.length-1)
+            selectedName--;
+        if (selectedName < 1)
+            selectedName++;
+        rows[oldSelectedName].style.backgroundColor = "";
+        rows[selectedName].style.backgroundColor = "#D8D8D8";
+        rows[selectedName].style.color = "#333332";
+        var kname = rows[selectedName].cells[0].innerText;
+        document.getElementById('names').value = kname;
+        var xhr = new XMLHttpRequest();
+        (xhr.onreadystatechange = function() {
+            if (xhr.readyState == 4) {
+                var names = JSON.parse(xhr.responseText);
+                if (names.length == 1)
+                {
+                    document.getElementById('kz').value = $id = names[0]['PKZ'];
+                    document.getElementById('kz').style.backgroundColor = "#3F3";
+
+                    document.getElementById('vname').value = names[0]['VNAM'];
+                    document.getElementById('nname').value = names[0]['NNAM'];
+                    document.getElementById('add').value = names[0]['PSTR'];
+                    document.getElementById('ort').value = names[0]['PORT'];
+                    document.getElementById('tel').value = names[0]['PTEL'];
+                    document.getElementById('soz').value = names[0]['SOZNR'];
+                    document.getElementById('geb').value = names[0]['GEBTAG'];
+                    document.getElementById('edat').value = names[0]['EIN'];
+                    document.getElementById('adat').value = names[0]['AUS'];
+                    document.getElementById('lohn').value = names[0]['LOHN'];
+                    document.getElementById('konto').value = names[0]['KONTO'];
+                    document.getElementById('bank').value = names[0]['BANK'];
+                    document.getElementById('utag').value = names[0]['URLAUB'];
+                    document.getElementById('ktag').value = names[0]['KRANK'];
+                    document.getElementById('memo').value = names[0]['MEMO'];
+                    newpers = false;
+                    selectpers = true;
                 }
-                else
-                    changeSelectedName(selectedName+1);
             }
-            else if (event.keyCode == 38)
-            {
-                changeSelectedName(selectedName-1);
+        })
+        xhr.open('GET', '/api/searchKName?kname=' + kname, true);
+        xhr.send();
+    }
+
+    var check = 0;
+    function nameKeyPress(e)
+    {
+        if (event.keyCode == 40)
+        {
+            if(check == 0) {
+                changeSelectedName(selectedName);
+                check = 1;
             }
-            var kname = document.getElementById('names').value;
-            if (event.keyCode == 13)
-            {
-                var xhr = new XMLHttpRequest();
-                    (xhr.onreadystatechange = function() {
-                        if (xhr.readyState == 4) {
-                            var names = JSON.parse(xhr.responseText);
-                            if (names.length == 0)
-                            {
-                                alert("Personal nicht gefunden!");
-                            }
-                            else if (names.length == 1)
-                            {
-                                //document.getElementById('table0').style.display="none";
-                                document.getElementById('table1').style.display="none";
-                                document.getElementById('aufks').className = "glyphicon glyphicon-chevron-down";
-                                newpers = false;
-                                selectpers = true;
-                                document.getElementById('vname').focus();
-                            }
-                        }
-                    })
-                    xhr.open('GET', '/api/searchKName?kname=' + kname, true);
-                    xhr.send(null);
-            }
+            else
+                changeSelectedName(selectedName+1);
         }
+        else if (event.keyCode == 38)
+        {
+            changeSelectedName(selectedName-1);
+        }
+        var kname = document.getElementById('names').value;
+        if (event.keyCode == 13)
+        {
+            var xhr = new XMLHttpRequest();
+                (xhr.onreadystatechange = function() {
+                    if (xhr.readyState == 4) {
+                        var names = JSON.parse(xhr.responseText);
+                        if (names.length == 0)
+                        {
+                            alert("Personal nicht gefunden!");
+                        }
+                        else if (names.length == 1)
+                        {
+                            document.getElementById('table1').style.display="none";
+                            document.getElementById('aufks').className = "glyphicon glyphicon-chevron-down";
+                            newpers = false;
+                            selectpers = true;
+                            document.getElementById('vname').focus();
+                        }
+                    }
+                })
+                xhr.open('GET', '/api/searchKName?kname=' + kname, true);
+                xhr.send(null);
+        }
+    }
 
 
 </script>

@@ -9,7 +9,7 @@
 @endif
 
 <h2>Artikelgruppenverwaltung</h2>
-<div style="padding: 5px 30px;">
+<div class="content">
 
     <div style="width:35%; float: left; padding: 10% 5% 0 0;">
         <ul id="contactform">
@@ -27,28 +27,26 @@
 
     <div style="width:65%; float: right; padding-top: 20px; padding-left: 5%; ">
         <h3>Suchkriterium</h3>
-
-        <table class="scroll" style="width: 100%;">
+        <table class="artikeltabelle" style="width: 100%;">
             <thead>
                 <tr>
-                    <th width="25%" id="aid" style="text-align: left; padding-left: 5%;">Gruppen-Nr</th>
-                    <th id="abez" style="text-align: left;">Gruppenbezeichnung</th>
+                    <th width="25%" id="aid" style="padding-left: 5%;">Gruppen-Nr</th>
+                    <th id="abez">Gruppenbezeichnung</th>
                 </tr>
             </thead>
         </table>
+
         <table id="artikelgruppe" style="height: 300px; width: 100%; overflow-y: auto;">
             <tbody>
                 <?php $xag = xag::orderby('AGNR')->get(); ?>
-
                 @foreach($xag as $key => $ag)
                      <tr class="tablerow" id="{{$ag->AGNR}}" onclick="javascript:selectarticle('{{$ag->AGNR}}','{{$ag->AGBEZ}}')">
-                         <td style="text-align: left; padding-left: 5%;">{{$ag->AGNR}}</td>
-                         <td style="text-align: left; width: 100%; padding-left: 23%;">{{$ag->AGBEZ}}</td>
+                         <td style="padding-left: 5%;">{{$ag->AGNR}}</td>
+                         <td style="width: 100%; padding-left: 23%;">{{$ag->AGBEZ}}</td>
                      </tr>
                 @endforeach
             </tbody>
         </table>
-
     </div>
 </div>
 
@@ -58,7 +56,6 @@
     <br/><br/>
     <button style="width: 15em;" onclick="javascript:deletearticle()" class="btn btn-lg btn-danger"><span class="glyphicon glyphicon-trash"></span> Artikelgruppe löschen </button>
     <button style="width: 15em;" onclick="javascript:newarticle()" class="btn btn-lg btn-success"><span class="glyphicon glyphicon-plus"></span> Neue Artikelgruppe </button>
-
     <button style="width: 15em;" class="btn btn-lg btn-warning"><span class="glyphicon glyphicon-print"></span> Artikelgruppenliste drucken</button>
     <br/><br/>
     <a href="/"><button style="width: 15em;" class="btn btn-lg btn-danger"><span class="glyphicon glyphicon-chevron-left"></span> Zurück</button></a>
@@ -114,9 +111,6 @@
 
         else
             alert("Keine Artikelgruppe ausgewählt");
-
-        //alert(id);
-        //**window.location.href = "{{-- url('/Artikel' . $article->id . 'destroy') --}}";
     }
 
     function savearticle()
