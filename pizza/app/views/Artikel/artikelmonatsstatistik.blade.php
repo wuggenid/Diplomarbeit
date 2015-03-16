@@ -71,44 +71,44 @@
                             var yearCell = row.insertCell(1);
                             yearCell.innerText = years[i]['JJJJ'];
 
-                            var janCell = row.insertCell(1);
+                            var janCell = row.insertCell(2);
                             janCell.innerText = years[i]['M01'];
 
-                            var febCell = row.insertCell(1);
+                            var febCell = row.insertCell(3);
                             febCell.innerText = years[i]['M02'];
 
-                            var marCell = row.insertCell(1);
+                            var marCell = row.insertCell(4);
                             marCell.innerText = years[i]['M03'];
 
-                            var aprCell = row.insertCell(1);
+                            var aprCell = row.insertCell(5);
                             aprCell.innerText = years[i]['M04'];
 
-                            var maiCell = row.insertCell(1);
+                            var maiCell = row.insertCell(6);
                             maiCell.innerText = years[i]['M05'];
 
-                            var junCell = row.insertCell(1);
+                            var junCell = row.insertCell(7);
                             junCell.innerText = years[i]['M06'];
 
-                            var julCell = row.insertCell(1);
+                            var julCell = row.insertCell(8);
                             julCell.innerText = years[i]['M07'];
 
-                            var augCell = row.insertCell(1);
+                            var augCell = row.insertCell(9);
                             augCell.innerText = years[i]['M08'];
 
-                            var sepCell = row.insertCell(1);
+                            var sepCell = row.insertCell(10);
                             sepCell.innerText = years[i]['M09'];
 
-                            var oktCell = row.insertCell(1);
+                            var oktCell = row.insertCell(11);
                             oktCell.innerText = years[i]['M10'];
 
-                            var novCell = row.insertCell(1);
+                            var novCell = row.insertCell(12);
                             novCell.innerText = years[i]['M11'];
 
-                            var dezCell = row.insertCell(1);
+                            var dezCell = row.insertCell(13);
                             dezCell.innerText = years[i]['M12'];
 
-                            var sumCell = row.insertCell(1);
-                            sumCell.innerText = "Summe";
+                            var sumCell = row.insertCell(14);
+                            sumCell.innerText = years[i]['MSU'];
 
                             row.className = "tablerow";
                         }
