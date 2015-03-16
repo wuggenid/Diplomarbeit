@@ -21,12 +21,12 @@ class ApiController extends BaseController {
     function getArtikel()
     {
         $artikel = Input::get('artikel');
-        return Response::json(xartikel::where('ANR',$artikel)->get());
+        return Response::json(xartikel::where('ANR','=',$artikel)->get());
     }
     function searchYear()
     {
         $year = Input::get('year');
-        return Response::json(xview::where('JJJJ','like',$year)->get());
+        return Response::json(xview::where('JJJJ','=',$year)->get());
     }
     function getLastBillNumber()
     {

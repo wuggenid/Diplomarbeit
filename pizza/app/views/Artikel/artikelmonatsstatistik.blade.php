@@ -45,7 +45,6 @@
             (xhr.onreadystatechange = function() {
                 if (xhr.readyState == 4) {
                     var years = JSON.parse(xhr.responseText);
-                    alert(years.length);
                     if (years.length == 1)
                         document.getElementById('year').style.backgroundColor = "#3F3";
 
@@ -65,9 +64,19 @@
                         {
                             var row = table.insertRow(0);
 
-                            var artCell = row.insertCell(0);
-                            artCell.innerText = years[i]['ANR'];
 
+                            var artCell = row.insertCell(0);
+
+                            /*var annr = years[i]['ANR'];
+                            var artik = "";
+                            findartikel(annr, function(nam) {
+                                artik = nam;
+                                artCell.innerText = artik;
+                                });
+                                */
+
+                            artCell.innerText = years[i]['ANR'];
+                            
                             var yearCell = row.insertCell(1);
                             yearCell.innerText = years[i]['JJJJ'];
 
@@ -120,8 +129,24 @@
             })
             xhr.open('GET', '/api/searchYear?year=' + year, true);
             xhr.send(null);
-
         }
+    }
+
+    function findartikel(anr, callback)
+    {
+        var xhr = new XMLHttpRequest();
+        (xhr.onreadystatechange = function() {
+            if (xhr.readyState == 4) {
+                var art = JSON.parse(xhr.responseText);
+                if (art.length == 1) {
+                    var artikelname = art[0]['A0'];
+                    callback(artikelname);
+                    }
+            }
+
+        })
+        xhr.open('GET', '/api/getArtikel?artikel=' + anr, true);
+        xhr.send(null);
     }
 </script>
 
