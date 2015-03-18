@@ -15,11 +15,11 @@
         <ul id="contactform">
             <li>
                 <label for="name"> Artikelgruppen-Nr </label><br/>
-                <span class="fieldbox"><input type="text" name="artgnr" id="artgnr" value="" /></span>
+                <span class="fieldbox"><input type="text" name="artgnr" id="artgnr" onkeydown="javascript:artikelgKeyPress(this)" value="" /></span>
             </li>
             <li>
                 <label for="email"> Artikelgruppen-Bezeichnung </label><br/>
-                <span class="fieldbox"><input type="text" name="artgrubez" id="artgrubez" value="" /></span>
+                <span class="fieldbox"><input type="text" name="artgrubez" id="artgrubez" onkeydown="javascript:artikelgbKeyPress(this)" value="" /></span>
             </li>
         </ul>
     </div>
@@ -142,6 +142,72 @@
 
         else
             alert("Artikelgruppe konnte nicht gespeichert werden!");
+    }
+
+
+
+
+    var selectedArtikelG = 1;
+    function changeSelectedArtikelG(cselectedArtikelG)
+    {
+        var oldSelectedArtikelG = selectedArtikelG;
+        selectedArtikelG = cselectedArtikelG;
+        var table = document.getElementById('artikelgruppe');
+        var rows = table.rows;
+        if (selectedArtikelG > rows.length)
+            selectedArtikelG--;
+        if (selectedArtikelG < 1)
+            selectedArtikelG++;
+        rows[oldSelectedArtikelG-1].style.backgroundColor = "";
+        rows[selectedArtikelG-1].style.backgroundColor = "#D8D8D8";
+        var agid = rows[selectedArtikelG-1].cells[0].innerText;
+        var xhr = new XMLHttpRequest();
+        (xhr.onreadystatechange = function() {
+            if (xhr.readyState == 4) {
+                var articles = JSON.parse(xhr.responseText);
+                if (articles.length == 1)
+                    selectarticle(articles[0]['AGNR'] ,articles[0]['AGBEZ']);
+            }
+        })
+        xhr.open('GET', '/api/getArtikelG?artikelg=' + agid, true);
+        xhr.send();
+    }
+
+    var check = 0;
+    function artikelgKeyPress(e)
+    {
+        if (event.keyCode == 40)
+        {
+            if(check == 0) {
+                changeSelectedArtikelG(selectedArtikelG);
+                check = 1; }
+            else
+                changeSelectedArtikelG(selectedArtikelG+1);
+        }
+        else if (event.keyCode == 38)
+            changeSelectedArtikelG(selectedArtikelG-1);
+
+        if (event.keyCode == 13)
+        {
+            artgrubez.focus();
+        }
+    }
+
+    function artikelgbKeyPress(e)
+    {
+        if (event.keyCode == 40)
+        {
+            if(check == 0) {
+                changeSelectedArtikelG(selectedArtikelG);
+                check = 1; }
+            else
+                changeSelectedArtikelG(selectedArtikelG+1);
+        }
+        else if (event.keyCode == 38)
+            changeSelectedArtikelG(selectedArtikelG-1);
+
+        if (event.keyCode == 13)
+            savearticle();
     }
 
 </script>

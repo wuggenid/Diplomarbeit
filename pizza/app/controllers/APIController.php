@@ -23,6 +23,11 @@ class ApiController extends BaseController {
         $artikel = Input::get('artikel');
         return Response::json(xartikel::where('ANR','=',$artikel)->get());
     }
+    function getArtikelG()
+    {
+        $artikelg = Input::get('artikelg');
+        return Response::json(xag::where('AGNR','=',$artikelg)->get());
+    }
     function searchYear()
     {
         $year = Input::get('year');
