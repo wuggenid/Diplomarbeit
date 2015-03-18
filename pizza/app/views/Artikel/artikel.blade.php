@@ -15,23 +15,23 @@
         <ul id="contactform">
             <li>
                 <label for="name"> Artikel-Nr </label><br/>
-                <span class="fieldbox"><input onfocus="javascript:sartikel()" type="text" name="artnr" id="artnr" value="" /></span>
+                <span class="fieldbox"><input onfocus="javascript:sartikel()" onkeydown="javascript:artikelKeyPress(this)" type="text" name="artnr" id="artnr" value="" /></span>
             </li>
             <li>
                 <label for="name"> Artikel-Bezeichnung </label><br/>
-                <span class="fieldbox"><input onfocus="javascript:sartikel()" type="text" name="artbez" id="artbez" value="" /></span>
+                <span class="fieldbox"><input onfocus="javascript:sartikel()" onkeydown="if(event.keyCode == 13) artgru.focus();" onkeydown="javascript:artikelKeyPress(this)" type="text" name="artbez" id="artbez" value="" /></span>
             </li>
             <li>
                 <label for="email"> Artikel-Gruppe </label><br/>
-                <span class="fieldbox"><input onfocus="javascript:sgroup()" type="text" name="artgru" id="artgru" value="" /></span>
+                <span class="fieldbox"><input onfocus="javascript:sgroup()" onkeydown="javascript:artikelgKeyPress(this)" type="text" name="artgru" id="artgru" value="" /></span>
             </li>
             <li>
                 <label for="contact"> Einzelpreis (inkl. Mwst.) </label><br/>
-                <span class="fieldbox"><input type="text" name="epreis" id="epreis" value="" /></span>
+                <span class="fieldbox"><input type="text" onkeydown="if(event.keyCode == 13) mwst.focus();" name="epreis" id="epreis" value="" /></span>
             </li>
             <li>
                 <label for="contact"> Mwst. </label><br/>
-                <span class="fieldbox"><input onfocus="javascript:smwst()" type="text" name="mwst" id="mwst" value="" /></span>
+                <span class="fieldbox"><input onfocus="javascript:smwst()" onkeydown="javascript:artikelmKeyPress(this)" type="text" name="mwst" id="mwst" value="" /></span>
             </li>
             <li>
                 <label for="msg"> Verkaufsmenge (gesamt) </label><br/>
@@ -226,6 +226,128 @@
         else
             alert("Artikel konnte nicht gespeichert werden!");
     }
+
+
+
+    var selectedArtikel = 1;
+    function changeSelectedArtikel(cselectedArtikel)
+    {
+        var oldSelectedArtikel = selectedArtikel;
+        selectedArtikel = cselectedArtikel;
+        var table = document.getElementById('artikel');
+        var rows = table.rows;
+        if (selectedArtikel > rows.length)
+            selectedArtikel--;
+        if (selectedArtikel < 1)
+            selectedArtikel++;
+        rows[oldSelectedArtikel-1].style.backgroundColor = "";
+        rows[selectedArtikel-1].style.backgroundColor = "#D8D8D8";
+        var aid = rows[selectedArtikel-1].cells[0].innerText;
+        var xhr = new XMLHttpRequest();
+        (xhr.onreadystatechange = function() {
+            if (xhr.readyState == 4) {
+                var articles = JSON.parse(xhr.responseText);
+                if (articles.length == 1)
+                    selectarticle(articles[0]['ANR'] ,articles[0]['A0'], articles[0]['AG'], articles[0]['CB'], articles[0]['ASS'], articles[0]['VGS']);
+            }
+        })
+        xhr.open('GET', '/api/getArtikel?artikel=' + aid, true);
+        xhr.send();
+    }
+
+    var check = 0;
+    function artikelKeyPress(e)
+    {
+        if (event.keyCode == 40)
+        {
+            if(check == 0) {
+                changeSelectedArtikel(selectedArtikel);
+                check = 1; }
+            else
+                changeSelectedArtikel(selectedArtikel+1);
+        }
+        else if (event.keyCode == 38)
+            changeSelectedArtikel(selectedArtikel-1);
+
+        if (event.keyCode == 13)
+            artbez.focus();
+    }
+
+
+
+
+
+
+    var selectedArtikelG = 1;
+    function changeSelectedArtikelG(cselectedArtikelG)
+    {
+        var oldSelectedArtikelG = selectedArtikelG;
+        selectedArtikelG = cselectedArtikelG;
+        var table = document.getElementById('artikelgruppe');
+        var rows = table.rows;
+        if (selectedArtikelG > rows.length)
+            selectedArtikelG--;
+        if (selectedArtikelG < 1)
+            selectedArtikelG++;
+        rows[oldSelectedArtikelG-1].style.backgroundColor = "";
+        rows[selectedArtikelG-1].style.backgroundColor = "#D8D8D8";
+        artgru.value = rows[selectedArtikelG-1].cells[0].innerText;
+    }
+
+    var checkg = 0;
+    function artikelgKeyPress(e)
+    {
+        if (event.keyCode == 40)
+        {
+            if(checkg == 0) {
+                changeSelectedArtikelG(selectedArtikelG);
+                checkg = 1; }
+            else
+                changeSelectedArtikelG(selectedArtikelG+1);
+        }
+        else if (event.keyCode == 38)
+            changeSelectedArtikelG(selectedArtikelG-1);
+
+        if (event.keyCode == 13)
+            epreis.focus();
+    }
+
+
+
+    var selectedArtikelM = 1;
+    function changeSelectedArtikelM(cselectedArtikelM)
+    {
+        var oldSelectedArtikelM = selectedArtikelM;
+        selectedArtikelM = cselectedArtikelM;
+        var table = document.getElementById('artikelmwst');
+        var rows = table.rows;
+        if (selectedArtikelM > rows.length)
+            selectedArtikelM--;
+        if (selectedArtikelM < 1)
+            selectedArtikelM++;
+        rows[oldSelectedArtikelM-1].style.backgroundColor = "";
+        rows[selectedArtikelM-1].style.backgroundColor = "#D8D8D8";
+        mwst.value = rows[selectedArtikelM-1].cells[0].innerText;
+    }
+    var checkm = 0;
+        function artikelmKeyPress(e)
+        {
+            if (event.keyCode == 40)
+            {
+                if(checkm == 0) {
+                    changeSelectedArtikelM(1);
+                    checkm = 1; }
+                else {
+                    changeSelectedArtikelM(2);
+                    alert("second");
+                    }
+            }
+            else if (event.keyCode == 38)
+                changeSelectedArtikelM(1);
+
+            if (event.keyCode == 13)
+                savearticle();
+        }
 
 </script>
 

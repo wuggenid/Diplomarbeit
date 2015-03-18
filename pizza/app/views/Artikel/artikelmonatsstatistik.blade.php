@@ -3,27 +3,12 @@
 @section('content')
 
 <h2>Artikelmonatsstatistik</h2>
+<label>Jahr</label>
 <input type="text" id="year" class="default" onkeydown="selectyear(event)" />
 
 <table class="table table-striped table-bordered" id="table1">
     <thead>
-        <tr>
-            <th>Artikel</th>
-            <th>Jahr</th>
-            <th>Jän</th>
-            <th>Feb</th>
-            <th>Mär</th>
-            <th>Apr</th>
-            <th>Mai</th>
-            <th>Jun</th>
-            <th>Jul</th>
-            <th>Aug</th>
-            <th>Sep</th>
-            <th>Okt</th>
-            <th>Nov</th>
-            <th>Dez</th>
-            <th style="width: 20%;">Summe</th>
-        </tr>
+
     </thead>
     <tbody class="monatsstats">
     </tbody>
@@ -76,7 +61,7 @@
                                 */
 
                             artCell.innerText = years[i]['ANR'];
-                            
+
                             var yearCell = row.insertCell(1);
                             yearCell.innerText = years[i]['JJJJ'];
 
