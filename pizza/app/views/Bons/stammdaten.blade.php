@@ -11,7 +11,7 @@
 <h2>Bons-Stammdatenverwaltung</h2>
 <div class="content">
 
-    <div style="width:35%; float: left; padding: 10% 5% 0 0;">
+    <div style="width:35%; float: left; padding: 50px 5% 0 0;">
         <ul id="contactform">
             <li>
                 <label for="tel"> Telefon-Nr </label><br/>
@@ -29,7 +29,7 @@
     </div>
 
 
-    <div style="width:65%; float: right; padding-top: 20px; padding-left: 5%; ">
+    <div style="width:65%; float: right; padding-top: 10px; padding-left: 5%; ">
         <h3>Suchkriterium</h3>
         <table class="artikeltabelle" style="width: 100%;">
             <thead>
@@ -40,12 +40,12 @@
             </thead>
         </table>
 
-        <table id="artikelgruppe" style="height: 300px; width: 100%; overflow-y: auto;">
+        <table id="artikelgruppe" style="max-height: 300px; width: 100%; overflow-y: auto;">
             <tbody>
                 @foreach($bons as $key => $bon)
                      <tr class="tablerow" id="{{$bon->TEL}}" onclick="javascript:selectbon('{{$bon->TEL}}','{{$bon->TYP}}','{{$bon->EP}}')">
-                         <td style="padding-left: 5%;">{{$bon->TEL}}</td>
-                         <td style="width: 100%; padding-left: 35%;">{{$bon->TYP}}</td>
+                         <td width="40%" style="padding-left: 5%;">{{$bon->TEL}}</td>
+                         <td style="width: 100%; padding-left: 7%;">{{$bon->TYP}}</td>
                      </tr>
                 @endforeach
             </tbody>
