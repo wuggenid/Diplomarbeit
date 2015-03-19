@@ -9,7 +9,7 @@
         <li><a href="/Artikel"> <button class="btn btn-lg btn-danger vagueDangerButton"> Artikel </button></a></li>
         <li><a href="/Kunden/create"><button class="btn btn-lg btn-success vagueSuccessButton"> Kunden </button></a></li>
         <li><a href="/Lieferanten"><button class="btn btn-lg btn-success vagueSuccessButton"> Lieferanten </button></a></li>
-        <li><button class="btn btn-lg btn-default vagueDefaultButton"> Bons </button></li>
+        <li><a href="/Bons"><button class="btn btn-lg btn-default vagueDefaultButton"> Bons </button></a></li>
     </ul>
 </div>
 

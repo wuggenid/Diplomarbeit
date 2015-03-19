@@ -361,7 +361,7 @@
                                 }
                         }
 
-                        header.innerHTML = "<tr><th id=\"toggT\" >Kürzel</th><th id=\"toggN\" >Name</th><th id=\"toggS\">Straße</th></tr>";
+                        header.innerHTML = "<tr><th style=\"text-align: left;\" id=\"toggT\" >Kürzel</th><th style=\"text-align: left;\" id=\"toggN\" >Name</th><th style=\"text-align: left;\" id=\"toggS\">Straße</th></tr>";
                         if(document.getElementById('table1').style.display == "none") {
                             document.getElementById('table1').style.display="table";
                             document.getElementById('aufks').className = "glyphicon glyphicon-chevron-up";

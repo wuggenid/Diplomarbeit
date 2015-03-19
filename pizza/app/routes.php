@@ -57,6 +57,10 @@ Route::resource('/Lieferanten','LieferantenController');
 Route::get('/Fahrer/rechnungenZuordnen','FahrerController@rechnungenZuordnen');
 Route::resource('/Fahrer','FahrerController');
 
+//Bons
+Route::get('/Bons/Stammdaten', 'BonController@getbons');
+Route::resource('/Bons','BonController');
+
 //API
 Route::group(['prefix' => '/api'], function() {
     Route::get('searchNumber','APIController@searchNumber');
