@@ -131,7 +131,7 @@
             if (elementsToSave[i][0])
             {
                 var xhr = new XMLHttpRequest();
-                xhr.open('GET', '/Fahrer/storeSingleRechnungenZuordnenValue?RNR=' + elementsToSave[i][1] + '&PKZ=' + elementsToSave[i][2], false);
+                xhr.open('GET', '/Fahrer/storeSingleRechnungenZuordnenValue?RNR=' + elementsToSave[i][1] + '&PKZ=' + elementsToSave[i][2], true);
                 xhr.send(null);
             }
         }
