@@ -126,16 +126,24 @@
     }
     function save()
     {
+        document.getElementById('b_button').innerHTML = "<span class=\"glyphicon glyphicon-save\"></span> Bitte warten...";
+
         for (var i = 0;i<elementsToSave.length;i++)
         {
             if (elementsToSave[i][0])
             {
                 var xhr = new XMLHttpRequest();
+                (xhr.onreadystatechange = function()
+                {
+                    if (xhr.readyState == 4)
+                    {
+                        window.location.href = "/";
+                    }
+                })
                 xhr.open('GET', '/Fahrer/storeSingleRechnungenZuordnenValue?RNR=' + elementsToSave[i][1] + '&PKZ=' + elementsToSave[i][2], true);
                 xhr.send(null);
             }
         }
-        window.location.href = "/";
     }
 </script>
 
