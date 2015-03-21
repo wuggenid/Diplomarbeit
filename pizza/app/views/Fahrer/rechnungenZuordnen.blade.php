@@ -37,7 +37,7 @@
 </table>
 <br /><br /><br /><br /><br />
 <a href="/"><button type="button" class="btn btn-lg btn-danger"><span class="glyphicon glyphicon-chevron-left"></span> Zurück</button></a>
-<a id="b_button" href="/"><button type="button" class="btn btn-lg btn-success"><span class="glyphicon glyphicon-save"></span> Bestätigen</button></a>
+<button id="b_button" type="button" class="btn btn-lg btn-success" onclick="javascript:save()"><span class="glyphicon glyphicon-save"></span> Bestätigen</button>
 <style type="text/css">
     tbody tr th input
     {
@@ -49,6 +49,8 @@
     document.getElementsByClassName('driverid')[0].focus();
     $('.driverid').keydown(function(e)
     {
+        if (e.which == 27)
+            $('#b_button').focus();
         var focusNextElement = false;
         if (e.which == 13)
         {
@@ -85,6 +87,7 @@
                                 nname = "";
                             currentElement.closest('tr').find('.driver').val(vname + nname);
                             focusNextElement = true;
+
                         }
                     }
                 }
@@ -97,6 +100,12 @@
                 //Zum nächsten Tabellenelement weiterspringen
                 var elementCount = $('#rtable_body').children().length;
                 var index = $('#rtable_body').children().find('.driverid').index($(this));
+
+                //Element zum Speichern hinzufügen
+                elementsToSave[index][0] = true;
+                elementsToSave[index][1] = currentElement.parent().parent().find('.rnr').val();
+                elementsToSave[index][2] = pkz;
+
                 if (index+1 < elementCount)
                 {
                     $('#rtable_body').children().find('.driverid')[index+1].focus();
@@ -108,6 +117,26 @@
             }
         }
     });
+
+    var elementsToSave = new Array({{count($ohneFahrer)}}); //beinhaltet alle Elemente die gespeichert werden müssen
+    for (var i = 0;i<elementsToSave.length;i++)
+    {
+        elementsToSave[i] = new Array(3);   //[save/don't save,RNR,FAHR]
+        elementsToSave[i][0] = false;
+    }
+    function save()
+    {
+        for (var i = 0;i<elementsToSave.length;i++)
+        {
+            if (elementsToSave[i][0])
+            {
+                var xhr = new XMLHttpRequest();
+                xhr.open('GET', '/Fahrer/storeSingleRechnungenZuordnenValue?RNR=' + elementsToSave[i][1] + '&PKZ=' + elementsToSave[i][2], false);
+                xhr.send(null);
+            }
+        }
+        window.location.href = "/";
+    }
 </script>
 
 @stop

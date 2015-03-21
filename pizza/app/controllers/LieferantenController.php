@@ -67,7 +67,7 @@ class LieferantenController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		//
+
 	}
 
 

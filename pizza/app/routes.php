@@ -54,6 +54,7 @@ Route::get('/Login',function(){return View::make('login');});
 Route::resource('/Lieferanten','LieferantenController');
 
 //Fahrer
+Route::get('/Fahrer/storeSingleRechnungenZuordnenValue','FahrerController@storeSingleRechnungenZuordnenValue');
 Route::get('/Fahrer/rechnungenZuordnen','FahrerController@rechnungenZuordnen');
 Route::resource('/Fahrer','FahrerController');
 
