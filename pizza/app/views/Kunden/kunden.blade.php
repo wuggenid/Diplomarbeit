@@ -220,6 +220,15 @@
                             })
                             letztexhr.open('GET','/api/getLastOrder?tel=' + number, true);
                             letztexhr.send();
+
+                            var umsatzxhr = new XMLHttpRequest();
+                            (umsatzxhr.onreadystatechange = function(){
+                                if (umsatzxhr.readyState == 4) {
+                                    document.getElementById('umsatzjahr').innerText = "Umsatz/Jahr: " + umsatzxhr.responseText;
+                                }
+                            })
+                            umsatzxhr.open('GET','/api/getUmsatzPerYear?tel=' + number,true);
+                            umsatzxhr.send();
                         }
                     }
                 })

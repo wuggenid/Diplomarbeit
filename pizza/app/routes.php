@@ -76,4 +76,5 @@ Route::group(['prefix' => '/api'], function() {
     Route::get('getNumberCount','APIController@getNumberCount');
     Route::get('getSupplier','APIController@getSupplier');
     Route::get('searchSupplier','APIController@searchSupplier');
+    Route::get('getUmsatzPerYear','APIController@getUmsatzPerYear');
 });

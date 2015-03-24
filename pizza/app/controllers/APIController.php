@@ -73,4 +73,12 @@ class ApiController extends BaseController {
         $name = '%'.Input::get('name').'%';
         return Response::json(xlief::where('LNAME','like',$name)->get());
     }
+    function getUmsatzPerYear()
+    {
+        $tel = Input::get('tel');
+        $umsatzperyear = DB::select(DB::raw("SELECT sum(RSU) as sum FROM `xstamm` WHERE `TEL` = ".$tel." AND YEAR(`RDT`) =2009"))[0]->sum;
+        if ($umsatzperyear == "")
+            $umsatzperyear = 0;
+        return $umsatzperyear;
+    }
 }
