@@ -9,7 +9,8 @@ class LieferantenController extends \BaseController {
 	 */
 	public function index()
 	{
-        return View::make('Lieferanten.lieferanten');
+        $lieferanten = xlief::all();
+        return View::make('Lieferanten.lieferanten')->with('lieferanten',$lieferanten);
 	}
 
 
