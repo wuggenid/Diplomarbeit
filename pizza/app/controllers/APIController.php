@@ -63,4 +63,9 @@ class ApiController extends BaseController {
         $number = Input::get('number');
         return Response::json(xadress::where('TEL','=',$number)->count());
     }
+    function getSupplier()
+    {
+        $lnr = Input::get('lnr');
+        return Response::json(xlief::find($lnr));
+    }
 }

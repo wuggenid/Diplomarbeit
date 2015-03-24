@@ -145,6 +145,10 @@
         {
             changeSelectedTel(selectedTel-1);
         }
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange(function(){
+            
+        });
 //        document.getElementById('number').value =
     }
     var selectedTel = 1;
