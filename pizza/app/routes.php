@@ -75,4 +75,5 @@ Route::group(['prefix' => '/api'], function() {
     Route::get('getLastOrder','APIController@getLastOrder');
     Route::get('getNumberCount','APIController@getNumberCount');
     Route::get('getSupplier','APIController@getSupplier');
+    Route::get('searchSupplier','APIController@searchSupplier');
 });

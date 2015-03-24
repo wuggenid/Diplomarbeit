@@ -20,7 +20,7 @@
                     <th id="toggS">Straße</th>
                 </tr>
             </thead>
-            <tbody style="overflow-y: auto; height: 200px; width: 100%;">
+            <tbody id="table1body" style="overflow-y: auto; height: 200px; width: 100%;">
                 @foreach($lieferanten as $lieferant)
                     <tr>
                         <td>{{$lieferant->LNAME}}</td>
@@ -105,7 +105,9 @@
 </style>
 <script language="javascript">
     document.getElementById('search').focus();
+    var tableVisible = false;
     function toggle(cell) {
+      tableVisible = !tableVisible;
       document.getElementById("toggA").style.display= "none";
       document.getElementById("toggT").style.display="table-cell";
       document.getElementById("toggN").style.display="table-cell";
@@ -136,18 +138,25 @@
     }
     function searchKeyPress()
     {
-        if (event.keyCode == 40)
+        if (tableVisible)
         {
-            if(check == 0) {
-                changeSelectedTel(selectedTel);
-                check = 1;
+            if (event.keyCode == 40)
+            {
+                if(check == 0) {
+                    changeSelectedTel(selectedTel);
+                    check = 1;
+            }
+            else
+                changeSelectedTel(selectedTel+1);
+            }
+            else if (event.keyCode == 38)
+            {
+                changeSelectedTel(selectedTel-1);
+            }
         }
         else
-            changeSelectedTel(selectedTel+1);
-        }
-        else if (event.keyCode == 38)
         {
-            changeSelectedTel(selectedTel-1);
+            toggle(document.getElementById('table1'));
         }
     }
     var selectedTel = 1;
@@ -184,6 +193,29 @@
             }
         });
         xhr.open('GET', '/api/getSupplier?lnr=' + lnr, true);
+        xhr.send(null);
+    }
+    function searchInput()
+    {
+        var searchString = document.getElementById('search').value;
+        var xhr = new XMLHttpRequest();
+        (xhr.onreadystatechange = function(){
+            if (xhr.readyState == 4) {
+                var lieferanten = JSON.parse(xhr.responseText);
+                document.getElementById('table1body').innerHTML = "";
+                for (var i = 0;i<lieferanten.length;i++)
+                {
+                    var row = document.getElementById('table1body').insertRow(0);
+                    var name = row.insertCell(-1);
+                    name.innerText = lieferanten[i]['LNAME'];
+                    var number = row.insertCell(-1);
+                    number.innerText = lieferanten[i]['LNR'];
+                    var str = row.insertCell(-1);
+                    str.innerText = lieferanten[i]['LSTR'];
+                }
+            }
+        });
+        xhr.open('GET','/api/searchSupplier?name=' + searchString);
         xhr.send(null);
     }
 </script>
