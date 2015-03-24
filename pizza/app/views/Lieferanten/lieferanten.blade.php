@@ -58,6 +58,10 @@
                     <span class="fieldbox"><input type="text" name="tel1" id="tel1" /></span>
                 </li>
                 <li>
+                    <label for="contact"> Faxnummer</label><br/>
+                    <span class="fieldbox"><input type="text" name="faxnr" id="faxnr" /></span>
+                </li>
+                <li>
                     <label for="contact"> Ansprechperson 2</label><br/>
                     <span class="fieldbox"><input type="text" name="ap2" id="ap2" /></span>
                 </li>
@@ -163,12 +167,22 @@
         rows[selectedTel].style.color = "#333332";
         var lnr = rows[selectedTel].cells[1].innerText;
         var xhr = new XMLHttpRequest();
-        xhr.onreadystatechangefunction = function(){
+        (xhr.onreadystatechange = function(){
             if (xhr.readyState == 4) {
                 var lieferant = JSON.parse(xhr.responseText);
                 document.getElementById('number').value = lieferant['LNR'];
+                document.getElementById('name').value = lieferant['LNAME'];
+                document.getElementById('str').value = lieferant['LSTR'];
+                document.getElementById('ort').value = lieferant['LORT'];
+                document.getElementById('ap1').value = lieferant['LANSPR1'];
+                document.getElementById('tel1').value = lieferant['LTEL1'];
+                document.getElementById('faxnr').value = lieferant['LFAX'];
+                document.getElementById('ap2').value = lieferant['LANSPR2'];
+                document.getElementById('tel2').value = lieferant['LTEL2'];
+                document.getElementById('lk').value = lieferant['LLKON'];
+                document.getElementById('memo').value = lieferant['LMEMO'];
             }
-        };
+        });
         xhr.open('GET', '/api/getSupplier?lnr=' + lnr, true);
         xhr.send(null);
     }
