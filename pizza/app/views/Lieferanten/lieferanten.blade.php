@@ -145,11 +145,6 @@
         {
             changeSelectedTel(selectedTel-1);
         }
-        var xhr = new XMLHttpRequest();
-        xhr.onreadystatechange(function(){
-            
-        });
-//        document.getElementById('number').value =
     }
     var selectedTel = 1;
     var check = 0;
@@ -166,7 +161,16 @@
         rows[oldSelectedTel].style.backgroundColor = "";
         rows[selectedTel].style.backgroundColor = "#D8D8D8";
         rows[selectedTel].style.color = "#333332";
-        var number = rows[selectedTel].cells[0].innerText;
+        var lnr = rows[selectedTel].cells[1].innerText;
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechangefunction = function(){
+            if (xhr.readyState == 4) {
+                var lieferant = JSON.parse(xhr.responseText);
+                document.getElementById('number').value = lieferant['LNR'];
+            }
+        };
+        xhr.open('GET', '/api/getSupplier?lnr=' + lnr, true);
+        xhr.send(null);
     }
 </script>
 
