@@ -85,12 +85,12 @@
                 <tbody style="background-color: #ffffff;">
                     <tr style="background-color: #ffffff;">
                         <td><a href="/Lieferanten/delete"><button class="btn btn-lg btn-danger" /><span class="glyphicon glyphicon-trash"></span> Lieferant löschen</button></a></td>
-                        <td><button onclick="javascript:newClick()" class="btn btn-lg btn-success" ><span class="glyphicon glyphicon-plus"></span> Neuer Lieferant</button></td>
+                        <td><button id="btn_new" onclick="javascript:newClick()" class="btn btn-lg btn-success" ><span class="glyphicon glyphicon-plus"></span> Neuer Lieferant</button></td>
                         <td><button class="btn btn-lg btn-warning"><span class="glyphicon glyphicon-print"></span> Etikettendruck</button></td>
                     </tr>
                     <tr style="background-color: #ffffff;">
                         <td><a href=""><a href="/"><button class="btn btn-lg btn-danger"><span class="glyphicon glyphicon-chevron-left"></span> Zurück</button></a></td>
-                        <td><button onclick="javascript:updateClick()" class="btn btn-lg btn-success" /><span class="glyphicon glyphicon-floppy-save"></span> Lieferant speichern</td>
+                        <td><button id="btn_save" onclick="javascript:updateClick()" class="btn btn-lg btn-success" /><span class="glyphicon glyphicon-floppy-save"></span> Lieferant speichern</td>
                         <td><a href=""><button class="btn btn-lg btn-warning" ><span class="glyphicon glyphicon-print"></span> Lieferantenliste drucken</button></a></td>
                     </tr>
                 </tbody>
@@ -105,6 +105,47 @@
 </style>
 <script language="javascript">
     document.getElementById('search').focus();
+
+    $('#number').keydown(function(e){
+        if (e.which == 13)
+            $('#name').focus();
+    });
+    $('#name').keydown(function(e){
+        if (e.which == 13)
+            $('#str').focus();
+    });
+    $('#str').keydown(function(e){
+        if (e.which == 13)
+            $('#ort').focus();
+    });
+    $('#ort').keydown(function(e){
+        if (e.which == 13)
+            $('#ap1').focus();
+    });
+    $('#ap1').keydown(function(e){
+        if (e.which == 13)
+            $('#tel1').focus();
+    });
+    $('#tel1').keydown(function(e){
+        if (e.which == 13)
+            $('#faxnr').focus();
+    });
+    $('#faxnr').keydown(function(e){
+        if (e.which == 13)
+            $('#ap2').focus();
+    });
+    $('#ap2').keydown(function(e){
+        if (e.which == 13)
+            $('#tel2').focus();
+    });
+    $('#tel2').keydown(function(e){
+        if (e.which == 13)
+            $('#lk').focus();
+    });
+    $('#lk').keydown(function(e){
+        if (e.which == 13)
+            $('#memo').focus();
+    });
     var tableVisible = false;
     function toggle(cell) {
       tableVisible = !tableVisible;
@@ -145,13 +186,17 @@
                 if(check == 0) {
                     changeSelectedTel(selectedTel);
                     check = 1;
-            }
-            else
-                changeSelectedTel(selectedTel+1);
-            }
+                }
+                else
+                    changeSelectedTel(selectedTel+1);
+                }
             else if (event.keyCode == 38)
             {
                 changeSelectedTel(selectedTel-1);
+            }
+            else if (event.keyCode == 13)
+            {
+                document.getElementById('number').focus();
             }
         }
         else
