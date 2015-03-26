@@ -75,7 +75,7 @@
                 </li>
                 <li>
                     <label for="contact"> Memo:</label><br/>
-                    <span class="fieldbox"><textarea name="memo" id="memo"></textarea></span>
+                    <span class="fieldbox"><textarea name="memo" id="memo" cols="40" rows="10"></textarea></span>
                     <br /><br />
                 </li>
             </ul>
@@ -262,6 +262,35 @@
         });
         xhr.open('GET','/api/searchSupplier?name=' + searchString);
         xhr.send(null);
+    }
+    function newClick()
+    {
+        var number = document.getElementById('number').value;
+        var name = document.getElementById('name').value;
+        var str = document.getElementById('str').value;
+        var ort = document.getElementById('ort').value;
+        var ap1 = document.getElementById('ap1').value;
+        var tel1 = document.getElementById('tel1').value;
+        var faxnr = document.getElementById('faxnr').value;
+        var ap2 = document.getElementById('ap2').value;
+        var tel2 = document.getElementById('tel2').value;
+        var lk = document.getElementById('lk').value;
+        var memo = document.getElementById('memo').value;
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET','/Lieferanten/store?number='+number
+                                                   +'&name='+name
+                                                   +'&str='+str
+                                                   +'&ort='+ort
+                                                   +'&ap1='+ap1
+                                                   +'&tel1='+tel1
+                                                   +'&faxnr='+faxnr
+                                                   +'&ap2='+ap2
+                                                   +'&tel2='+tel2
+                                                   +'&lk='+lk
+                                                   +'&memo'+memo
+                                                   );
+        xhr.send(null);
+
     }
 </script>
 

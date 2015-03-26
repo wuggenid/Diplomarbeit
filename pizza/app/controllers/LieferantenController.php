@@ -32,7 +32,17 @@ class LieferantenController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
+		$number = Input::get('number');
+        $name = Input::get('name');
+        $str = Input::get('str');
+        $ort = Input::get('ort');
+        $ap1 = Input::get('ap1');
+        $tel1 = Input::get('tel1');
+        $faxnr = Input::get('faxnr');
+        $ap2 = Input::get('ap2');
+        $tel2 = Input::get('tel2');
+        $lk = Input::get('lk');
+        $memo = Input::get('memo');
 	}
 
 
