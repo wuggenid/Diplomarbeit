@@ -397,11 +397,6 @@
                 }
             }
 
-
-
-
-
-
             function toggle(cell) {
               document.getElementById("toggA").style.display= "none";
               document.getElementById("toggT").style.display="table-cell";

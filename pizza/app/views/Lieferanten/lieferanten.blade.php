@@ -35,7 +35,7 @@
             <ul id="contactform">
                 <li>
                     <label for="name"> Nummer</label><br/>
-                    <span class="fieldbox"><input type="text" name="nummer" id="number" /></span>
+                    <span class="fieldbox"><input type="text" name="nummer" id="number" disabled/></span>
                 </li>
                 <li>
                     <label for="name"> Name</label><br/>
@@ -106,10 +106,6 @@
 <script language="javascript">
     document.getElementById('search').focus();
 
-    $('#number').keydown(function(e){
-        if (e.which == 13)
-            $('#name').focus();
-    });
     $('#name').keydown(function(e){
         if (e.which == 13)
             $('#str').focus();
@@ -196,7 +192,7 @@
             }
             else if (event.keyCode == 13)
             {
-                document.getElementById('number').focus();
+                document.getElementById('name').focus();
             }
         }
         else
@@ -265,7 +261,6 @@
     }
     function newClick()
     {
-        var number = document.getElementById('number').value;
         var name = document.getElementById('name').value;
         var str = document.getElementById('str').value;
         var ort = document.getElementById('ort').value;
@@ -276,9 +271,8 @@
         var tel2 = document.getElementById('tel2').value;
         var lk = document.getElementById('lk').value;
         var memo = document.getElementById('memo').value;
-        var xhr = new XMLHttpRequest();
-        xhr.open('GET','/Lieferanten/store?number='+number
-                                                   +'&name='+name
+
+        window.location.href = '/Lieferanten/store?name='+name
                                                    +'&str='+str
                                                    +'&ort='+ort
                                                    +'&ap1='+ap1
@@ -287,10 +281,35 @@
                                                    +'&ap2='+ap2
                                                    +'&tel2='+tel2
                                                    +'&lk='+lk
-                                                   +'&memo'+memo
-                                                   );
-        xhr.send(null);
+                                                   +'&memo='+memo
+                                                   ;
+    }
 
+    function updateClick()
+    {
+        var name = document.getElementById('name').value;
+        var str = document.getElementById('str').value;
+        var ort = document.getElementById('ort').value;
+        var ap1 = document.getElementById('ap1').value;
+        var tel1 = document.getElementById('tel1').value;
+        var faxnr = document.getElementById('faxnr').value;
+        var ap2 = document.getElementById('ap2').value;
+        var tel2 = document.getElementById('tel2').value;
+        var lk = document.getElementById('lk').value;
+        var memo = document.getElementById('memo').value;
+        var number = document.getElementById('number').value;
+
+        window.location.href = '/Lieferanten/update/'+number+'?name='+name
+                                                   +'&str='+str
+                                                   +'&ort='+ort
+                                                   +'&ap1='+ap1
+                                                   +'&tel1='+tel1
+                                                   +'&faxnr='+faxnr
+                                                   +'&ap2='+ap2
+                                                   +'&tel2='+tel2
+                                                   +'&lk='+lk
+                                                   +'&memo='+memo
+                                                   ;
     }
 </script>
 

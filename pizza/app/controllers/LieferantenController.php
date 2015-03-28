@@ -32,7 +32,6 @@ class LieferantenController extends \BaseController {
 	 */
 	public function store()
 	{
-		$number = Input::get('number');
         $name = Input::get('name');
         $str = Input::get('str');
         $ort = Input::get('ort');
@@ -43,6 +42,20 @@ class LieferantenController extends \BaseController {
         $tel2 = Input::get('tel2');
         $lk = Input::get('lk');
         $memo = Input::get('memo');
+
+        $lief = new xlief();
+        $lief->LNAME = $name;
+        $lief->LSTR = $str;
+        $lief->LORT = $ort;
+        $lief->LTEL1 = $tel1;
+        $lief->LTEL2 = $tel2;
+        $lief->LFAX = $faxnr;
+        $lief->LANSPR1 = $ap1;
+        $lief->LANSPR2 = $ap2;
+        $lief->LLKON = $lk;
+        $lief->LMEMO = $memo;
+        $lief->save();
+        return Redirect::to('/');
 	}
 
 
@@ -78,7 +91,30 @@ class LieferantenController extends \BaseController {
 	 */
 	public function update($id)
 	{
+        $name = Input::get('name');
+        $str = Input::get('str');
+        $ort = Input::get('ort');
+        $ap1 = Input::get('ap1');
+        $tel1 = Input::get('tel1');
+        $faxnr = Input::get('faxnr');
+        $ap2 = Input::get('ap2');
+        $tel2 = Input::get('tel2');
+        $lk = Input::get('lk');
+        $memo = Input::get('memo');
 
+        $lief = xlief::find($id);
+        $lief->LNAME = $name;
+        $lief->LSTR = $str;
+        $lief->LORT = $ort;
+        $lief->LTEL1 = $tel1;
+        $lief->LTEL2 = $tel2;
+        $lief->LFAX = $faxnr;
+        $lief->LANSPR1 = $ap1;
+        $lief->LANSPR2 = $ap2;
+        $lief->LLKON = $lk;
+        $lief->LMEMO = $memo;
+        $lief->save();
+        return Redirect::to('/');
 	}
 
 
