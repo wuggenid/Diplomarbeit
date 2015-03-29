@@ -85,14 +85,20 @@ class FahrerController extends \BaseController {
     public function rechnungenZuordnen()
     {
         $personal = xpersonal::all();
-        $fahrer = xfahrer::all();
         $ohneFahrer = DB::select(DB::raw('SELECT * FROM xstamm WHERE FAHR IS NULL order by unix_timestamp(RDT) DESC'));
-        return View::make('Fahrer.rechnungenZuordnen')->with('personal',$personal)->with('ohneFahrer',$ohneFahrer)->with('fahrer',$fahrer);
+        return View::make('Fahrer.rechnungenZuordnen')->with('personal',$personal)->with('ohneFahrer',$ohneFahrer);
     }
     public function storeSingleRechnungenZuordnenValue()
     {
         $rnr = Input::get('RNR');
         $pkz = Input::get('PKZ');
         DB::table('xstamm')->where('RNR',$rnr)->update(array('FAHR'=>$pkz));
+    }
+
+    public function zeiterfassung()
+    {
+        $personal = xpersonal::all();
+        $ohneZeit = DB::select(DB::raw('SELECT * FROM `xfahrer` WHERE BEG IS NULL order by unix_timestamp(DAT) DESC'));
+        return View::make('Fahrer.zeiterfassung')->with('personal',$personal)->with('ohneZeit',$ohneZeit);
     }
 }
