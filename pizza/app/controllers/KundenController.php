@@ -123,7 +123,8 @@ class KundenController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+        xadress::destroy($id);
+        return Redirect::to('/');
 	}
 
 

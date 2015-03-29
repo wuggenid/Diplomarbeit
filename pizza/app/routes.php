@@ -25,6 +25,7 @@ Route::resource('/Bestellungen', 'BestellungenController');
 Route::resource('/Testview','TestController');
 
 //Kunden
+Route::get('/Kunden/destroy/{id}','KundenController@destroy');
 Route::get('/Kunden/update','KundenController@update');
 Route::get('/Kunden/store','KundenController@store');
 Route::resource('/Kunden','KundenController');

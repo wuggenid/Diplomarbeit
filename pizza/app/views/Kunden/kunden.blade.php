@@ -94,7 +94,7 @@
             <table border="1" style="float: left;">
                 <tbody style="background-color: #ffffff;">
                     <tr style="background-color: #ffffff;">
-                        <td><a href="/Kunden/delete"><button style="width: 12em;" class="btn btn-lg btn-danger" /><span class="glyphicon glyphicon-trash"></span> Kunden löschen</button></a></td>
+                        <td><button style="width: 12em;" class="btn btn-lg btn-danger" onclick="javscript:deleteClick()" /><span class="glyphicon glyphicon-trash"></span> Kunden löschen</button></td>
                         <td><button style="width: 12em;" onclick="javascript:newClick()" class="btn btn-lg btn-success" ><span class="glyphicon glyphicon-plus"></span> Neuer Kunde</button></td>
                         <td><button style="width: 12em;" class="btn btn-lg btn-warning"><span class="glyphicon glyphicon-print"></span> Etikettendruck</button></td>
                     </tr>
@@ -424,6 +424,15 @@
                   tbody.style.display = (tbody.style.display == 'none') ? 'table-row-group' : 'none'
                 }
               }
+            }
+
+            function deleteClick()
+            {
+                var tel = document.getElementById('tel2').value;
+                if (!tel)
+                    alert('Kein Kunde zum Löschen ausgewählt! Bitte wählen Sie einen Kunden aus!');
+                else
+                    window.location.href = '/Kunden/destroy/'+tel;
             }
         </script>
 @stop
