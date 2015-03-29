@@ -84,7 +84,7 @@
             <table border="1" style="float: left;">
                 <tbody style="background-color: #ffffff;">
                     <tr style="background-color: #ffffff;">
-                        <td><a href="/Lieferanten/delete"><button class="btn btn-lg btn-danger" /><span class="glyphicon glyphicon-trash"></span> Lieferant löschen</button></a></td>
+                        <td><button onclick="javascript:deleteClick()" class="btn btn-lg btn-danger" /><span class="glyphicon glyphicon-trash"></span> Lieferant löschen</button></td>
                         <td><button id="btn_new" onclick="javascript:newClick()" class="btn btn-lg btn-success" ><span class="glyphicon glyphicon-plus"></span> Neuer Lieferant</button></td>
                         <td><button class="btn btn-lg btn-warning"><span class="glyphicon glyphicon-print"></span> Etikettendruck</button></td>
                     </tr>
@@ -310,6 +310,14 @@
                                                    +'&lk='+lk
                                                    +'&memo='+memo
                                                    ;
+    }
+    function deleteClick()
+    {
+        var lnr = document.getElementById('number').value;
+        if (!lnr)
+            alert('Kein Lieferant zum Löschen ausgewählt! Bitte wählen Sie einen Lieferanten aus!');
+        else
+            window.location.href = '/Lieferanten/destroy/'+lnr;
     }
 </script>
 

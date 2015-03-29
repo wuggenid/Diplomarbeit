@@ -51,6 +51,7 @@ Route::resource('/Personal','PersonalController');
 Route::get('/Login',function(){return View::make('login');});
 
 //Lieferanten
+Route::get('/Lieferanten/destroy/{id}','LieferantenController@destroy');
 Route::get('/Lieferanten/update/{id}','LieferantenController@update');
 Route::get('/Lieferanten/store','LieferantenController@store');
 Route::resource('/Lieferanten','LieferantenController');

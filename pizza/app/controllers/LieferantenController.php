@@ -126,7 +126,8 @@ class LieferantenController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+        xlief::destroy($id);
+        return Redirect::to('/');
 	}
 
 
