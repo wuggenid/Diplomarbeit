@@ -43,6 +43,8 @@
     @endforeach
     </tbody>
 </table>
+<a href="/"><button type="button" class="btn btn-lg btn-danger"><span class="glyphicon glyphicon-chevron-left"></span> Zurück</button></a>
+<button id="b_button" type="button" class="btn btn-lg btn-success" onclick="javascript:save()"><span class="glyphicon glyphicon-save"></span> Bestätigen</button>
 <style type="text/css">
     tbody tr th input
     {
@@ -60,9 +62,11 @@
                 alert("Bitte geben Sie eine Uhrzeit im Format HH:MM ein! Beispiel: 12:20");
             else
             {
-                console.log($(this).parent().parent().find('.etime').focus());
+                $(this).parent().parent().find('.etime').focus();
             }
         }
+        if (e.which == 27)
+            $('#b_button').focus();
     });
     $('.etime').keydown(function(e)
     {
@@ -75,6 +79,8 @@
                 $(this).parent().parent().find('.car').focus();
             }
         }
+        if (e.which == 27)
+            $('#b_button').focus();
     });
     $('.car').keydown(function(e)
     {
@@ -83,12 +89,41 @@
             var index = $('#rtable_body').children().find('.car').index($(this));
             $('#rtable_body').children().find('.btime')[index+1].focus();
         }
+        if (e.which == 27)
+            $('#b_button').focus();
     });
     function validateTime(time)
     {
         var regexp = /([01][0-9]|[02][0-3]):[0-5][0-9]/;
         var correct = regexp.test(time);
         return correct;
+    }
+    function save()
+    {
+        document.getElementById('b_button').innerHTML = "<span class=\"glyphicon glyphicon-save\"></span> Bitte warten...";
+        var elements = $('#table_body').children();
+        for (var i = 0;i < elements.length;i++)
+        {
+            alert(elements);
+            if (elements[i].find('.btime').value != "")
+            {
+                var xhr = new XMLHttpRequest();
+                (xhr.onreadystatechange = function()
+                {
+                    if (xhr.readyState == 4)
+                    {
+                        window.location.href = "/";
+                    }
+                })
+                xhr.open('GET', '/Fahrer/storeSingleZeiterfassungValue?btime='+elements[i].find('.btime').val()+
+                                                                      '&etime='+elements[i].find('.etime').val()+
+                                                                      '&car='+elements[i].find('.car').val()+
+                                                                      '&pkz='+elements[i].find('.pkz').val()+
+                                                                      '&dat='+date('Y-m-d',elements[i].find('.date').val())+ " 00:00:00"
+                                                                    , true);
+                xhr.send(null);
+            }
+        }
     }
 </script>
 @stop

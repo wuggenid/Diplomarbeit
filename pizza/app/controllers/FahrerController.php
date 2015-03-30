@@ -101,4 +101,13 @@ class FahrerController extends \BaseController {
         $ohneZeit = DB::select(DB::raw('SELECT * FROM `xfahrer` WHERE BEG IS NULL order by unix_timestamp(DAT) DESC'));
         return View::make('Fahrer.zeiterfassung')->with('personal',$personal)->with('ohneZeit',$ohneZeit);
     }
+    public function storeSingleZeiterfassungValue()
+    {
+        $btime = Input::get('btime');
+        $etime = Input::get('etime');
+        $car = Input::get('car');
+        $pkz = Input::get('pkz');
+        $dat = Input::get('dat');
+        DB::table('xfahrer')->WHERE('PKZ',$pkz)->WHERE('DAT',$dat)->update(array('BEG'=>$btime,'END'=>$etime,'AUTO'=>$car));
+    }
 }
