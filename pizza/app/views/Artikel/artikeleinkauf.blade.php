@@ -160,7 +160,7 @@
         xhr.send();
     }
 
-    function selectartikeleinkauf(l1nr, l1preis, l1dat, l2nr, l2preis, l2dat, l3nr, l3preis, l3dat, l4nr, l4preis, l4dat)
+    function selectartikeleinkauf(l1nr, l1preis, l1dat, l2nr, l2preis, l2dat, l3nr, l3preis, l3dat, l4nr, l4preis, l4dat, callback)
     {
         selectedartikel = true;
 
@@ -180,7 +180,15 @@
         l4preisE.value = l4preis;
         l4datE.value = l4dat;
 
-
+        var xhr = new XMLHttpRequest();
+        (xhr.onreadystatechange = function(){
+            if (xhr.readyState == 4) {
+                var lieferanten = JSON.parse(xhr.responseText);
+                l1nameE.value = lieferanten;
+            }
+        });
+        xhr.open('GET', '/api/getSupplierName?l1nr=' + l1nr, true);
+        xhr.send();
     }
 
     function savearticleeinkauf()

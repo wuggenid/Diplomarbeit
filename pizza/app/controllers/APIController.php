@@ -73,6 +73,12 @@ class ApiController extends BaseController {
         $lnr = Input::get('lnr');
         return Response::json(xlief::find($lnr));
     }
+    function getSupplierName()
+    {
+        $l1nr = Input::get('l1nr');
+        $lieferanten = Response::json(xlief::where('LNR','=',$l1nr)->pluck('LNAME'));
+        return $lieferanten;
+    }
     function searchSupplier()
     {
         $name = '%'.Input::get('name').'%';
