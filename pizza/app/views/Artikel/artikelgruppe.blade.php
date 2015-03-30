@@ -11,7 +11,7 @@
 <h2>Artikelgruppenverwaltung</h2>
 <div class="content">
 
-    <div style="width:35%; float: left; padding: 10% 5% 0 0;">
+    <div style="width:35%; float: left; padding: 10% 0 0 0;">
         <ul id="contactform">
             <li>
                 <label for="name"> Artikelgruppen-Nr </label><br/>

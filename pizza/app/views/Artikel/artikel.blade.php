@@ -11,7 +11,7 @@
 <h2>Artikel</h2>
 <div class="content">
 
-    <div style="width:35%; float: left; padding-right: 5%;">
+    <div style="width:35%; float: left;">
         <ul id="contactform">
             <li>
                 <label for="name"> Artikel-Nr </label><br/>

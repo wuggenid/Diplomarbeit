@@ -33,6 +33,7 @@ class ArtikelController extends \BaseController {
 
     public function getArtikeleinkauf()
     {
+        $data['articlesEK'] = DB::table('xartikel_ek')->orderBy('ANR')->get();
         $data['articles']= DB::table('xartikel')->orderBy('ANR')->get();
         return View::make('Artikel.artikeleinkauf',$data);
     }

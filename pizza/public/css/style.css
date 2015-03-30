@@ -79,6 +79,7 @@ table {
 #contactform li {
     list-style:none;
     padding-bottom:40px;
+    padding-right: 20px;
 }
 #contactform li .fieldbox {
     float:left;
