@@ -46,19 +46,19 @@
             <td>
                 <ul id="contactform">
                     <li>
-                        <label for="name"> L1-Nr</label><br/>
+                        <label for="name"> Nr</label><br/>
                         <span class="fieldbox"><input type="text" id="l1nrE"/></span>
                     </li>
                     <li>
-                        <label for="name"> L1-Name</label><br/>
+                        <label for="name"> Name</label><br/>
                         <span class="fieldbox"><input type="text" id="l1nameE"/></span>
                     </li>
                     <li>
-                        <label for="email"> L1-Preis</label><br/>
+                        <label for="email"> Preis</label><br/>
                         <span class="fieldbox"><input type="text" id="l1preisE"/></span>
                     </li>
                     <li>
-                        <label for="contact"> L1-Letzter Kauf</label><br/>
+                        <label for="contact"> Letzter Kauf (JJJJ-MM-TT)</label><br/>
                         <span class="fieldbox"><input type="text" id="l1datE"/></span>
                     </li>
                 </ul>
@@ -66,19 +66,19 @@
             <td>
                 <ul id="contactform">
                     <li>
-                        <label for="name"> L2-Nr</label><br/>
+                        <label for="name"> Nr</label><br/>
                         <span class="fieldbox"><input type="text" id="l2nrE"/></span>
                     </li>
                     <li>
-                        <label for="name"> L2-Name</label><br/>
+                        <label for="name"> Name</label><br/>
                         <span class="fieldbox"><input type="text" id="l2nameE"/></span>
                     </li>
                     <li>
-                        <label for="email"> L2-Preis</label><br/>
+                        <label for="email"> Preis</label><br/>
                         <span class="fieldbox"><input type="text" id="l2preisE"/></span>
                     </li>
                     <li>
-                        <label for="contact"> L2-Letzter Kauf</label><br/>
+                        <label for="contact"> Letzter Kauf (JJJJ-MM-TT)</label><br/>
                         <span class="fieldbox"><input type="text" id="l2datE"/></span>
                     </li>
                 </ul>
@@ -86,19 +86,19 @@
             <td>
                 <ul id="contactform">
                     <li>
-                        <label for="name"> L3-Nr</label><br/>
+                        <label for="name"> Nr</label><br/>
                         <span class="fieldbox"><input type="text" id="l3nrE"/></span>
                     </li>
                     <li>
-                        <label for="name"> L3-Name</label><br/>
+                        <label for="name"> Name</label><br/>
                         <span class="fieldbox"><input type="text" id="l3nameE"/></span>
                     </li>
                     <li>
-                        <label for="email"> L3-Preis</label><br/>
+                        <label for="email"> Preis</label><br/>
                         <span class="fieldbox"><input type="text" id="l3preisE"/></span>
                     </li>
                     <li>
-                        <label for="contact"> L3-Letzter Kauf</label><br/>
+                        <label for="contact"> Letzter Kauf (JJJJ-MM-TT)</label><br/>
                         <span class="fieldbox"><input type="text" id="l3datE"/></span>
                     </li>
                 </ul>
@@ -106,19 +106,19 @@
             <td>
                 <ul id="contactform">
                     <li>
-                        <label for="name"> L4-Nr</label><br/>
+                        <label for="name"> Nr</label><br/>
                         <span class="fieldbox"><input type="text" id="l4nrE"/></span>
                     </li>
                     <li>
-                        <label for="name"> L4-Name</label><br/>
+                        <label for="name"> Name</label><br/>
                         <span class="fieldbox"><input type="text" id="l4nameE"/></span>
                     </li>
                     <li>
-                        <label for="email"> L4-Preis</label><br/>
+                        <label for="email"> Preis</label><br/>
                         <span class="fieldbox"><input type="text" id="l4preisE"/></span>
                     </li>
                     <li>
-                        <label for="contact"> L4-Letzter Kauf</label><br/>
+                        <label for="contact"> Letzter Kauf (JJJJ-MM-TT)</label><br/>
                         <span class="fieldbox"><input type="text" id="l4datE"/></span>
                     </li>
                 </ul>
@@ -133,7 +133,7 @@
     <br/><br/>
 
     <a href="/"><button style="width: 15em;" class="btn btn-lg btn-danger"><span class="glyphicon glyphicon-chevron-left"></span> Zurück</button></a>
-    <button onclick="javascript:savearticle()" style="width: 15em;" class="btn btn-lg btn-success"><span class="glyphicon glyphicon-floppy-save"></span> Speichern</button>
+    <button onclick="javascript:savearticleeinkauf()" style="width: 15em;" class="btn btn-lg btn-success"><span class="glyphicon glyphicon-floppy-save"></span> Speichern</button>
     <br/><br/>
 </div>
 
@@ -141,8 +141,11 @@
 
 <script language="javascript">
 
+    var selectedartikel = false;
+
     function findarticle(anr)
     {
+        $id = anr;
         var xhr = new XMLHttpRequest();
         (xhr.onreadystatechange = function() {
             if (xhr.readyState == 4) {
@@ -159,6 +162,8 @@
 
     function selectartikeleinkauf(l1nr, l1preis, l1dat, l2nr, l2preis, l2dat, l3nr, l3preis, l3dat, l4nr, l4preis, l4dat)
     {
+        selectedartikel = true;
+
         l1nrE.value = l1nr;
         l1preisE.value = l1preis;
         l1datE.value = l1dat;
@@ -174,6 +179,47 @@
         l4nrE.value = l4nr;
         l4preisE.value = l4preis;
         l4datE.value = l4dat;
+
+
+    }
+
+    function savearticleeinkauf()
+    {
+        //Artikeleinkaufänderung
+        if(selectedartikel == true) {
+            $l1nrEI = l1nrE.value;
+            $l1preisEI = l1preisE.value;
+            $l1datEI = l1datE.value;
+
+            $l2nrEI = l2nrE.value;
+            $l2preisEI = l2preisE.value;
+            $l2datEI = l2datE.value;
+
+            $l3nrEI = l3nrE.value;
+            $l3preisEI = l3preisE.value;
+            $l3datEI = l3datE.value;
+
+            $l4nrEI = l4nrE.value;
+            $l4preisEI = l4preisE.value;
+            $l4datEI = l4datE.value;
+
+            window.location.href = "/Artikel/Artikeleinkauf/update"
+            + "?ID=" + $id
+            + "&l1nrE=" + $l1nrEI
+            + "&l1preisE=" + $l1preisEI
+            + "&l1datE=" + $l1datEI
+            + "&l2nrE=" + $l2nrEI
+            + "&l2preisE=" + $l2preisEI
+            + "&l2datE=" + $l2datEI
+            + "&l3nrE=" + $l3nrEI
+            + "&l3preisE=" + $l3preisEI
+            + "&l3datE=" + $l3datEI
+            + "&l4nrE=" + $l4nrEI
+            + "&l4preisE=" + $l4preisEI
+            + "&l4datE=" + $l4datEI;
+        }
+        else
+            alert("Keinen Artikel ausgewählt");
     }
 
 

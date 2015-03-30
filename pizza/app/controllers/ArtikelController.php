@@ -186,6 +186,44 @@ class ArtikelController extends \BaseController {
             return Redirect::to('/Artikel/Artikelgruppe')->with('alert', 'Artikelgruppe konnte nicht gespeichert werden, da die Artikelgruppennummer bereits vergeben bzw. nicht korrekt ist!');
     }
 
+    public function updateeinkauf()
+    {
+        $id = Input::get('ID');
+
+        $l1nr = Input::get('l1nrE');
+        $l1preis = Input::get('l1preisE');
+        $l1dat = Input::get('l1datE');
+
+        $l2nr = Input::get('l2nrE');
+        $l2preis = Input::get('l2preisE');
+        $l2dat = Input::get('l2datE');
+
+        $l3nr = Input::get('l3nrE');
+        $l3preis = Input::get('l3preisE');
+        $l3dat = Input::get('l3datE');
+
+        $l4nr = Input::get('l4nrE');
+        $l4preis = Input::get('l4preisE');
+        $l4dat = Input::get('l4datE');
+
+        DB::table('xartikel_ek')->where('ANR', $id)->update(array(
+            'L1NR' => $l1nr,
+            'L1PREIS' => $l1preis,
+            'L1DAT' => $l1dat,
+            'L2NR' => $l2nr,
+            'L2PREIS' => $l2preis,
+            'L2DAT' => $l2dat,
+            'L3NR' => $l3nr,
+            'L3PREIS' => $l3preis,
+            'L3DAT' => $l3dat,
+            'L4NR' => $l4nr,
+            'L4PREIS' => $l4preis,
+            'L4DAT' => $l4dat
+        ));
+
+        return Redirect::to('/Artikel/Artikeleinkauf')->with('alert', 'Artikeleinkauf wurde gespeichert!');
+    }
+
 
 	/**
 	 * Remove the specified resource from storage.

@@ -40,6 +40,7 @@ Route::get('/Artikel/Artikelgruppe/delete/{id}','ArtikelController@destroygruppe
 Route::get('/Artikel/Artikelgruppe/update','ArtikelController@updategruppe');
 Route::get('/Artikel/Artikelgruppe/store','ArtikelController@storegruppe');
 Route::get('/Artikel/Artikeleinkauf', 'ArtikelController@getartikeleinkauf');
+Route::get('/Artikel/Artikeleinkauf/update','ArtikelController@updateeinkauf');
 Route::get('/Artikel/Artikelmonatsstatistik', 'ArtikelController@getartikelmonatsstatistik');
 Route::resource('/Artikel', 'ArtikelController');
 
