@@ -83,11 +83,70 @@
     function selectbon(btel, btyp, ep)
     {
         tel.value = btel;
+        $id = btel;
+        $bezeichnung = btyp;
         typ.value = btyp;
         epreis.value = ep;
 
         newbo = false;
         selectbo = true;
+    }
+
+    function newbon()
+    {
+        tel.value = typ.value = '';
+        epreis.value = '0.00';
+        newbo = true;
+        selectbo = false;
+        document.getElementById('tel').focus();
+    }
+
+    function deletebon()
+    {
+        if(newbo == false && selectbo == true)
+        {
+            window.location.href = "/Bons/Stammdaten/delete/" + $id;
+        }
+
+        else
+            alert("Keinen Bon ausgewählt");
+    }
+
+    function savebon()
+    {
+        //Bonänderung
+        if(newbo == false && selectbo == true)
+        {
+            $nid = tel.value;
+            $nbezeichnung = typ.value;
+            $preis = epreis.value;
+
+            window.location.href = "/Bons/Stammdaten/update"
+            + "?oldID=" + $id
+            + "&nid=" + $nid
+            + "&typ=" + $bezeichnung
+            + "&ntyp=" + $nbezeichnung
+            + "&preis=" + $preis;
+        }
+
+        //Neuer Bon
+        else if(newbo == true && selectbo == false && tel.value != "")
+        {
+            $id = tel.value;
+            $bezeichnung = typ.value;
+            $preis = epreis.value;
+
+            window.location.href = "/Bons/Stammdaten/store"
+            + "?id=" + $id
+            + "&typ=" + $bezeichnung
+            + "&preis=" + $preis;
+        }
+
+        else if(tel.value == "" && typ.value == "")
+            alert("Es wurden keine Daten eingegeben!");
+
+        else
+            alert("Bon konnte nicht gespeichert werden!");
     }
 </script>
 

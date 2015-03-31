@@ -37,7 +37,29 @@ class BonController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
+        $id = Input::get('id');
+        $bezeichnung = Input::get('typ');
+
+        if( $id != "" && DB::table('xbonstamm')->where('TEL',$id)->pluck('TEL') == "") {
+
+            if ( $bezeichnung != "" && DB::table('xbonstamm')->where('TYP',$bezeichnung)->pluck('TYP') == "") {
+                $preis = Input::get('preis');
+
+                $bon = new xbonstamm();
+                $bon->TEL = $id;
+                $bon->TYP = $bezeichnung;
+                $bon->EP = $preis;
+                $bon->save();
+
+                return Redirect::to('/Bons/Stammdaten')->with('alert', 'Bon wurde gespeichert!');
+            }
+            else
+                return Redirect::to('/Bons/Stammdaten')->with('alert', 'Bon konnte nicht gespeichert werden, da die Bonbezeichnung bereits vergeben bzw. nicht korrekt ist!');
+        }
+
+        else {
+            return Redirect::to('/Bons/Stammdaten')->with('alert', 'Bon konnte nicht gespeichert werden, da die Telefonnummer bereits vergeben bzw. nicht korrekt ist!');
+        }
 	}
 
 
@@ -71,9 +93,33 @@ class BonController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update()
 	{
-		//
+        $id = Input::get('oldID');
+        $nid = Input::get('nid');
+        $bezeichnung = Input::get('typ');
+        $nbezeichnung = Input::get('ntyp');
+
+
+        if( $nid != "" && (DB::table('xbonstamm')->where('TEL',$nid)->pluck('TEL') == "" || $id == $nid)) {
+
+            if ( $nbezeichnung != "" && DB::table('xbonstamm')->where('TYP',$nbezeichnung)->pluck('TYP') == "" || $bezeichnung == $nbezeichnung) {
+                $preis = Input::get('preis');
+
+                DB::table('xbonstamm')->where('TEL', $id)->update(array(
+                    'TEL' => $nid,
+                    'TYP' => $nbezeichnung,
+                    'EP' => $preis
+                ));
+
+                return Redirect::to('/Bons/Stammdaten')->with('alert', 'Bon wurde gespeichert!');
+            }
+            else
+                return Redirect::to('/Bons/Stammdaten')->with('alert', 'Bon konnte nicht gespeichert werden, da die Bonbezeichnung bereits vergeben bzw. nicht korrekt ist!');
+        }
+
+        else
+            return Redirect::to('/Bons/Stammdaten')->with('alert', 'Bon konnte nicht gespeichert werden, da die Telefonnummer bereits vergeben bzw. nicht korrekt ist!');
 	}
 
 
@@ -85,7 +131,10 @@ class BonController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+        $bon = DB::table('xbonstamm')->where('TEL',$id);
+        $bon->delete();
+
+        return Redirect::to('/Bons/Stammdaten')->with('alert', 'Bon wurde gelöscht!');
 	}
 
 
