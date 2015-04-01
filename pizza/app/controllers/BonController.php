@@ -18,6 +18,12 @@ class BonController extends \BaseController {
         return View::make('Bons.stammdaten',$data);
     }
 
+    public function gettageseingabe()
+    {
+        $data['bons']= DB::table('xbonstamm')->get();
+        return View::make('Bons.bontageseingabe',$data);
+    }
+
 
 	/**
 	 * Show the form for creating a new resource.

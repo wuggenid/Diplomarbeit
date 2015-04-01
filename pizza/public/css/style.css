@@ -61,6 +61,14 @@ table {
     text-align: left;
 }
 
+.bonrow {
+    background-color: #CCC;
+    color: black;
+}
+.bonrow input {
+    width: 100%;
+}
+
 .monatsstats tr th input {
     width: 100%;
 }
