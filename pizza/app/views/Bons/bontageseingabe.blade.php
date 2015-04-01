@@ -63,6 +63,7 @@
     function createrow(typ, ep)
     {
         var row = table.insertRow(i);
+        row.className = "bonrow";
 
         var datumCell = row.insertCell(0);
         date = new Date().toLocaleString();
@@ -80,17 +81,26 @@
         var stCell = row.insertCell(3);
         stCell.appendChild(input);
 
-        var sumCell = row.insertCell(4);
-        sumCell.appendChild(document.createElement("input"));
+        document.getElementById(input.id).focus();
 
-        row.className = "bonrow";
+        document.getElementById(input.id).onkeydown = function (e) {
+            if (e.which == 13) {
+                var stueck = document.getElementById(input.id).value;
+                if(stueck >= 0)
+                {
+                    var sumCell = row.insertCell(4);
+                    sumCell.innerText = ep*stueck + ' €';
 
-        var data = [];
-        data.push([date, typ, ep, "stk", "sum"]);
-        alert(data[0][0]);
-
-        i++;
+                    var data = [];
+                    data.push([date, typ, ep, stueck, sumCell.innerText]);
+                    i++;
+                }
+            }
+        };
     }
+
+
+
 
 
 
