@@ -29,7 +29,7 @@
     </thead>
     <tbody id="rtable_body">
     @foreach($ohneZeit as $key => $oz)
-        <tr>
+        <tr class="dataRow">
             <th><input type="text" class="pkz" value="{{$oz->PKZ}}" disabled/></th>
             <th><input type="text" class="name" value="<?php
                                                             if(array_key_exists($oz->PKZ,$personPKZ))
@@ -101,11 +101,11 @@
     function save()
     {
         document.getElementById('b_button').innerHTML = "<span class=\"glyphicon glyphicon-save\"></span> Bitte warten...";
-        var elements = $('#table_body').children();
+
+        var elements = $('.dataRow');
         for (var i = 0;i < elements.length;i++)
         {
-            alert(elements);
-            if (elements[i].find('.btime').value != "")
+            if ($(elements[i]).find('.btime').val() != "")
             {
                 var xhr = new XMLHttpRequest();
                 (xhr.onreadystatechange = function()
@@ -115,11 +115,13 @@
                         window.location.href = "/";
                     }
                 })
-                xhr.open('GET', '/Fahrer/storeSingleZeiterfassungValue?btime='+elements[i].find('.btime').val()+
-                                                                      '&etime='+elements[i].find('.etime').val()+
-                                                                      '&car='+elements[i].find('.car').val()+
-                                                                      '&pkz='+elements[i].find('.pkz').val()+
-                                                                      '&dat='+date('Y-m-d',elements[i].find('.date').val())+ " 00:00:00"
+                var Sdate = $(elements[i]).find('.date').val().split('.');
+                var date = + Sdate[2] + "-" + Sdate[1] + "-" + Sdate[0] + " 00:00:00";
+                xhr.open('GET', '/Fahrer/storeSingleZeiterfassungValue?btime='+$(elements[i]).find('.btime').val()+
+                                                                      '&etime='+$(elements[i]).find('.etime').val()+
+                                                                      '&car='+$(elements[i]).find('.car').val()+
+                                                                      '&pkz='+$(elements[i]).find('.pkz').val()+
+                                                                      '&dat='+ date + " 00:00:00"
                                                                     , true);
                 xhr.send(null);
             }

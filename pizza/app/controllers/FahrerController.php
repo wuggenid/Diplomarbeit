@@ -104,7 +104,9 @@ class FahrerController extends \BaseController {
     public function storeSingleZeiterfassungValue()
     {
         $btime = Input::get('btime');
+        $btime = "1899-12-30 ".date('H:i:s',strtotime($btime));
         $etime = Input::get('etime');
+        $etime = "1899-12-30 ".date('H:i:s',strtotime($etime));
         $car = Input::get('car');
         $pkz = Input::get('pkz');
         $dat = Input::get('dat');
