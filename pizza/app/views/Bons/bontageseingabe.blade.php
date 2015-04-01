@@ -20,7 +20,7 @@
             <table id="artikelgruppe" style="max-height: 300px; width: 100%; overflow-y: auto;">
                 <tbody>
                 @foreach($bons as $key => $bon)
-                    <tr class="tablerow" onclick="javascript:createrow()">
+                    <tr class="tablerow" onclick="javascript:createrow('{{$bon->TYP}}','{{$bon->EP}}')">
                         <td>{{$bon->TEL}}</td>
                         <td>{{$bon->TYP}}</td>
                         <td>{{$bon->EP}}</td>
@@ -60,28 +60,40 @@
     header.innerHTML = "<tr><th>Datum</th><th>Typ</th><th>E-Preis</th><th>Stück</th><th>Summe</th></tr>";
     var i = 1;
 
-    function createrow()
+    function createrow(typ, ep)
     {
         var row = table.insertRow(i);
 
         var datumCell = row.insertCell(0);
-        datumCell.appendChild(document.createElement("input"));
+        date = new Date().toLocaleString();
+        datumCell.innerText = date;
 
         var artCell = row.insertCell(1);
-        artCell.appendChild(document.createElement("input"));
+        artCell.innerText = typ;
 
         var epreisCell = row.insertCell(2);
-        epreisCell.appendChild(document.createElement("input"));
+        epreisCell.innerText = ep + ' €';
 
+        var input = document.createElement("input");
+        input.type = "text";
+        input.id = "stk"+i;
         var stCell = row.insertCell(3);
-        stCell.appendChild(document.createElement("input"));
+        stCell.appendChild(input);
 
         var sumCell = row.insertCell(4);
         sumCell.appendChild(document.createElement("input"));
 
         row.className = "bonrow";
+
+        var data = [];
+        data.push([date, typ, ep, "stk", "sum"]);
+        alert(data[0][0]);
+
         i++;
     }
+
+
+
 </script>
 
 @stop
