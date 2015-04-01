@@ -38,6 +38,11 @@ class ApiController extends BaseController {
         $year = Input::get('year');
         return Response::json(xview::where('JJJJ','=',$year)->get());
     }
+    function getBon()
+    {
+        $bon = Input::get('bon');
+        return Response::json(xbonstamm::where('TEL','=',$bon)->get());
+    }
     function getLastBillNumber()
     {
         $rechnungsnummer =  DB::table('xpos')->where('RNR', DB::raw("(select max(`RNR`) from xpos)"))->get()[0]->RNR;
