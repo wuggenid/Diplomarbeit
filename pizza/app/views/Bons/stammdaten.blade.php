@@ -15,15 +15,15 @@
         <ul id="contactform">
             <li>
                 <label for="tel"> Telefon-Nr </label><br/>
-                <span class="fieldbox"><input type="text" id="tel" onkeydown="javascript:artikelgKeyPress(this)" value="" /></span>
+                <span class="fieldbox"><input type="text" id="tel" onkeydown="javascript:bonKeyPress(this)" /></span>
             </li>
             <li>
                 <label for="typ"> Bon-Typ </label><br/>
-                <span class="fieldbox"><input type="text" id="typ" onkeydown="javascript:artikelgbKeyPress(this)" value="" /></span>
+                <span class="fieldbox"><input type="text" id="typ" onkeydown="javascript:bonKeyPress(this)" /></span>
             </li>
             <li>
                 <label for="preis"> Einzelpreis </label><br/>
-                <span class="fieldbox"><input type="text" id="epreis" onkeydown="javascript:artikelgbKeyPress(this)" value="" /></span>
+                <span class="fieldbox"><input type="text" id="epreis" onkeydown="javascript:bonSKeyPress(this)" /></span>
             </li>
         </ul>
     </div>
@@ -40,7 +40,7 @@
             </thead>
         </table>
 
-        <table id="artikelgruppe" style="max-height: 300px; width: 100%; overflow-y: auto;">
+        <table id="bons" style="max-height: 300px; width: 100%; overflow-y: auto;">
             <tbody>
                 @foreach($bons as $key => $bon)
                      <tr class="tablerow" id="{{$bon->TEL}}" onclick="javascript:selectbon('{{$bon->TEL}}','{{$bon->TYP}}','{{$bon->EP}}')">
@@ -147,6 +147,79 @@
 
         else
             alert("Bon konnte nicht gespeichert werden!");
+    }
+
+
+
+    var selectedBon = 1;
+    function changeSelectedBon(cselectedBon)
+    {
+        var oldselectedBon = selectedBon;
+        selectedBon = cselectedBon;
+        var table = document.getElementById('bons');
+        var rows = table.rows;
+        if (selectedBon > rows.length)
+            selectedBon--;
+        if (selectedBon < 1)
+            selectedBon++;
+        rows[oldselectedBon-1].style.backgroundColor = "";
+        rows[selectedBon-1].style.backgroundColor = "#D8D8D8";
+        var bon = rows[selectedBon-1].cells[0].innerText;
+        var xhr = new XMLHttpRequest();
+        (xhr.onreadystatechange = function() {
+            if (xhr.readyState == 4) {
+                var bons = JSON.parse(xhr.responseText);
+                if (bons.length == 1)
+                    selectbon(bons[0]['TEL'] ,bons[0]['TYP'],bons[0]['EP']);
+            }
+        })
+        xhr.open('GET', '/api/getBon?bon=' + bon, true);
+        xhr.send();
+    }
+
+    var check = 0;
+    var check2 = 0;
+    function bonKeyPress(e)
+    {
+        if (event.keyCode == 40)
+        {
+            if(check == 0) {
+                changeSelectedBon(selectedBon);
+                check = 1; }
+            else
+                changeSelectedBon(selectedBon+1);
+        }
+        else if (event.keyCode == 38)
+            changeSelectedBon(selectedBon-1);
+
+        if (event.keyCode == 13)
+        {
+            if(check2 == 0) {
+                typ.focus();
+                check2 = 1;
+            }
+            else {
+                epreis.focus();
+                check2 = 0;
+            }
+        }
+    }
+
+    function bonSKeyPress(e)
+    {
+        if (event.keyCode == 40)
+        {
+            if(check == 0) {
+                changeSelectedBon(selectedBon);
+                check = 1; }
+            else
+                changeSelectedBon(selectedBon+1);
+        }
+        else if (event.keyCode == 38)
+            changeSelectedBon(selectedBon-1);
+
+        if (event.keyCode == 13)
+            savebon();
     }
 </script>
 
