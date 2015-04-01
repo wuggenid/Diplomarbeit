@@ -59,6 +59,7 @@ Route::get('/Lieferanten/store','LieferantenController@store');
 Route::resource('/Lieferanten','LieferantenController');
 
 //Fahrer
+Route::get('/Fahrer/tagessumme','FahrerController@tagessumme');
 Route::get('/Fahrer/storeSingleZeiterfassungValue','FahrerController@storeSingleZeiterfassungValue');
 Route::get('/Fahrer/zeiterfassung','FahrerController@zeiterfassung');
 Route::get('/Fahrer/storeSingleRechnungenZuordnenValue','FahrerController@storeSingleRechnungenZuordnenValue');
