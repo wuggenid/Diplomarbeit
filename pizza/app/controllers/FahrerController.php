@@ -114,8 +114,23 @@ class FahrerController extends \BaseController {
     }
     public function tagessumme()
     {
-        $dates = DB::select(DB::raw('SELECT DAT FROM xfahrer ORDER BY unix_timestamp(DAT) DESC LIMIT 0,100'));
+        $dates = DB::select(DB::raw('SELECT DISTINCT RDT FROM xstamm ORDER BY unix_timestamp(RDT) DESC LIMIT 0,100'));
         $personal = xpersonal::all();
         return View::make('Fahrer.tagessumme')->with('dates',$dates)->with('personal',$personal);
+    }
+    public function getBillsPerDriver()
+    {
+        $date = Input::get('date');
+        $pkz = Input::get('pkz');
+        $query = 'SELECT * FROM `xstamm` WHERE DATE(`RDT`) = DATE("'.date('Y-m-d',strtotime($date)).'") AND `FAHR` = "'.$pkz.'"';
+        $billsPerDriver = DB::select(DB::raw($query));
+
+        for ($i = 0;$i<count($billsPerDriver);$i++)
+        {
+            $kunde = xadress::find($billsPerDriver[$i]->TEL);
+            $billsPerDriver[$i]->NAM = $kunde['NA1']." ".$kunde['NA2'];
+            $billsPerDriver[$i]->STR = $kunde['STR'];
+        }
+        return Response::JSON($billsPerDriver);
     }
 }

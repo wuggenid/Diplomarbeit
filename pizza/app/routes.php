@@ -59,6 +59,7 @@ Route::get('/Lieferanten/store','LieferantenController@store');
 Route::resource('/Lieferanten','LieferantenController');
 
 //Fahrer
+Route::get('/Fahrer/getBillsPerDriver','FahrerController@getBillsPerDriver');
 Route::get('/Fahrer/tagessumme','FahrerController@tagessumme');
 Route::get('/Fahrer/storeSingleZeiterfassungValue','FahrerController@storeSingleZeiterfassungValue');
 Route::get('/Fahrer/zeiterfassung','FahrerController@zeiterfassung');
@@ -92,5 +93,5 @@ Route::group(['prefix' => '/api'], function() {
     Route::get('getSupplierName','APIController@getSupplierName');
     Route::get('searchSupplier','APIController@searchSupplier');
     Route::get('getUmsatzPerYear','APIController@getUmsatzPerYear');
-    Route::get('makePrintJob','APIController@makePrintJob');
+    Route::post('makePrintJob','APIController@makePrintJob');
 });
