@@ -94,8 +94,8 @@ return array(
 	*/
 
 	'providers' => array(
-
-		'Illuminate\Foundation\Providers\ArtisanServiceProvider',
+        'Barryvdh\DomPDF\ServiceProvider',
+        'Illuminate\Foundation\Providers\ArtisanServiceProvider',
 		'Illuminate\Auth\AuthServiceProvider',
 		'Illuminate\Cache\CacheServiceProvider',
 		'Illuminate\Session\CommandsServiceProvider',

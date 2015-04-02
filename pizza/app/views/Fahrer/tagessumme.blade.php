@@ -31,6 +31,7 @@
             </tr>
         </tbody>
     </table>
+    <button onclick="javascript:print()" id="btn_drucken" class="btn btn-lg btn-success"><span class="glyphicon glyphicon-print"></span> Drucken</button>
 </div>
 
 <style type="text/css">
@@ -40,6 +41,57 @@
     }
 </style>
 <script>
+    function print()
+    {
+        var htmlToPrint = "<h3>Fahrertagessummen</h3>"; //Heading
+        htmlToPrint += "<hr><hr><p><i>";   //Vertical Lines
+        var d = new Date();
+        htmlToPrint += d.getDate()+"."+d.getMonth()+"."+d.getFullYear();    //Date
+        htmlToPrint += "</i> <b> Fahrer: </b>";
+        htmlToPrint += $('#fname').val();+"</p><br /><br />";   //Fahrer
+
+        var table = document.createElement("table");    //Create Data Table
+        var tableHeader = table.createTHead();  //Add Table Header
+
+        var date = document.createElement('th');    //Add date heading
+        date.style.width = "7em";
+        date.innerText = "R-Datum";
+        tableHeader.appendChild(date);
+
+        var number = document.createElement('th');    //Add number heading
+        number.style.width = "7em";
+        number.innerText = "R-Nr.";
+        tableHeader.appendChild(number);
+
+        var time = document.createElement('th');    //Add time heading
+        time.style.width = "7em";
+        time.innerText = "R-Zeit";
+        tableHeader.appendChild(time);
+
+        var name = document.createElement('th');    //Add name heading
+        name.style.width = "7em";
+        name.innerText = "Name";
+        tableHeader.appendChild(name);
+
+        var address = document.createElement('th');    //Add address heading
+        address.style.width = "7em";
+        address.innerText = "Adresse";
+        tableHeader.appendChild(address);
+
+        var sum = document.createElement('th');    //Add sum heading
+        sum.style.width = "7em";
+        sum.innerText = "R-Betrag";
+        tableHeader.appendChild(sum);
+
+        var tableBody = document.createElement("tbody");
+        /*for (var i = 0;i<)
+        var row = tableBody.insertRow(0);
+        var cell = row.insertCell(0);*/
+        table.appendChild(tableBody);
+
+        htmlToPrint += table.outerHTML;
+        window.location.href = '/api/makePrintJob?htmlToPrint='+htmlToPrint;
+    }
     $('#pkz').keydown(function(e)
     {
         if (e.which == 13)

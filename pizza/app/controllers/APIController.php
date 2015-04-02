@@ -97,4 +97,11 @@ class ApiController extends BaseController {
             $umsatzperyear = 0;
         return $umsatzperyear;
     }
+    function makePrintJob()
+    {
+        $htmlToPrint = Input::get('htmlToPrint');
+        $pdf = App::make('dompdf');
+        $pdf->loadHTML($htmlToPrint);
+        return $pdf->stream();
+    }
 }
