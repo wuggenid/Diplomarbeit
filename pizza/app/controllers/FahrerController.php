@@ -112,4 +112,10 @@ class FahrerController extends \BaseController {
         $dat = Input::get('dat');
         DB::table('xfahrer')->WHERE('PKZ',$pkz)->WHERE('DAT',$dat)->update(array('BEG'=>$btime,'END'=>$etime,'AUTO'=>$car));
     }
+    public function tagessumme()
+    {
+        $dates = DB::select(DB::raw('SELECT DAT FROM xfahrer ORDER BY unix_timestamp(DAT) DESC LIMIT 0,100'));
+        $personal = xpersonal::all();
+        return View::make('Fahrer.tagessumme')->with('dates',$dates)->with('personal',$personal);
+    }
 }
