@@ -91,12 +91,15 @@
                     <tr style="background-color: #ffffff;">
                         <td><a href=""><a href="/"><button class="btn btn-lg btn-danger"><span class="glyphicon glyphicon-chevron-left"></span> Zurück</button></a></td>
                         <td><button id="btn_save" onclick="javascript:updateClick()" class="btn btn-lg btn-success" /><span class="glyphicon glyphicon-floppy-save"></span> Lieferant speichern</td>
-                        <td><a href=""><button class="btn btn-lg btn-warning" ><span class="glyphicon glyphicon-print"></span> Lieferantenliste drucken</button></a></td>
+                        <td><button onclick="javascript:print()" class="btn btn-lg btn-warning" ><span class="glyphicon glyphicon-print"></span> Lieferantenliste drucken</button></td>
                     </tr>
                 </tbody>
             </table>
         </div>
 </div>
+<form style="display: hidden" action="/api/makePrintJob?htmlToPrint" method="POST" id="form">
+  <input type="hidden" id="htmlToPrint" name="htmlToPrint" value=""/>
+</form>
 <style type="text/css">
     .btn
     {
@@ -318,6 +321,99 @@
             alert('Kein Lieferant zum Löschen ausgewählt! Bitte wählen Sie einen Lieferanten aus!');
         else
             window.location.href = '/Lieferanten/destroy/'+lnr;
+    }
+    function print()
+    {
+        var htmlToPrint = "<h3>Lieferantenliste</h3>"; //Heading
+
+        var d = new Date();
+        htmlToPrint += "<p><i>"+d.getDate()+"."+d.getMonth()+"."+d.getFullYear()+"</i></p>";    //Date
+        htmlToPrint += "<hr>";   //Vertical Lines
+
+        var table = document.createElement("table");    //Create Data Table
+        var tableHeader = table.createTHead();  //Add Table Header
+
+        var number = document.createElement('th');    //Add number heading
+        number.innerText = "Nr.";
+        tableHeader.appendChild(number);
+
+        var name = document.createElement('th');    //Add name heading
+        name.innerText = "Name";
+        tableHeader.appendChild(name);
+
+        var address = document.createElement('th');    //Add address heading
+        address.innerText = "Anschrift";
+        tableHeader.appendChild(address);
+
+        var tel = document.createElement('th');    //Add tel heading
+        tel.innerText = "Telefon";
+        tableHeader.appendChild(tel);
+
+        var fax = document.createElement('th');    //Add fax heading
+        fax.innerHTML = "FAX";
+        tableHeader.appendChild(fax);
+
+        var ap = document.createElement('th');    //Add ap heading
+        ap.innerHTML = "Ansprechpartner";
+        tableHeader.appendChild(ap);
+
+        var kon = document.createElement('th');    //Add kon heading
+        kon.innerHTML = "Konditionen";
+        tableHeader.appendChild(kon);
+
+        var tableBody = document.createElement("tbody");
+
+        tableBody.insertRow(-1);  //Adding some space between Header and Body
+
+        var suppliers = JSON.parse('{{json_encode($lieferanten)}}');
+
+        for (var i = 0;i<suppliers.length;i++)
+        {
+            var row = tableBody.insertRow(-1);
+
+            var lnr = row.insertCell(-1);
+            lnr.innerText = suppliers[i]['LNR'];
+
+            var name = row.insertCell(-1);
+            name.innerText = suppliers[i]['LNAME'];
+
+            var adr = row.insertCell(-1);
+            var sadr = "";
+            if (suppliers[i]['LSTR'] != null)
+                sadr += suppliers[i]['LSTR'] + " \n";
+            if (suppliers[i]['LORT'] != null)
+                sadr += suppliers[i]['LORT'];
+            adr.innerText =  sadr;
+
+            var tel = row.insertCell(-1);
+            tel.innerText = suppliers[i]['LTEL1'];
+
+            var fax = row.insertCell(-1);
+            fax.innerText = suppliers[i]['LFAX'];
+
+            var ap = row.insertCell(-1);
+            var anspr = "";
+            if (suppliers[i]['LANSPR1'] != null)
+                anspr += suppliers[i]['LANSPR1'] + " \n";
+            if (suppliers[i]['LANSPR2'] != null)
+                anspr += suppliers[i]['LANSPR2'];
+            ap.innerText = anspr;
+
+            var memo = row.insertCell(-1);
+            var smemo = suppliers[i]['LMEMO'];
+            memo.innerText = smemo;
+
+        }
+
+
+        table.appendChild(tableBody);   // Add Table Body to Table
+
+
+        htmlToPrint += table.outerHTML; // Add Table to Printed String
+
+
+        $('#htmlToPrint').val(htmlToPrint);
+        $('#form').submit();
     }
 </script>
 

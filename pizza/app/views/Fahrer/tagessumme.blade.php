@@ -129,7 +129,7 @@
                         var rsu = row.insertCell(-1);
                         rsu.innerText = rechnungen[i]['RSU'];
 
-                        table.appendChild(tableBody);
+                        table.appendChild(tableBody);   // Add Table Body to Table
                         rsuSum += parseFloat(rechnungen[i]['RSU']);
                     }
                     htmlToPrint += table.outerHTML; // Add Table to Printed String
