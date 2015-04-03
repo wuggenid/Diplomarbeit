@@ -130,5 +130,49 @@ class KundenController extends \BaseController {
     {
         return View::make('Kunden.print');
     }
+    public function kundenSearch()
+    {
+        $vTel = "";
+        $bTel = "";
+        $vNam = "";
+        $bNam = "";
+        $vJum = "";
+        $bJum = "";
+        $vLbe = "";
+        $bLbe = "";
+        $vAbe = "";
+        $bAbe = "";
 
+        if (Input::has('vTel'))
+            $vTel = Input::get('vTel');
+        else
+            $vTel = "0";
+
+        if (Input::has('bTel'))
+            $bTel = Input::get('bTel');
+        else
+            $bTel = "999999999999";
+
+        $vNam = Input::get('vNam');
+        $bNam = Input::get('bNam');
+
+        if (Input::has('vJum'))
+            $vJum = Input::get('vJum');
+        else
+            $vJum = "0";
+
+        if (Input::has('bJum'))
+            $bJum = Input::get('bJum');
+        else
+            $bJum = "999999999999";
+
+        $vLbe = Input::get('vLbe');
+        $bLbe = Input::get('bLbe');
+        $vAbe = Input::get('vAbe');
+        $bAbe = Input::get('bAbe');
+
+        $kunden = DB::select(DB::raw('SELECT * FROM xadress WHERE (TEL >= '.$vTel.' AND TEL <= '.$bTel.') AND (JSUM >= '.$vJum.' AND JSUM <= '.$bJum));
+
+        return Response::JSON($kunden);
+    }
 }

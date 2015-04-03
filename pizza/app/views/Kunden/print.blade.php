@@ -66,34 +66,49 @@
 
             var name = document.createElement('th');    //Add name heading
             name.innerText = "Name";
+            name.style.width = "5em";
             tableHeader.appendChild(name);
 
             var adr = document.createElement('th');    //Add adr heading
             adr.innerText = "Adresse";
+            adr.style.width = "7em";
             tableHeader.appendChild(adr);
 
             var tel = document.createElement('th');    //Add tel heading
             tel.innerText = "Telefonnummer";
+            tel.style.width = "5em";
             tableHeader.appendChild(tel);
 
             var abe = document.createElement('th');    //Add abe heading
-            abe.innerText = "Anzahl Bestellungen";
+            abe.innerHTML = "Anzahl<br />Bestellungen";
             tableHeader.appendChild(abe);
 
             var lbe = document.createElement('th');    //Add lbe heading
-            lbe.innerText = "Letzte Bestellung";
+            lbe.innerHTML = "Letzte<br />Bestellung";
+            lbe.style.width = "6em";
             tableHeader.appendChild(lbe);
 
             var jsu = document.createElement('th');    //Add jsu heading
             jsu.innerText = "Jahresumsatz";
+            jsu.style.width = "6em";
             tableHeader.appendChild(jsu);
 
             var rab = document.createElement('th');    //Add rab heading
             rab.innerText = "Rabatt";
+            rab.style.width = "6em";
             tableHeader.appendChild(rab);
 
-            htmlToPrint += table.outerHTML; // Add Table to Printed String
+            var tableBody = document.createElement("tbody");
 
+            tableBody.insertRow(-1);  //Adding some space between Header and Body
+
+            var xhr = new XMLHttpRequest();
+            
+
+
+            table.appendChild(tableBody);   // Add Table Body to Table
+
+            htmlToPrint += table.outerHTML; // Add Table to Printed String
 
             $('#htmlToPrint').val(htmlToPrint);
             $('#form').submit();
