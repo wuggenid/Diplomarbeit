@@ -101,7 +101,7 @@
                     <tr style="background-color: #ffffff;">
                         <td><a href=""><a href="/"><button style="width: 12em;" class="btn btn-lg btn-danger"><span class="glyphicon glyphicon-chevron-left"></span> Zurück</button></a></td>
                         <td><button id="speichernButton" style="width: 12em;" onclick="javascript:updateClick()" class="btn btn-lg btn-success" /><span class="glyphicon glyphicon-floppy-save"></span> Kunden speichern</td>
-                        <td><a href=""><button class="btn btn-lg btn-warning" ><span class="glyphicon glyphicon-print"></span> Kundenliste drucken</button></a></td>
+                        <td><a href="/Kunden/print"><button class="btn btn-lg btn-warning" ><span class="glyphicon glyphicon-print"></span> Drucken</button></a></td>
                     </tr>
                 </tbody>
             </table>

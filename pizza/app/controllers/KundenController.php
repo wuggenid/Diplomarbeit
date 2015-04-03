@@ -126,6 +126,9 @@ class KundenController extends \BaseController {
         xadress::destroy($id);
         return Redirect::to('/');
 	}
-
+    public function printList()
+    {
+        return View::make('Kunden.print');
+    }
 
 }
