@@ -77,7 +77,7 @@
 
         var input = document.createElement("input");
         input.type = "text";
-        input.id = "stk"+i;
+        input.id = i;
         var stCell = row.insertCell(3);
         stCell.appendChild(input);
 
@@ -86,17 +86,28 @@
         document.getElementById(input.id).onkeydown = function (e) {
             if (e.which == 13) {
                 var stueck = document.getElementById(input.id).value;
-                if(stueck >= 0)
-                {
-                    var sumCell = row.insertCell(4);
-                    sumCell.innerText = ep*stueck + ' €';
+                if (stueck >= 0) {
+                    if(document.getElementById('table1').rows[input.id].cells.length == 4) {
+                        var sumCell = row.insertCell(4);
+                        sumCell.innerText = ep * stueck + ' €';
 
-                    var data = [];
-                    data.push([date, typ, ep, stueck, sumCell.innerText]);
-                    i++;
+                        var data = [];
+                        data.push([date, typ, ep, stueck, sumCell.innerText]);
+                    }
+                    else {
+                        var nsum = document.getElementById('table1').rows[input.id].cells[4].innerText = ep * stueck + ' €';
+                        var data = [];
+                        data.push([date, typ, ep, stueck, nsum]);
+                    }
                 }
+                
+                else {
+                    alert("Bitte eine Zahl eingeben!");
+                }
+
             }
         };
+        i++;
     }
 
 
