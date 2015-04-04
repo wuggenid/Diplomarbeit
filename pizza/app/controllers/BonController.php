@@ -68,6 +68,17 @@ class BonController extends \BaseController {
         }
 	}
 
+    public function storeTageseingabe()
+    {
+        $data = Input::get('data');
+
+        foreach ($data as $dat)
+        {
+            $test = var_dump($dat);
+            return Redirect::to($test);
+        }
+    }
+
 
 	/**
 	 * Display the specified resource.

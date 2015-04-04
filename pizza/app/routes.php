@@ -75,6 +75,7 @@ Route::get('/Bons/Stammdaten/delete/{id}','BonController@destroy');
 Route::get('/Bons/Stammdaten/update','BonController@update');
 Route::get('/Bons/Stammdaten/store','BonController@store');
 Route::get('/Bons/Tageseingabe', 'BonController@gettageseingabe');
+Route::get('/Bons/Tageseingabe/store','BonController@storeTageseingabe');
 Route::resource('/Bons','BonController');
 
 //API
