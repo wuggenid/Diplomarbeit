@@ -62,6 +62,7 @@
     header.innerHTML = "<tr><th>Datum</th><th>Typ</th><th>E-Preis</th><th>Stück</th><th>Summe</th></tr>";
     var i = 1;
     var data = [];
+    var selectedrow = 0;
 
     function createrow(typ, ep)
     {
@@ -81,19 +82,21 @@
         var input = document.createElement("input");
         input.type = "text";
         input.id = i;
+        alert("Selected Row: " + selectedrow + " i/input.id: " + i);
         var stCell = row.insertCell(3);
         stCell.appendChild(input);
 
         document.getElementById(input.id).focus();
+        selectedrow = input.id;
 
         document.getElementById(input.id).onkeydown = function (e) {
             if (e.which == 13) {
                 var stueck = document.getElementById(input.id).value;
                 if (stueck >= 0) {
                     if(document.getElementById('table1').rows[input.id].cells.length == 4) {
+                        //alert("input.id: " + input.id);
                         var sumCell = row.insertCell(4);
                         sumCell.innerText = ep * stueck + ' €';
-
 
                         data.push([date, typ, ep, stueck, sumCell.innerText]);
                         createdrow = true;
@@ -111,6 +114,11 @@
             }
         };
         i++;
+
+        document.getElementById(input.id).onfocus = function (e) {
+            selectedrow = input.id;
+        }
+
     }
 
     function savedata()
@@ -119,10 +127,25 @@
         if(createdrow == true)
         {
             window.location.href = "/Bons/Tageseingabe/store"
-            + "?data=" + data[0];
+            + "?data=" + data;
+
         }
         else
             alert("Noch keine Bons erstellt!");
+    }
+
+    function deleterow()
+    {
+        alert("Selected Row: " + selectedrow + " i: " + i);
+
+        document.getElementById("table1").deleteRow(selectedrow);
+        i--;
+
+        if(document.getElementById('table1').rows.length == selectedrow)
+            document.getElementById(i-1).focus();
+        else
+            document.getElementById(i).focus();
+
     }
 
 
