@@ -34,7 +34,7 @@
     <a href="/Fahrer"><button type="button" class="btn btn-lg btn-danger"><span class="glyphicon glyphicon-chevron-left"></span> Zurück</button></a>
     <button onclick="javascript:print()" id="btn_drucken" class="btn btn-lg btn-success"><span class="glyphicon glyphicon-print"></span> Drucken</button>
 </div>
-<form style="display: hidden" action="/api/makePrintJob?htmlToPrint" method="POST" id="form">
+<form style="display: hidden" action="/api/makePrintJob" method="POST" id="form">
   <input type="hidden" id="htmlToPrint" name="htmlToPrint" value=""/>
 </form>
 <style type="text/css">

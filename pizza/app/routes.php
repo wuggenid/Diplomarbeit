@@ -78,6 +78,9 @@ Route::get('/Bons/Tageseingabe', 'BonController@gettageseingabe');
 Route::get('/Bons/Tageseingabe/store','BonController@storeTageseingabe');
 Route::resource('/Bons','BonController');
 
+//Buchen
+Route::resource('/Buchen','BuchenController');
+
 //API
 Route::group(['prefix' => '/api'], function() {
     Route::get('searchNumber','APIController@searchNumber');
