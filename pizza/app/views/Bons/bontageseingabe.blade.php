@@ -59,14 +59,15 @@
         table.removeChild(table.firstChild);
     }
     var header = table.createTHead();
-    header.innerHTML = "<tr><th>Datum</th><th>Typ</th><th>E-Preis</th><th>Stück</th><th>Summe</th></tr>";
-    var i = 1;
+    header.innerHTML = "<tr><th>Datum</th><th>Typ</th><th>E-Preis</th><th>Stück</th><th>Summe</th><th>Löschen</th></tr>";
+    var idsetter = 1;
+    var numrow = 0;
     var data = [];
-    var selectedrow = 0;
 
     function createrow(typ, ep)
     {
-        var row = table.insertRow(i);
+        numrow = document.getElementById('table1').rows.length;
+        var row = table.insertRow(numrow);
         row.className = "bonrow";
 
         var datumCell = row.insertCell(0);
@@ -81,28 +82,40 @@
 
         var input = document.createElement("input");
         input.type = "text";
-        input.id = i;
-        alert("Selected Row: " + selectedrow + " i/input.id: " + i);
+        input.id = idsetter;
+        //alert("i/input.id: " + i);
         var stCell = row.insertCell(3);
         stCell.appendChild(input);
 
         document.getElementById(input.id).focus();
-        selectedrow = input.id;
 
         document.getElementById(input.id).onkeydown = function (e) {
             if (e.which == 13) {
+                //alert("input.id: " + input.id);
                 var stueck = document.getElementById(input.id).value;
                 if (stueck >= 0) {
-                    if(document.getElementById('table1').rows[input.id].cells.length == 4) {
-                        //alert("input.id: " + input.id);
+                    alert(document.getElementById('table1').rows[numrow].cells.length);
+                    if(document.getElementById('table1').rows[numrow].cells.length == 4) {
                         var sumCell = row.insertCell(4);
                         sumCell.innerText = ep * stueck + ' €';
 
                         data.push([date, typ, ep, stueck, sumCell.innerText]);
                         createdrow = true;
+
+                        // Create Delete Button
+                        var deleteCell = row.insertCell(5);
+                        var cbutton = document.createElement("button");
+                        cbutton.className = "btn btn-lg btn-danger";
+                        cbutton.innerHTML = 'Löschen';
+                        cbutton.style.maxHeight = "35px";
+                        cbutton.style.fontSize = "15px";
+                        cbutton.style.padding = "5px";
+                        cbutton.id = "b"+idsetter;
+                        cbutton.setAttribute( "onClick", 'javascript: deleterow('+idsetter+');');
+                        deleteCell.appendChild(cbutton);
                     }
                     else {
-                        var nsum = document.getElementById('table1').rows[input.id].cells[4].innerText = ep * stueck + ' €';
+                        var nsum = document.getElementById('table1').rows[numrow].cells[4].innerText = ep * stueck + ' €';
                         data.push([date, typ, ep, stueck, nsum]);
                     }
                 }
@@ -113,10 +126,11 @@
 
             }
         };
-        i++;
 
-        document.getElementById(input.id).onfocus = function (e) {
-            selectedrow = input.id;
+        idsetter++;
+
+        document.getElementById(numrow).onfocus = function (e) {
+            alert("TF" + input.id);
         }
 
     }
@@ -134,17 +148,19 @@
             alert("Noch keine Bons erstellt!");
     }
 
-    function deleterow()
+    function deleterow(buttonid)
     {
-        alert("Selected Row: " + selectedrow + " i: " + i);
+        idsetter--;
 
-        document.getElementById("table1").deleteRow(selectedrow);
-        i--;
+        document.getElementById("table1").deleteRow(buttonid);
+        //alert("buttonid" + buttonid);
+        //alert(document.getElementById('table1').rows.length);
 
-        if(document.getElementById('table1').rows.length == selectedrow)
-            document.getElementById(i-1).focus();
-        else
-            document.getElementById(i).focus();
+        if(document.getElementById('table1').rows.length != buttonid)
+            idsetter = document.getElementById('table1').rows.length+1;
+
+        //alert("i" + i);
+
 
     }
 
