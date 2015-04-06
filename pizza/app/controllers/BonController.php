@@ -71,12 +71,9 @@ class BonController extends \BaseController {
     public function storeTageseingabe()
     {
         $data = Input::get('data');
+        $test = var_dump($data);
+        return Redirect::to($test);
 
-        foreach ($data as $dat)
-        {
-            $test = var_dump($dat);
-            return Redirect::to($test);
-        }
     }
 
 
