@@ -52,23 +52,24 @@
 <script language="JavaScript">
 
     var table = document.getElementById('table1');
-    var createdrow = false;
+    var rowcount = 0;
+    var idsetter = 1;
 
     while(table.hasChildNodes())
     {
         table.removeChild(table.firstChild);
     }
+
     var header = table.createTHead();
     header.innerHTML = "<tr><th>Datum</th><th>Typ</th><th>E-Preis</th><th>Stück</th><th>Summe</th><th>Löschen</th></tr>";
-    var idsetter = 1;
-    var numrow = 0;
-    var data = [];
 
     function createrow(typ, ep)
     {
-        numrow = document.getElementById('table1').rows.length;
-        var row = table.insertRow(numrow);
+        var row = table.insertRow(rowcount+1);
+
         row.className = "bonrow";
+        row.id = "row"+idsetter;
+        alert("row" + row.id);
 
         var datumCell = row.insertCell(0);
         date = new Date().toLocaleString();
@@ -82,87 +83,69 @@
 
         var input = document.createElement("input");
         input.type = "text";
-        input.id = idsetter;
-        //alert("i/input.id: " + i);
+        input.id = "input"+idsetter;
+
         var stCell = row.insertCell(3);
         stCell.appendChild(input);
 
         document.getElementById(input.id).focus();
-
+        alert("inid" + input.id);
         document.getElementById(input.id).onkeydown = function (e) {
-            if (e.which == 13) {
-                //alert("input.id: " + input.id);
-                var stueck = document.getElementById(input.id).value;
-                if (stueck >= 0) {
-                    alert(document.getElementById('table1').rows[numrow].cells.length);
-                    if(document.getElementById('table1').rows[numrow].cells.length == 4) {
-                        var sumCell = row.insertCell(4);
-                        sumCell.innerText = ep * stueck + ' €';
-
-                        data.push([date, typ, ep, stueck, sumCell.innerText]);
-                        createdrow = true;
-
-                        // Create Delete Button
-                        var deleteCell = row.insertCell(5);
-                        var cbutton = document.createElement("button");
-                        cbutton.className = "btn btn-lg btn-danger";
-                        cbutton.innerHTML = 'Löschen';
-                        cbutton.style.maxHeight = "35px";
-                        cbutton.style.fontSize = "15px";
-                        cbutton.style.padding = "5px";
-                        cbutton.id = "b"+idsetter;
-                        cbutton.setAttribute( "onClick", 'javascript: deleterow('+idsetter+');');
-                        deleteCell.appendChild(cbutton);
-                    }
-                    else {
-                        var nsum = document.getElementById('table1').rows[numrow].cells[4].innerText = ep * stueck + ' €';
-                        data.push([date, typ, ep, stueck, nsum]);
-                    }
-                }
-
-                else {
-                    alert("Bitte eine Zahl eingeben!");
-                }
-
-            }
+            if (e.which == 13)
+                sumit(input.id, input.value, ep, row);
         };
 
+        rowcount++;
         idsetter++;
+    }
 
-        document.getElementById(numrow).onfocus = function (e) {
-            alert("TF" + input.id);
+    function sumit(iid, stueck, ep, row)
+    {
+        if (stueck >= 0) {
+            var id = iid.split("input");
+            //mit hilfe input.id id wird die tabellenreihe rausgesucht - FALSCH
+            if(document.getElementById('table1').rows[id[1]].cells.length == 4) {
+                var sumCell = row.insertCell(4);
+                sumCell.innerText = ep * stueck + ' €';
+
+                // Create Delete Button
+                var deleteCell = row.insertCell(5);
+                var cbutton = document.createElement("button");
+                cbutton.className = "btn btn-lg btn-danger";
+                cbutton.innerHTML = 'Löschen';
+                cbutton.style.maxHeight = "35px";
+                cbutton.style.fontSize = "15px";
+                cbutton.style.padding = "5px";
+                cbutton.id = "b"+id[1];
+                alert(cbutton.id);
+                cbutton.setAttribute( "onClick", 'javascript: deleterow('+id[1]+');');
+                deleteCell.appendChild(cbutton);
+            }
+            else {
+                document.getElementById('table1').rows[id[1]].cells[4].innerText = ep * stueck + ' €';
+            }
+
         }
+
+    }
+
+    function selectrow()
+    {
 
     }
 
     function savedata()
     {
-        //Speichern
-        if(createdrow == true)
-        {
-            window.location.href = "/Bons/Tageseingabe/store"
-            + "?data=" + data;
 
-        }
-        else
-            alert("Noch keine Bons erstellt!");
     }
 
-    function deleterow(buttonid)
+    function deleterow(bid)
     {
-        idsetter--;
-
-        document.getElementById("table1").deleteRow(buttonid);
-        //alert("buttonid" + buttonid);
-        //alert(document.getElementById('table1').rows.length);
-
-        if(document.getElementById('table1').rows.length != buttonid)
-            idsetter = document.getElementById('table1').rows.length+1;
-
-        //alert("i" + i);
-
-
+        document.getElementById("table1").deleteRow(bid);
+        rowcount--;
+        alert("rc" +rowcount);
     }
+
 
 
 
