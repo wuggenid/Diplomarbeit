@@ -82,5 +82,9 @@ class BuchenController extends \BaseController {
 		//
 	}
 
+    public function stornos()
+    {
+        return View::make('Buchen.stornos');
+    }
 
 }

@@ -2,10 +2,10 @@
 
 @section('content')
 
-<table style="align-content: center;">
+<table style="align-content: center; margin: 0 auto; border-collapse: separate; border-spacing: 0.7em;">
     <tbody>
         <tr>
-                <td><a href="/"> <button class="btn btn-lg btn-danger vagueDangerButton" > Stornos </button></a></td>
+                <td><a href="/Buchen/stornos"> <button class="btn btn-lg btn-danger vagueDangerButton" > Stornos </button></a></td>
                 <td><a href="/"> <button class="btn btn-lg btn-danger vagueDangerButton"> Monatsübertrag </button></a></td>
         <tr>
         </tr>
@@ -27,6 +27,10 @@
     TABLE TR TD BUTTON
     {
         width: 15em;
+    }
+    TABLE TR
+    {
+        background-color: #FFF;
     }
     .vagueSuccessButton
     {

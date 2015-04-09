@@ -79,6 +79,7 @@ Route::get('/Bons/Tageseingabe/store','BonController@storeTageseingabe');
 Route::resource('/Bons','BonController');
 
 //Buchen
+Route::get('/Buchen/stornos','BuchenController@stornos');
 Route::resource('/Buchen','BuchenController');
 
 //API
