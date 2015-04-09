@@ -104,4 +104,29 @@ class ApiController extends BaseController {
         $pdf->loadHTML($htmlToPrint);
         return $pdf->stream();
     }
+    function getBill()
+    {
+        $rnr = Input::get('rnr');
+        $bill = xstamm::find($rnr);
+        $name = xadress::find($bill->TEL);
+        $bill->Name = $name->NA1." ".$name->NA2;
+        $bill->Str = $name->STR;
+        $bill->RDT = date('d.m.Y',strtotime($bill->RDT));
+        $bill->RZT = date('H:i:s',strtotime($bill->RZT));
+        return Response::JSON($bill);
+    }
+    function searchBills()
+    {
+        $rnr = Input::get('rnr');
+        $bills = xstamm::where('RNR','like',$rnr."%")->take(10)->get();
+        for ($i = 0;$i<count($bills);$i++)
+        {
+            $name = xadress::find($bills[$i]->TEL);
+            $bills[$i]->Name = $name->NA1." ".$name->NA2;
+            $bills[$i]->Str = $name->STR;
+            $bills[$i]->RDT = date('d.m.Y',strtotime($bills[$i]->RDT));
+            $bills[$i]->RZT = date('H:i:s',strtotime($bills[$i]->RZT));
+        }
+        return Response::JSON($bills);
+    }
 }

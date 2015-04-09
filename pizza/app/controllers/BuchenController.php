@@ -84,7 +84,13 @@ class BuchenController extends \BaseController {
 
     public function stornos()
     {
-        return View::make('Buchen.stornos');
+        $lastBills = xstamm::take(10)->orderBy('RNR','DESC')->get();
+        for ($i = 0;$i<count($lastBills);$i++)
+        {
+            $kName = xadress::find($lastBills[$i]->TEL);
+            $lastBills[$i]->Name = $kName->NA1." ".$kName->NA2;
+        }
+        return View::make('Buchen.stornos')->with('lastBills',$lastBills);
     }
 
 }
