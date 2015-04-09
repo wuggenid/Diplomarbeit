@@ -6,6 +6,7 @@
 <div id="right" style="float: right; width: 58%; padding-top: 20px">
 
     <div class="chosen-container chosen-container-multi">
+        <p style="float: right;">Storno: <input type="checkbox" id="cb_storno" /></p>
         <label>Rechnungsnummer:</label>
         <ul class="chosen-choices" style="list-style-type: none;">
             <li class="search-field">
@@ -70,11 +71,37 @@
             <label for="email"> Summe</label><br/>
             <span class="fieldbox"><input type="text" name="sum" id="sum" disabled/></span>
         </li>
+        <input type="hidden" id="storno" />
     </ul>
     <a href="/"><button style="width: 12em;" class="btn btn-lg btn-danger"><span class="glyphicon glyphicon-chevron-left"></span> Zurück</button>
 </div>
 <script language="javascript">
     $("#rnr_search").focus();
+    $('#rnr_search').keydown(function(e){
+        if (e.which == 13)
+        {
+            if ($("#table1body").children().length == 1)
+            {
+                $("#cb_storno").focus();
+            }
+            else if ($("#table1body").children().length == 0)
+            {
+                alert("Für diese Rechnungsnummer wurde keine Rechnung gefunden!")
+            }
+            else
+            {
+                alert("Bitte geben Sie eine eindeutige Rechnungsnummer ein!")
+            }
+        }
+    });
+
+    $("#cb_storno").change(function (e) {
+            var retVal = confirm("Sind Sie sicher, dass Sie die Stornierung ändern wollen?");
+            if (retVal)
+            {
+                var xhr = new XMLHttpRequest();
+            }
+    });
 
     var tableVisible = false;
     function rnrSearchKeyPress()
@@ -132,6 +159,12 @@
                 $("#str").val(bill['Str']);
                 $("#rzt").val(bill['RZT']);
                 $("#sum").val(bill['RSU']);
+                $("#storno").val(bill['INT']);
+                if (bill['INT']=="1")
+                    $("#cb_storno").prop('checked', false);
+
+                else
+                    $("#cb_storno").prop('checked', true);
             }
         });
         xhr.open('GET', '/api/getBill?rnr=' + rnr, true);
@@ -157,6 +190,15 @@
                     tel.innerText = bills[i]['TEL'];
                     var rdt = row.insertCell(-1);
                     rdt.innerText = bills[i]['RDT'];
+                }
+                if (bills.length == 1)
+                {
+                    $("#storno").val(bills[0]['INT']);
+                    if ($("#storno").val()=="1")
+                        $("#cb_storno").prop('checked', true);
+
+                    else
+                        $("#cb_storno").prop('checked', false);
                 }
             }
         });

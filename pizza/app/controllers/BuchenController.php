@@ -92,5 +92,11 @@ class BuchenController extends \BaseController {
         }
         return View::make('Buchen.stornos')->with('lastBills',$lastBills);
     }
+    public function changeStorno()
+    {
+        $storno = Input::get('int');
+        $rnr = Input::get('rnr');
+        xstamm::where('RNR','=',$rnr)->update(array('INT'=>$storno));
+    }
 
 }
