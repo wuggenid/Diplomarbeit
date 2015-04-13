@@ -73,9 +73,13 @@
         </li>
         <input type="hidden" id="storno" />
     </ul>
-    <a href="/"><button style="width: 12em;" class="btn btn-lg btn-danger"><span class="glyphicon glyphicon-chevron-left"></span> Zurück</button>
+    <a href="/"><button id="backButton" style="width: 12em;" class="btn btn-lg btn-danger"><span class="glyphicon glyphicon-chevron-left"></span> Zurück</button>
 </div>
 <script language="javascript">
+    $("body").keydown(function(e){
+        if (e.which == 27)
+            $("#backButton").focus();
+    });
     $("#rnr_search").focus();
     $('#rnr_search').keydown(function(e){
         if (e.which == 13)
