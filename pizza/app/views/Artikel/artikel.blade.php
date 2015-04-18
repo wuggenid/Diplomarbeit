@@ -55,7 +55,7 @@
         <table id="artikel" style="height: 300px; width: 100%; overflow-y: auto; display: block;">
             <tbody>
                 @foreach($articles as $key => $article)
-                     <tr class="tablerow" onClick="javascript:selectarticle('{{$article->ANR}}','{{$article->A0}}','{{$article->AG}}', '{{$article->CB}}','{{$article->ASS}}', '{{$article->VGS}}')">
+                     <tr class="tablerow" id='{{$article->ANR}}' onClick="javascript:selectarticle('{{$article->ANR}}','{{$article->A0}}','{{$article->AG}}', '{{$article->CB}}','{{$article->ASS}}', '{{$article->VGS}}')">
                          <td style="padding-left: 5%;">{{$article->ANR}}</td>
                          <td style="width: 100%; padding-left: 20%;">{{$article->A0}}</td>
                      </tr>
@@ -66,7 +66,7 @@
             <tbody>
                 <?php $xag = xag::orderby('AGNR')->get(); ?>
                 @foreach($xag as $key => $ag)
-                     <tr class="tablerow" id="{{$ag->AGNR}}" onclick="artgru.value = '{{$ag->AGNR}}';">
+                     <tr class="tablerow" id="ag{{$ag->AGNR}}" onclick="artgru.value = '{{$ag->AGNR}}';">
                          <td style="padding-left: 5%;">{{$ag->AGNR}}</td>
                          <td style="width: 100%; padding-left: 24%;">{{$ag->AGBEZ}}</td>
                      </tr>
@@ -87,8 +87,6 @@
         </table>
     </div>
 </div>
-
-
 
 <div style="clear: both;">
     <br/><br/>
@@ -228,7 +226,7 @@
     }
 
 
-
+    var aid = 1;
     var selectedArtikel = 1;
     function changeSelectedArtikel(cselectedArtikel)
     {
@@ -242,13 +240,12 @@
             selectedArtikel++;
         rows[oldSelectedArtikel-1].style.backgroundColor = "";
         rows[selectedArtikel-1].style.backgroundColor = "#D8D8D8";
-        var aid = rows[selectedArtikel-1].cells[0].innerText;
+        aid = rows[selectedArtikel-1].cells[0].innerText;
         var xhr = new XMLHttpRequest();
         (xhr.onreadystatechange = function() {
             if (xhr.readyState == 4) {
                 var articles = JSON.parse(xhr.responseText);
-                if (articles.length == 1)
-                    selectarticle(articles[0]['ANR'] ,articles[0]['A0'], articles[0]['AG'], articles[0]['CB'], articles[0]['ASS'], articles[0]['VGS']);
+                selectarticle(articles[0]['ANR'] ,articles[0]['A0'], articles[0]['AG'], articles[0]['CB'], articles[0]['ASS'], articles[0]['VGS']);
             }
         })
         xhr.open('GET', '/api/getArtikel?artikel=' + aid, true);
@@ -260,24 +257,33 @@
     {
         if (event.keyCode == 40)
         {
-            if(check == 0) {
+            if(check == 0)
                 changeSelectedArtikel(selectedArtikel);
-                check = 1; }
             else
-                changeSelectedArtikel(selectedArtikel+1);
+                changeSelectedArtikel(selectedArtikel + 1);
+
+            check++;
+            if((check >= 10)) {
+                document.getElementById(aid).scrollIntoView(true);
+                check = 1;
+            }
+
         }
-        else if (event.keyCode == 38)
-            changeSelectedArtikel(selectedArtikel-1);
+        else if (event.keyCode == 38) {
+            changeSelectedArtikel(selectedArtikel - 1);
+            if(check <= 2) {
+                document.getElementById(aid).scrollIntoView(true);
+                check = 1;
+            }
+            else
+                check--;
+        }
 
         if (event.keyCode == 13)
             artbez.focus();
     }
 
-
-
-
-
-
+    var agid = 1;
     var selectedArtikelG = 1;
     function changeSelectedArtikelG(cselectedArtikelG)
     {
@@ -292,6 +298,7 @@
         rows[oldSelectedArtikelG-1].style.backgroundColor = "";
         rows[selectedArtikelG-1].style.backgroundColor = "#D8D8D8";
         artgru.value = rows[selectedArtikelG-1].cells[0].innerText;
+        agid = artgru.value;
     }
 
     var checkg = 0;
@@ -304,9 +311,22 @@
                 checkg = 1; }
             else
                 changeSelectedArtikelG(selectedArtikelG+1);
+
+            checkg++;
+            if((checkg >= 10)) {
+                document.getElementById("ag"+agid).scrollIntoView(true);
+                checkg = 1;
+            }
         }
-        else if (event.keyCode == 38)
-            changeSelectedArtikelG(selectedArtikelG-1);
+        else if (event.keyCode == 38) {
+            changeSelectedArtikelG(selectedArtikelG - 1);
+            if (checkg <= 2) {
+                document.getElementById("ag"+agid).scrollIntoView(true);
+                checkg = 1;
+            }
+            else
+                checkg--;
+        }
 
         if (event.keyCode == 13)
             epreis.focus();
