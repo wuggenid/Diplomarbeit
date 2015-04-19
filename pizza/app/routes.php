@@ -44,6 +44,7 @@ Route::get('/Artikel/Artikelgruppe/store','ArtikelController@storegruppe');
 Route::get('/Artikel/Artikeleinkauf', 'ArtikelController@getartikeleinkauf');
 Route::get('/Artikel/Artikeleinkauf/update','ArtikelController@updateeinkauf');
 Route::get('/Artikel/Artikelmonatsstatistik', 'ArtikelController@getartikelmonatsstatistik');
+Route::post('/Artikel/Artikelmonatsstatistik/searchYear', 'ArtikelController@searchYear');
 Route::resource('/Artikel', 'ArtikelController');
 
 //Personal

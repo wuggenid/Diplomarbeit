@@ -74,6 +74,15 @@ table {
     width: 100%;
 }
 
+.artikelmontatstable {
+    width:100%;
+    border-collapse:collapse;
+    table-layout:fixed;
+}
+
+.artikelmontatstable td {
+    border: 1px solid #333;
+}
 
 
 

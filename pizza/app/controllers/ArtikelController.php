@@ -27,7 +27,15 @@ class ArtikelController extends \BaseController {
 
     public function getArtikelmonatsstatistik()
     {
-        $data['artstats']= DB::table('xview')->get();
+        $data['artstats']= DB::table('xview')->where('JJJJ', 9999)->get();
+        return View::make('Artikel.artikelmonatsstatistik',$data);
+    }
+
+    public function searchYear()
+    {
+        $year = Input::get('year');
+        $data['artstats']= DB::table('xview')->where('JJJJ', $year)->get();
+        $data['articles']=DB::table('xartikel')->get();
         return View::make('Artikel.artikelmonatsstatistik',$data);
     }
 
