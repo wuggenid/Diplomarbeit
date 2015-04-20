@@ -41,8 +41,22 @@ class ArtikelController extends \BaseController {
 
     public function getArtikeleinkauf()
     {
-        $data['articlesEK'] = DB::table('xartikel_ek')->orderBy('ANR')->get();
         $data['articles']= DB::table('xartikel')->orderBy('ANR')->get();
+        $data['lieferanten']= DB::table('xlief')->orderBy('LNR')->get();
+
+        /*
+        $data['articlesEK'] = DB::table('xartikel_ek')->orderBy('ANR')->get();
+
+        foreach ($data['articlesEK'] as $aek) {
+            foreach ($data['articles'] as $a)
+            {
+                if($aek->ANR == $a->ANR) {
+                    $aek->A0 = $a->A0;
+                }
+            }
+        }
+        */
+
         return View::make('Artikel.artikeleinkauf',$data);
     }
 

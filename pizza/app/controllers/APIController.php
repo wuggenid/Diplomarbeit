@@ -31,7 +31,8 @@ class ApiController extends BaseController {
     function getArtikelEK()
     {
         $artikelek = Input::get('artikelek');
-        return Response::json(xartikelek::where('ANR','=',$artikelek)->get());
+        $lieferanten = Response::json(xartikelek::where('ANR','=',$artikelek)->get());
+        return $lieferanten;
     }
     function searchYear()
     {

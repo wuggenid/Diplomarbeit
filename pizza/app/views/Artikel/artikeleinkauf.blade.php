@@ -51,7 +51,7 @@
                     </li>
                     <li>
                         <label for="name"> Name</label><br/>
-                        <span class="fieldbox"><input type="text" id="l1nameE"/></span>
+                        <span class="fieldbox"><input type="text" id="l1nameE" readonly/></span>
                     </li>
                     <li>
                         <label for="email"> Preis</label><br/>
@@ -70,8 +70,10 @@
                         <span class="fieldbox"><input type="text" id="l2nrE"/></span>
                     </li>
                     <li>
+
                         <label for="name"> Name</label><br/>
-                        <span class="fieldbox"><input type="text" id="l2nameE"/></span>
+                        <span class="fieldbox"><input type="text" id="l2nameE" readonly/></span>
+
                     </li>
                     <li>
                         <label for="email"> Preis</label><br/>
@@ -91,7 +93,7 @@
                     </li>
                     <li>
                         <label for="name"> Name</label><br/>
-                        <span class="fieldbox"><input type="text" id="l3nameE"/></span>
+                        <span class="fieldbox"><input type="text" id="l3nameE" readonly/></span>
                     </li>
                     <li>
                         <label for="email"> Preis</label><br/>
@@ -111,7 +113,7 @@
                     </li>
                     <li>
                         <label for="name"> Name</label><br/>
-                        <span class="fieldbox"><input type="text" id="l4nameE"/></span>
+                        <span class="fieldbox"><input type="text" id="l4nameE" readonly/></span>
                     </li>
                     <li>
                         <label for="email"> Preis</label><br/>
@@ -146,6 +148,7 @@
     function findarticle(anr)
     {
         $id = anr;
+
         var xhr = new XMLHttpRequest();
         (xhr.onreadystatechange = function() {
             if (xhr.readyState == 4) {
@@ -180,15 +183,16 @@
         l4preisE.value = l4preis;
         l4datE.value = l4dat;
 
-        var xhr = new XMLHttpRequest();
-        (xhr.onreadystatechange = function(){
-            if (xhr.readyState == 4) {
-                var lieferanten = JSON.parse(xhr.responseText);
-                l1nameE.value = lieferanten;
-            }
-        });
-        xhr.open('GET', '/api/getSupplierName?l1nr=' + l1nr, true);
-        xhr.send();
+        @foreach($lieferanten as $key => $lieferant)
+            if(l1nr == '{{$lieferant->LNR}}')
+                l1nameE.value = "{{$lieferant->LNAME}}";
+            if(l2nr == '{{$lieferant->LNR}}')
+                l2nameE.value = "{{$lieferant->LNAME}}";
+            if(l3nr == '{{$lieferant->LNR}}')
+                l3nameE.value = "{{$lieferant->LNAME}}";
+            if(l4nr == '{{$lieferant->LNR}}')
+                l4nameE.value = "{{$lieferant->LNAME}}";
+        @endforeach
     }
 
     function savearticleeinkauf()
@@ -229,7 +233,6 @@
         else
             alert("Keinen Artikel ausgewählt");
     }
-
 
 
 </script>
