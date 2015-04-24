@@ -53,7 +53,12 @@ table {
 }
 
 .tablerow:hover {
-    background-color: #EEE;
+    background-color: #DDD;
+    cursor: pointer;
+}
+
+.kundenrow:hover {
+    background-color: #DDD;
     cursor: pointer;
 }
 

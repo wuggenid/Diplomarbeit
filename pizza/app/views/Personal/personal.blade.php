@@ -355,10 +355,10 @@
 
                             var rows = document.getElementById('table1').getElementsByTagName('tbody')[0].getElementsByTagName('tr');
                             for (i = 0; i < rows.length; i++) {
-                                    rows[i].onclick = function() {
-                                        changeSelectedName(this.rowIndex);
-                                    }
+                                rows[i].onclick = function() {
+                                    changeSelectedName(this.rowIndex);
                                 }
+                            }
                         }
 
                         header.innerHTML = "<tr><th style=\"text-align: left;\" id=\"toggT\" >Kürzel</th><th style=\"text-align: left;\" id=\"toggN\" >Name</th><th style=\"text-align: left;\" id=\"toggS\">Straße</th></tr>";

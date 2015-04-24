@@ -47,7 +47,8 @@
             <label>Telefon/Name:</label>
             <ul class="chosen-choices">
                 <li class="search-field">
-                    <input type="text" id="tels" class="default" oninput="javascript:telInput(this)" onkeydown="javascript:telKeyPress(this)" /><button type="button" id="aufk" onclick="toggle(this);"/><span id="aufks" class="glyphicon glyphicon-chevron-down"></span>
+                    <input type="text" id="tels" class="default" oninput="javascript:telInput(this)" onkeydown="javascript:telKeyPress(this)" />
+                    <button type="button" id="aufk" onclick="toggle(this);"/><span id="aufks" class="glyphicon glyphicon-chevron-down"></span>
                 </li>
             </ul>
         </div>
@@ -56,21 +57,7 @@
             <div style="height: 200px;">
 
                 <script type="text/javascript">
-                    function toggle(cell) {
-                      document.getElementById("toggA").style.display= "none";
-                      document.getElementById("toggT").style.display="table-cell";
-                      document.getElementById("toggN").style.display="table-cell";
-                      document.getElementById("toggS").style.display= "table-cell";
 
-                      if(document.getElementById('table1').style.display == "none") {
-                        document.getElementById('table1').style.display="table";
-                        document.getElementById('aufks').className = "glyphicon glyphicon-chevron-up";
-                        }
-                      else {
-                        document.getElementById('table1').style.display="none";
-                        document.getElementById('aufks').className = "glyphicon glyphicon-chevron-down";
-                        }
-                    }
                 </script>
 
                 <div style="z-index: 99; position: relative;">
@@ -149,6 +136,18 @@
 
     <script language="javascript">
         document.getElementById('tels').focus();
+
+        function toggle(cell) {
+            if(document.getElementById('table1').style.display == "none") {
+                document.getElementById('table1').style.display="table";
+                document.getElementById('aufks').className = "glyphicon glyphicon-chevron-up";
+            }
+            else {
+                document.getElementById('table1').style.display="none";
+                document.getElementById('aufks').className = "glyphicon glyphicon-chevron-down";
+            }
+        }
+
         function saveOrder()
         {
             var summeBoxes = document.getElementsByClassName('summe');
@@ -307,6 +306,7 @@
                                 nameCell.innerText = name;
                                 var streetCell = row.insertCell(-1);
                                 streetCell.innerText = numbers[i]['STR'];
+                                row.className = "kundenrow";
                             }
                             if(numbers.length > 8)
                                 table.className = "scrollkundentable";
@@ -315,6 +315,13 @@
                             if(document.getElementById('table1').style.display == "none") {
                                 document.getElementById('table1').style.display="table";
                                 document.getElementById('aufks').className = "glyphicon glyphicon-chevron-up";
+                            }
+
+                            var rows = document.getElementById('table1').getElementsByTagName('tbody')[0].getElementsByTagName('tr');
+                            for (i = 0; i < rows.length; i++) {
+                                rows[i].onclick = function() {
+                                    changeSelectedTel(this.rowIndex);
+                                }
                             }
                         }
                     }
@@ -428,6 +435,7 @@
                                     nameCell.innerText = name;
                                     var streetCell = row.insertCell(-1);
                                     streetCell.innerText = numbers[i]['STR'];
+                                    row.className = "kundenrow";
                                 }
                                 if(numbers.length > 8)
                                     table.className = "scrollkundentable";
@@ -436,6 +444,14 @@
                                 if(document.getElementById('table1').style.display == "none") {
                                     document.getElementById('table1').style.display="table";
                                     document.getElementById('aufks').className = "glyphicon glyphicon-chevron-up";
+                                }
+
+                                var rows = document.getElementById('table1').getElementsByTagName('tbody')[0].getElementsByTagName('tr');
+                                for (i = 0; i < rows.length; i++) {
+                                    rows[i].onclick = function() {
+                                        changeSelectedTel(this.rowIndex);
+                                        document.getElementById('tels').focus();
+                                    }
                                 }
                             }
                         }

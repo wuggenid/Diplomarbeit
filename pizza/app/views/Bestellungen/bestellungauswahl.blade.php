@@ -4,23 +4,22 @@
 
 <div style="padding: 0 30px;">
 
-    <div style="padding: 5px;">
-    <br />
-    <br />
-        <div class="radio" style="margin-left: 10em;position: fixed">
-            <label><input type="radio" name="bestellungradio">Bestellungen verändern</label><br />
-            <label><input type="radio" name="bestellungradio" checked="true">Neue Bestellungen</label>
-        </div>
-        <form action="/Bestellungen/create" method="get">
-            <button type="submit" class="btn btn-lg btn-success">Bestellungen</button>
-        </form>
-        <br /><br />
+    <div style="padding: 5px;" class="startbuttons">
+    <br /><br />
 
-        <button type="button" class="btn btn-lg btn-warning">Drucken</button><br /><br />
+        <ul>
+            <form action="/Bestellungen/create" method="get">
+                <li><button type="submit" class="btn btn-lg btn-success">Neue Bestellungen</button></li>
+            </form>
 
-        <a href="/Bestellungen/letzteAnrufe"><button type="button" class="btn btn-lg btn-primary">Letzte Anrufe</button></a><br /><br />
+            <li><button class="btn btn-lg btn-success" name="bestellungradio">Bestellungen verändern</button><br /><br /></li>
 
-        <a href="/"><button type="button" class="btn btn-lg btn-danger"><span class="glyphicon glyphicon-chevron-left"></span> Zurück</button></a>
+            <li><button type="button" class="btn btn-lg btn-warning">Drucken</button><br /></li>
+
+            <li><a href="/Bestellungen/letzteAnrufe"><button type="button" class="btn btn-lg btn-primary">Letzte Anrufe</button></a><br/><br /></li>
+
+            <li><a href="/"><button type="button" class="btn btn-lg btn-danger"><span class="glyphicon glyphicon-chevron-left"></span> Zurück</button></a></li>
+        </ul>
     </div>
 </div>
 
