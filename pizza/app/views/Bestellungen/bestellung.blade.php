@@ -16,27 +16,27 @@
         <ul id="contactform">
             <li>
                 <label for="name"> Vorname</label><br/>
-                <span class="fieldbox"><input type="text" name="vname" id="vname" value="{{--$bestellung['NA1']--}}" disabled/></span>
+                <span class="fieldbox"><input type="text" name="vname" id="vname" readonly/></span>
             </li>
             <li>
                 <label for="name"> Nachname</label><br/>
-                <span class="fieldbox"><input type="text" name="nname" id="nname" value="{{--$bestellung['NA2']--}}" disabled/></span>
+                <span class="fieldbox"><input type="text" name="nname" id="nname" readonly/></span>
             </li>
             <li>
                 <label for="email"> Telefon</label><br/>
-                <span class="fieldbox"><input type="text" name="tel" id="tel" value="{{--$bestellung['TEL']--}}" disabled/></span>
+                <span class="fieldbox"><input type="text" name="tel" id="tel" readonly/></span>
             </li>
             <li>
                 <label for="contact"> Adresse</label><br/>
-                <span class="fieldbox"><input type="text" name="add" id="add" value="{{--$bestellung['STR']--}}" disabled/></span>
+                <span class="fieldbox"><input type="text" name="add" id="add" readonly/></span>
             </li>
             <li>
                 <label for="contact"> Ort</label><br/>
-                <span class="fieldbox"><input type="text" name="ort" id="ort" value="{{--$bestellung['ORT']--}}" disabled/></span>
+                <span class="fieldbox"><input type="text" name="ort" id="ort" readonly/></span>
             </li>
             <li>
                 <label for="msg"> Informationen</label><br/>
-                <span class="msgbox"><textarea class="area" id="msg" name="msg" rows="8" cols="30" style="resize: none;" disabled>{{--$bestellung['IF1']."\n\r".$bestellung['IF2']--}}</textarea></span>
+                <span class="msgbox"><textarea class="area" id="msg" name="msg" rows="8" cols="30" style="resize: none;" readonly></textarea></span>
             </li>
         </ul>
     </div>
@@ -90,7 +90,7 @@
         </div>
         <div id="gesamtpreis" style="clear: both;">
               <br/><br/><br/>
-              <p><h4>Gesamtpreis Bestellung</h4> <input id="gesamtpreisBox" type="text" style="padding: 10px" disabled/></p><br/>
+              <p><h4>Gesamtpreis Bestellung</h4> <input id="gesamtpreisBox" type="text" style="padding: 10px" readonly/></p><br/>
         </div>
     </div>
 
@@ -120,10 +120,10 @@
                     <table id="artikelTable" class="table table-condensed">
                         <tbody>
                              <tr>
-                                <td><input onkeyup="javascript:artikelnummerKeyPress(this)" class="artikelnummerTbx" id="textbox" style="text-align: center;" size="5" type="text" disabled/></td>
+                                <td><input onkeyup="javascript:artikelnummerKeyPress(this)" class="artikelnummerTbx" id="textbox" style="text-align: center;" size="5" type="text" readonly/></td>
                                 <td class="artikelbezeichnung" id="artikelbezeichnung"></td>
                                 <td class="einzelpreis" id="einzelpreis"></td>
-                                <td class="menge" id="menge"><input class="mengeBox" id="mengeBox" onkeyup="javascript:mengeBoxKeyPress(this)" style="text-align: center;" size="5" type="text" disabled/></td>
+                                <td class="menge" id="menge"><input class="mengeBox" id="mengeBox" onkeyup="javascript:mengeBoxKeyPress(this)" style="text-align: center;" size="5" type="text" readonly/></td>
                                 <td class="rabbat" id="rabbat"></td>
                                 <td class="summe" id="summe"></td>
                              </tr>
@@ -244,7 +244,7 @@
                             var artikel = JSON.parse(xhr.responseText);
                             document.getElementsByClassName('artikelbezeichnung')[document.getElementsByClassName('artikelbezeichnung').length-1].innerText = artikel[0]['A0'];
                             document.getElementsByClassName('einzelpreis')[document.getElementsByClassName('einzelpreis').length-1].innerText = artikel[0]['CB'] + '€';
-                            document.getElementById('mengeBox').removeAttribute("disabled");
+                            document.getElementById('mengeBox').removeAttribute("readonly");
                             document.getElementsByClassName('mengeBox')[document.getElementsByClassName('mengeBox').length-1].focus();
                             document.getElementsByClassName('rabbat')[document.getElementsByClassName('rabbat').length-1].innerText = rabbat;
                        }
@@ -284,7 +284,7 @@
                             document.getElementById('msg').value = numbers[0]['IF1'] + "\n" + numbers[0]['IF2'];
                             rabbat = numbers[0]['KRAB'];
                         }
-                        if (numbers.length<15)
+                        else
                         {
                             var table = document.getElementById('table1');
                             while(table.hasChildNodes())
@@ -308,6 +308,9 @@
                                 var streetCell = row.insertCell(-1);
                                 streetCell.innerText = numbers[i]['STR'];
                             }
+                            if(numbers.length > 8)
+                                table.className = "scrollkundentable";
+
                             header.innerHTML = "<tr></th><th id=\"toggT\" >Telefon</th><th id=\"toggN\" >Name</th><th id=\"toggS\">Straße</th></tr>";
                             if(document.getElementById('table1').style.display == "none") {
                                 document.getElementById('table1').style.display="table";
@@ -319,7 +322,6 @@
                 xhr.open('GET', '/api/searchNumber?number=' + number, true);
                 xhr.send(null);
             }
-
         }
         var selectedTel = 1;
         function changeSelectedTel(cselectedTel)
@@ -381,29 +383,89 @@
             var number = document.getElementById('tels').value;
             if (event.keyCode == 13)
             {
-                var xhr = new XMLHttpRequest();
+                if(isNaN(number))
+                {
+                    var xhr = new XMLHttpRequest();
                     (xhr.onreadystatechange = function() {
                         if (xhr.readyState == 4) {
                             var numbers = JSON.parse(xhr.responseText);
-                            if (numbers.length == 0)
+                            if (numbers.length <= 1)
                             {
-                                if (confirm('Kunde wurde nicht gefunden! Wollen sie einen neuen Kunden aufnehmen?'))
+                                document.getElementById('tel').value = numbers[0]['TEL'];
+                                document.getElementById('tel').style.backgroundColor = "#3F3";
+                                document.getElementById('vname').value = numbers[0]['NA1'];
+                                document.getElementById('nname').value = numbers[0]['NA2'];
+                                document.getElementById('tel').value = numbers[0]['TEL'];
+                                document.getElementById('add').value = numbers[0]['STR'];
+                                document.getElementById('ort').value = numbers[0]['ORT'];
+                                if (numbers[0]['IF1'] == null)
+                                    numbers[0]['IF1'] = "";
+                                if (numbers[0]['IF2'] == null)
+                                    numbers[0]['IF2'] = "";
+                                document.getElementById('msg').value = numbers[0]['IF1'] + "\n" + numbers[0]['IF2'];
+                                rabbat = numbers[0]['KRAB'];
+                            }
+                            else
+                            {
+                                var table = document.getElementById('table1');
+                                while(table.hasChildNodes())
                                 {
+                                    table.removeChild(table.firstChild);
+                                }
+                                var header = table.createTHead();
+
+                                for (var i = 0;i<numbers.length;i++)
+                                {
+                                    var row = table.insertRow(0);
+                                    var telCell = row.insertCell(0);
+                                    telCell.innerText = numbers[i]['TEL'];
+                                    var nameCell = row.insertCell(-1);
+                                    var name = "";
+                                    if (numbers[i]['NA1'] != null && numbers[i]['NA1'] != "")
+                                        name += numbers[i]['NA1'];
+                                    if (numbers[i]['NA2'] != null && numbers[i]['NA2'] != "")
+                                        name += " " + numbers[i]['NA2'];
+                                    nameCell.innerText = name;
+                                    var streetCell = row.insertCell(-1);
+                                    streetCell.innerText = numbers[i]['STR'];
+                                }
+                                if(numbers.length > 8)
+                                    table.className = "scrollkundentable";
+
+                                header.innerHTML = "<tr></th><th id=\"toggT\" >Telefon</th><th id=\"toggN\" >Name</th><th id=\"toggS\">Straße</th></tr>";
+                                if(document.getElementById('table1').style.display == "none") {
+                                    document.getElementById('table1').style.display="table";
+                                    document.getElementById('aufks').className = "glyphicon glyphicon-chevron-up";
+                                }
+                            }
+                        }
+                    })
+                    xhr.open('GET', '/api/searchKunde?number=' + number, true);
+                    xhr.send(null);
+                }
+
+                else {
+                    var xhr = new XMLHttpRequest();
+                    (xhr.onreadystatechange = function () {
+                        if (xhr.readyState == 4) {
+                            var numbers = JSON.parse(xhr.responseText);
+                            if (numbers.length == 0) {
+                                if (confirm('Kunde wurde nicht gefunden! Wollen sie einen neuen Kunden aufnehmen?')) {
                                     window.location.href = "/Kunden/create?tel=" + number;
                                 }
                             }
-                            else if (numbers.length == 1)
-                            {
+                            else if (numbers.length == 1) {
                                 window.location.href = "#gesamtpreis";
-                                document.getElementById('table1').style.display="none";
+                                document.getElementById('table1').style.display = "none";
                                 document.getElementById('aufks').className = "glyphicon glyphicon-chevron-down";
-                                document.getElementById('textbox').removeAttribute("disabled");
+                                document.getElementById('textbox').removeAttribute("readonly");
                                 document.getElementById('textbox').focus();
                             }
                         }
                     })
                     xhr.open('GET', '/api/searchNumber?number=' + number, true);
                     xhr.send(null);
+                }
             }
         }
     </script>

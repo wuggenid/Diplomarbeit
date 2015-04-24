@@ -105,4 +105,5 @@ Route::group(['prefix' => '/api'], function() {
     Route::post('makePrintJob','APIController@makePrintJob');
     Route::get('getBill','APIController@getBill');
     Route::get('searchBills','APIController@searchBills');
+    Route::get('searchKunde','APIController@searchKunde');
 });

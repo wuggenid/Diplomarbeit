@@ -130,4 +130,10 @@ class ApiController extends BaseController {
         }
         return Response::JSON($bills);
     }
+
+    function searchKunde()
+    {
+        $name = '%'.Input::get('number').'%';
+        return Response::json(xadress::where('NA1','like',$name)->get());
+    }
 }
