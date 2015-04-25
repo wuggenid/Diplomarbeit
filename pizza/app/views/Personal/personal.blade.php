@@ -122,6 +122,14 @@
     <br/><br/>
 </div>
 
+<p>
+    <br/>
+    {{ Form::open(array('url' => '/logout/')) }}
+    {{ Form::hidden('_method', 'GET') }}
+    {{ Form::submit('Logout', array('class' => 'btn btn-danger'))}}
+    {{ Form::close()}}
+</p>
+
 
 
 

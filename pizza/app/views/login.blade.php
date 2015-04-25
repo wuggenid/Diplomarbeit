@@ -6,22 +6,14 @@
 <div style="padding: 5px 30px;">
 
     <div class="chosen-container chosen-container-multi">
-        <label>Passwort:</label>
-        <input type="text" id="passwort" autofocus onkeypress="javscript:passwordKeyPress()"/>
+        <form action="{{ url('login') }}" method="post">
+            <div class="wrapper">
+                <form class="form-signin">
+                    <input type="password" name="password" required autofocus/>
+                    <button class="btn btn-lg btn-primary" type="submit">Login</button>
+                </form>
+            </div>
+        </form>
     </div>
 </div>
-<?php
-    $user = new User;
-    $user->name = 'Eduardo';
-    $user->save();
-?>
-<script language="javascript">
-    function passwordKeyPress()
-    {
-        if (event.keyCode == 13)
-        {
-
-        }
-    }
-</script>
 @stop

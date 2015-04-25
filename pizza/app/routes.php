@@ -16,6 +16,11 @@ Route::get('/', function()
     return View::make('start');
 });
 
+//Login
+Route::get('login', 'UserController@showLogin');
+Route::post('login', 'UserController@doLogin');
+Route::get('logout', 'UserController@doLogout');
+
 //Bestellungen
 Route::get('/Bestellungen/letzteAnrufe','BestellungenController@letzteAnrufe');
 Route::get('/Bestellungen/storeSingleValue','BestellungenController@storeSingleValue');
@@ -48,10 +53,7 @@ Route::post('/Artikel/Artikelmonatsstatistik/searchYear', 'ArtikelController@sea
 Route::resource('/Artikel', 'ArtikelController');
 
 //Personal
-Route::get('/Personal/delete/{id}','PersonalController@destroy');
-Route::get('/Personal/update','PersonalController@update');
-Route::get('/Personal/store','PersonalController@store');
-Route::resource('/Personal','PersonalController');
+
 
 Route::get('/Login',function(){return View::make('login');});
 
@@ -83,6 +85,15 @@ Route::resource('/Bons','BonController');
 Route::get('/Buchen/changeStorno','BuchenController@changeStorno');
 Route::get('/Buchen/stornos','BuchenController@stornos');
 Route::resource('/Buchen','BuchenController');
+
+
+Route::group(['before' => 'auth'], function()
+{
+    Route::get('/Personal/delete/{id}','PersonalController@destroy');
+    Route::get('/Personal/update','PersonalController@update');
+    Route::get('/Personal/store','PersonalController@store');
+    Route::resource('/Personal','PersonalController');
+});
 
 //API
 Route::group(['prefix' => '/api'], function() {
