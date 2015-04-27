@@ -19,7 +19,8 @@ class UserController extends \BaseController {
 
     public function doLogin()
     {
-        $credentials = Input::only('password');
+        //$credentials = Input::only('password');
+        $credentials = Input::only('username', 'password');
         if (Auth::attempt($credentials)) {
             return Redirect::intended('/');
         }

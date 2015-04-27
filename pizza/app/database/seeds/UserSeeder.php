@@ -10,18 +10,23 @@ class UserSeeder extends Seeder {
     public function run()
     {
         $user = new User;
-        $user->username = 'admin';
-        $user->password = Hash::make('11210512212297');
+        $user->username = '11210512212297';
+        $user->password = Hash::make('');
         $user->save();
 
         $user = new User;
-        $user->username = 'admin';
-        $user->password = Hash::make('102101106');
+        $user->username = '102101106';
+        $user->password = Hash::make('');
         $user->save();
 
         $user = new User;
-        $user->username = 'admin';
-        $user->password = Hash::make('514949585549');
+        $user->username = '514949585549';
+        $user->password = Hash::make('');
+        $user->save();
+
+        $user = new User;
+        $user->username = 'pizza';
+        $user->password = Hash::make('');
         $user->save();
     }
 

@@ -9,7 +9,7 @@
         <form action="{{ url('login') }}" method="post">
             <div class="wrapper">
                 <form class="form-signin">
-                    <input type="password" name="password" required autofocus/>
+                    <input type="password" name="username" required autofocus/>
                     <button class="btn btn-lg btn-primary" type="submit">Login</button>
                 </form>
             </div>
